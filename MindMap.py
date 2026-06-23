@@ -395,9 +395,9 @@ if __name__ == "__main__":
     openai.api_key = YOUR_OPENAI_KEY
 
     # 1. build neo4j knowledge graph datasets
-    uri = "bolt://34.201.21.105:7687"
-    username = "neo4j"
-    password = "efficiencies-daytime-stage"
+    uri = "add here"
+    username = "add here"
+    password = "add here"
 
     driver = GraphDatabase.driver(uri, auth=(username, password))
     session = driver.session()
