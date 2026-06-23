@@ -1,4 +1,7 @@
 # MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models
+
+We are updating MindMap's LLM and evaluating whether this framework is viable for our project that utilizes LLMs to synthesize published research on adverse drug reactions.
+
 This is the official codebase of the **MindMap** :snowflake: framework for eliciting the graph-of-thoughts reasoning capability in LLMs, proposed in [MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models](https://arxiv.org/pdf/2308.09729.pdf).
 
 This paper has been accepted by ACL'24.
