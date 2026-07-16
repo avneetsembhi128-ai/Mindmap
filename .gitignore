@@ -1,0 +1,21 @@
+# Raw source data — too large for GitHub, and regenerable via build_oncology_kg.py
+OncologyKG/data/
+
+# Neo4j / local DB artifacts
+*.db/
+neo4j_data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Output CSVs from running the scripts — regenerable, not source
+*.csv
+
+# Environment / secrets
+.env
+
+# NOTE: OncologyKG/kg_export/ is intentionally NOT excluded — that's the
+# portable graph export meant to be committed.
