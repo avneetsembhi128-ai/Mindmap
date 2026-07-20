@@ -433,9 +433,9 @@ if __name__ == "__main__":
                         start_tmp.append(path_new[0])
                 
                 if len(start_tmp) == 1:
-                    result_path = result_path_list[:3]  # Enforced limit down to 3 paths maximum
+                    result_path = result_path_list#[:3]  # Enforced limit down to 3 paths maximum
                 elif len(start_tmp) > 1:
-                    result_path = result_path_list[:3]  # Safeguard limit balance
+                    result_path = result_path_list#[:3]  # Safeguard limit balance
             
             print(f"Path Finding Complete. Found {len(result_path)} paths.", flush=True)
 
@@ -463,7 +463,7 @@ if __name__ == "__main__":
             # # 6. Knowledge Graph Path Based Prompt Generation
             response_of_KG_list_path = "{}"
             if result_path and isinstance(result_path, list):
-                result_new_path = ["->".join(total_path_i) for total_path_i in result_path[:3]] # Enforce strict slice cap
+                result_new_path = ["->".join(total_path_i) for total_path_i in result_path]#[:3]] # Enforce strict slice cap
                 path_str_block = "\n".join(result_new_path)
                 response_of_KG_list_path = prompt_path_finding(path_str_block)
                 if is_unable_to_answer(response_of_KG_list_path):
@@ -471,7 +471,7 @@ if __name__ == "__main__":
 
             # # 7. Knowledge Graph Neighbor Entities Based Prompt Generation   
             neighbor_new_list = ["->".join(neighbor_i) for neighbor_i in neighbor_list]
-            neighbor_input = "\n".join(neighbor_new_list[:3]) # Enforced strict limit slice cap to 3 entries
+            neighbor_input = "\n".join(neighbor_new_list)#[:3]) # Enforced strict limit slice cap to 3 entries
 
             response_of_KG_neighbor = "{}"
             if neighbor_new_list:
