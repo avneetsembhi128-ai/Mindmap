@@ -1,94 +1,84 @@
 """
-build_oncology_kg.py (fixed)
+kg.py — unified CLI for OncologyKG
 
-Builds a focused Pediatric Oncology ADR Knowledge Graph from:
-  1. PharmGKB clinicalVariants  — variant-drug-phenotype with evidence levels
-  2. PharmGKB variantAnnotations — HGVS, mechanism (PK/PD), phenotype descriptions
-  3. PharmGKB variants           — rsID, gene symbols
-  4. PharmGKB drugs/genes        — reference nodes
-  5. CPIC                        — gold standard guidelines
-  6. SIDER                       — MedDRA ADR terms
-  7. ClinVar                     — clinical severity
+Builds and manages the Pediatric Oncology ADR Knowledge Graph (Gene -> Variant
+-> Drug -> ADR) in Neo4j, sourced from PharmGKB, CPIC, SIDER, and ClinVar.
 
-Focused on these 6 drug-ADR pairs:
-  cisplatin       → ototoxicity
-  doxorubicin     → cardiotoxicity  (anthracycline)
-  vincristine     → peripheral neuropathy
-  methotrexate    → mucositis
-  methotrexate    → hepatotoxicity
-  paclitaxel      → peripheral neuropathy
+Subcommands:
+    python kg.py load      Rebuild the graph from kg_export/ (committed to the
+                            repo — no raw source data needed). This is the
+                            fast path to reproduce the exact graph on a new
+                            machine.
+    python kg.py build     Rebuild the graph from scratch by parsing raw
+                            PharmGKB/CPIC/SIDER/ClinVar files in data/ (see
+                            README.md for where to download them — data/ is
+                            gitignored, not committed).
+    python kg.py export    Dump the live graph in Neo4j to kg_export/
+                            nodes.json + edges.json, so it can be committed
+                            and reloaded elsewhere via `load`.
+    python kg.py audit     Health-check an existing graph: node counts,
+                            fragmentation/orphan/duplicate scans, ADR and
+                            drug connectivity, and the 6 primary drug->ADR
+                            reasoning-chain checks.
 
-Node schema:
-  Drug        — name, drug_class
-  Gene        — hgnc_symbol, full_name
-  Variant     — rsid, hgvs, star_allele, gene_symbol
-  ADR         — meddra_term, ctcae_grade, ctcae_term
-  Disease     — name, subtype
-  Phenotype   — name, metabolizer_type
-  Mechanism   — type (PK/PD/immune)
-
-=====================================================================
-FIXES vs. the original script (all marked with "# FIX:")
-=====================================================================
-Root cause found by inspecting the loaded graph: ADR nodes were fragmented
-into many near-duplicates (e.g. "Side Effect:Hearing Loss", "Other:Hearing
-Loss, Sensorineural", and giant unsplit blobs like "Acute lymphoblastic
-leukemia,Anemia,Leukopenia,Mucositis,...") instead of collapsing into the 5
-canonical ADR categories the project already defines (CTCAE_MAP /
-TARGET_ADR_KEYWORDS). Three separate bugs caused this:
-
-  1. parse_clinical_variants split `phenotypes_raw` on ";", but PharmGKB's
-     phenotype field is comma-separated ("Category:term, Category:term..."),
-     so multi-value fields with no semicolon survived as one giant string.
-  2. Nothing stripped the "Category:" prefix (Side Effect:, Other:, Toxicity:,
-     etc.), so the same underlying condition produced a different node per
-     category tag it happened to be filed under.
-  3. parse_clinvar never split ClinVar's pipe-delimited PhenotypeList at all —
-     the whole "diseaseA|diseaseB|diseaseC" string became one ADR node name.
-
-Fix: every raw phenotype/side-effect string, from every source, now goes
-through canonicalize_adr(), which maps it to one of the 5 target ADR
-categories (or discards it if irrelevant) using the keyword groups that were
-already defined for this purpose. Raw source text is kept as a
-`source_terms` property on the canonical node for traceability, but no
-longer determines node identity. The same treatment (canonicalize_drug) is
-applied to drug names, so aliases like "adriamycin" merge into "doxorubicin"
-instead of creating a separate node.
-
-Run:
-    python build_oncology_kg.py
+All subcommands require NEO4J_PASSWORD to be set in the environment:
+    PowerShell:  $env:NEO4J_PASSWORD = "your-password-here"
+    bash:        export NEO4J_PASSWORD="your-password-here"
 """
 
+import argparse
 import gzip
 import json
 import os
 import re
-import pandas as pd
 from collections import defaultdict
+
+import pandas as pd
 from neo4j import GraphDatabase
 
 # ─────────────────────────────────────────────────────────────
-# SETTINGS
+# CONNECTION / PATHS — shared by every subcommand
 # ─────────────────────────────────────────────────────────────
-NEO4J_URI      = "neo4j://127.0.0.1:7687"
-NEO4J_USER     = "neo4j"
-NEO4J_PASSWORD = "oncology123"
+NEO4J_URI  = os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687")
+NEO4J_USER = os.environ.get("NEO4J_USER", "neo4j")
 
-BASE_DIR = r"C:\Users\tulik\Documents\Research Project\Building KG\OncologyKG\data"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR   = os.path.join(SCRIPT_DIR, "data")
+EXPORT_DIR = os.path.join(SCRIPT_DIR, "kg_export")
 
 BATCH_SIZE = 500
+LABELS = ["Gene", "Drug", "Variant", "ADR", "Phenotype"]
 
-# ─────────────────────────────────────────────────────────────
-# TARGET DRUGS AND ADRs
-# The original 6 pairs are the primary/best-curated cases (they get extra
-# attention in the test questions elsewhere), but per user direction this KG
-# is not limited to just those — expanded to standard pediatric-oncology
-# chemotherapy agents and a broader set of clinically significant ADR
-# categories. Both dicts below are the actual scope boundary: add/remove a
-# drug or ADR keyword group here and every parsing function below picks it
-# up automatically, since they all route through canonicalize_drug() /
-# canonicalize_adr() rather than checking a hardcoded list per-function.
-# ─────────────────────────────────────────────────────────────
+
+def get_driver():
+    password = os.environ.get("NEO4J_PASSWORD")
+    if not password:
+        raise SystemExit(
+            "Set the NEO4J_PASSWORD environment variable before running this script.\n"
+            "PowerShell:  $env:NEO4J_PASSWORD = \"your-password-here\"\n"
+            "bash:        export NEO4J_PASSWORD=\"your-password-here\""
+        )
+    return GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, password))
+
+
+# ═════════════════════════════════════════════════════════════
+# BUILD — rebuild the graph from raw PharmGKB/CPIC/SIDER/ClinVar source data
+# ═════════════════════════════════════════════════════════════
+#
+# Focused on these 6 drug-ADR pairs:
+#   cisplatin       -> ototoxicity
+#   doxorubicin     -> cardiotoxicity  (anthracycline)
+#   vincristine     -> peripheral neuropathy
+#   methotrexate    -> mucositis
+#   methotrexate    -> hepatotoxicity
+#   paclitaxel      -> peripheral neuropathy
+#
+# ...expanded to standard pediatric-oncology (COG-protocol) chemotherapy
+# agents and a broader set of clinically significant ADR categories. Both
+# dicts below are the actual scope boundary: add/remove a drug or ADR keyword
+# group here and every parsing function below picks it up automatically,
+# since they all route through canonicalize_drug() / canonicalize_adr()
+# rather than checking a hardcoded list per-function.
 
 TARGET_DRUGS = {
     # Original 6-pair drugs
@@ -97,10 +87,9 @@ TARGET_DRUGS = {
     "vincristine":   "Vinca alkaloid",
     "methotrexate":  "Antimetabolite",
     "paclitaxel":    "Taxane",
-    # NEW: broadened to other standard pediatric-oncology (COG-protocol)
-    # chemotherapy agents. This list is hand-curated, not derived from a
-    # PharmGKB indication/ATC field (unconfirmed whether that column exists
-    # in your drugs.tsv) — easy to prune or extend as a plain dict.
+    # Broadened to other standard pediatric-oncology (COG-protocol)
+    # chemotherapy agents. Hand-curated, not derived from a PharmGKB
+    # indication/ATC field — easy to prune or extend as a plain dict.
     "carboplatin":   "Platinum compound",
     "daunorubicin":  "Anthracycline",
     "epirubicin":    "Anthracycline",
@@ -126,12 +115,9 @@ TARGET_DRUGS = {
     "rituximab":     "Monoclonal antibody",
 }
 
-# FIX: aliases now map to the CANONICAL drug name they should merge into,
-# instead of just being a second key in TARGET_DRUGS with its own drug_class.
+# Aliases map to the CANONICAL drug name they should merge into. E.g.
 # "adriamycin" is a brand/alt name for doxorubicin — it should never become
-# its own node. Expanded with other common brand/alt names for the drugs
-# above, since the same fragmentation risk applies to all of them, not just
-# doxorubicin.
+# its own node.
 DRUG_ALIASES = {
     "adriamycin":    "doxorubicin",
     "vp-16":         "etoposide",
@@ -147,17 +133,9 @@ DRUG_ALIASES = {
     "cpt-11":        "irinotecan",
 }
 
-# FIX: canonical ADR categories, keyed by the same keywords TARGET_ADR_KEYWORDS
-# already used for filtering — now also used to decide the canonical NODE
-# NAME, not just whether to keep a row. Order matters: first match wins, so
+# Canonical ADR categories, keyed by the keywords used to both filter rows
+# and decide the canonical NODE NAME. Order matters: first match wins, so
 # more specific keywords are listed first within reason.
-# NEW: 5 additional categories per user direction ("slightly larger hand-
-# picked list of oncology-relevant ADR categories") — myelosuppression,
-# neutropenia, thrombocytopenia, nephrotoxicity, hypersensitivity — chosen
-# as the other clinically significant, pharmacogenomically-studied ADR
-# classes common across the expanded drug list above (e.g. asparaginase
-# hypersensitivity, cisplatin/ifosfamide nephrotoxicity, myelosuppression
-# from most cytotoxic agents).
 ADR_CANONICAL_MAP = {
     "ototox":               "Ototoxicity",
     "hearing":              "Ototoxicity",
@@ -174,7 +152,6 @@ ADR_CANONICAL_MAP = {
     "hepatotox":            "Hepatotoxicity",
     "hepatic":              "Hepatotoxicity",
     "liver":                "Hepatotoxicity",
-    # NEW additions:
     "febrile neutropenia":  "Neutropenia",
     "neutropenia":          "Neutropenia",
     "neutropenic":          "Neutropenia",
@@ -192,19 +169,20 @@ ADR_CANONICAL_MAP = {
 }
 
 # Kept for anything that still wants a broad relevance check (none of the
-# parsing functions below use this for node identity anymore — only
-# canonicalize_adr does that).
+# parsing functions below use this for node identity — only canonicalize_adr
+# does that).
 TARGET_ADR_KEYWORDS = list(ADR_CANONICAL_MAP.keys())
 
-# CTCAE grades for our target ADRs — keys now match ADR_CANONICAL_MAP values
+# CTCAE grades for the target ADRs — keys match ADR_CANONICAL_MAP values
 # exactly, so every canonical ADR node reliably gets its CTCAE metadata.
+# Also the single source of truth for the 10 canonical ADR category names
+# (audit reuses list(CTCAE_MAP.keys()) instead of a second hardcoded list).
 CTCAE_MAP = {
     "Ototoxicity":           {"term": "Hearing impaired",                     "grades": "1-4"},
     "Cardiotoxicity":        {"term": "Left ventricular systolic dysfunction","grades": "1-4"},
     "Peripheral Neuropathy": {"term": "Peripheral sensory neuropathy",        "grades": "1-4"},
     "Mucositis":             {"term": "Mucositis oral",                       "grades": "1-5"},
     "Hepatotoxicity":        {"term": "Alanine aminotransferase increased",   "grades": "1-4"},
-    # NEW: CTCAE v5.0 terms for the 5 added categories.
     "Neutropenia":           {"term": "Neutrophil count decreased",           "grades": "1-4"},
     "Thrombocytopenia":      {"term": "Platelet count decreased",             "grades": "1-4"},
     "Myelosuppression":      {"term": "Bone marrow hypocellular",             "grades": "1-4"},
@@ -212,9 +190,7 @@ CTCAE_MAP = {
     "Hypersensitivity":      {"term": "Allergic reaction",                    "grades": "1-4"},
 }
 
-# ─────────────────────────────────────────────────────────────
-# HELPERS
-# ─────────────────────────────────────────────────────────────
+# ── Helpers ─────────────────────────────────────────────────────
 
 def make_triple(head, head_label, relation, tail, tail_label,
                 source, confidence="medium", **props):
@@ -235,9 +211,9 @@ def is_target_drug(name):
 
 
 def canonicalize_drug(name):
-    """FIX: returns the canonical target drug name for any alias, or None if
-    this text doesn't refer to one of our target drugs at all. Replaces raw
-    drug text as the node identity so "adriamycin" and "doxorubicin" merge.
+    """Returns the canonical target drug name for any alias, or None if this
+    text doesn't refer to one of our target drugs at all. Replaces raw drug
+    text as the node identity so "adriamycin" and "doxorubicin" merge.
     """
     if not name:
         return None
@@ -259,13 +235,10 @@ _CATEGORY_PREFIX_RE = re.compile(r"^[A-Za-z][A-Za-z /]{1,30}:\s*")
 
 
 def split_multi_value_field(raw):
-    """FIX: PharmGKB phenotype/side-effect fields are multi-value, comma-
-    separated, and each value may carry a "Category:" prefix (Side Effect:,
-    Toxicity:, Other:, Efficacy:, PD:, PK:, Dosage:, etc.). The original code
-    only split on ";" (rarely present) and never stripped the prefix, which
-    is why compound blobs and category-duplicated nodes showed up in the
-    loaded graph. This splits on either delimiter and strips any leading
-    "Category:" label, returning clean individual terms.
+    """PharmGKB phenotype/side-effect fields are multi-value, comma-separated,
+    and each value may carry a "Category:" prefix (Side Effect:, Toxicity:,
+    Other:, Efficacy:, PD:, PK:, Dosage:, etc.). Splits on comma or semicolon
+    and strips any leading "Category:" label, returning clean individual terms.
     """
     if not raw or raw == "nan":
         return []
@@ -282,11 +255,10 @@ def split_multi_value_field(raw):
 
 
 def canonicalize_adr(text):
-    """FIX: maps any raw phenotype/side-effect string to one of the 5 target
-    ADR categories, or returns None if it isn't one of our targets. This is
-    what actually fixes the fragmentation — canonicalize_adr("Side Effect:
-    Hearing Loss") and canonicalize_adr("Hearing impaired") and
-    canonicalize_adr("Ototoxicity") all return the same node name now.
+    """Maps any raw phenotype/side-effect string to one of the target ADR
+    categories, or returns None if it isn't one of our targets. E.g.
+    canonicalize_adr("Side Effect: Hearing Loss"), canonicalize_adr("Hearing
+    impaired"), and canonicalize_adr("Ototoxicity") all return "Ototoxicity".
     """
     if not text:
         return None
@@ -298,17 +270,15 @@ def canonicalize_adr(text):
 
 
 def is_target_adr(text):
-    """Kept for the top-level row-relevance gate in parse_clinical_variants /
+    """Row-relevance gate for parse_clinical_variants /
     parse_variant_pheno_annotations, where we're checking a whole raw field
-    that may contain several comma-joined terms before we've split it yet."""
+    that may contain several comma-joined terms before it's split."""
     if not text:
         return False
     return any(k in text.lower() for k in TARGET_ADR_KEYWORDS)
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 1 — PharmGKB Genes
-# ─────────────────────────────────────────────────────────────
+# ── Source 1 — PharmGKB Genes ────────────────────────────────────
 
 def parse_genes(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -327,9 +297,7 @@ def parse_genes(path):
     return nodes
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 2 — PharmGKB Drugs
-# ─────────────────────────────────────────────────────────────
+# ── Source 2 — PharmGKB Drugs ────────────────────────────────────
 
 def parse_drugs(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -339,8 +307,8 @@ def parse_drugs(path):
         raw_name = str(row.get("Name", "")).strip()
         if not raw_name or raw_name == "nan":
             continue
-        # FIX: canonicalize instead of using the raw row text as the node
-        # name, so alias rows (e.g. "Adriamycin") merge into "doxorubicin".
+        # Canonicalize instead of using the raw row text as the node name, so
+        # alias rows (e.g. "Adriamycin") merge into "doxorubicin".
         canonical = canonicalize_drug(raw_name)
         if not canonical:
             continue
@@ -359,10 +327,7 @@ def parse_drugs(path):
     return nodes
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 3 — PharmGKB Variants
-# Gives us rsID and gene symbol for each variant
-# ─────────────────────────────────────────────────────────────
+# ── Source 3 — PharmGKB Variants (rsID + gene symbol reference) ──
 
 def parse_variants(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -383,10 +348,7 @@ def parse_variants(path):
     return nodes
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 4 — PharmGKB Clinical Variants
-# Gives us variant → drug links with evidence levels
-# ─────────────────────────────────────────────────────────────
+# ── Source 4 — PharmGKB Clinical Variants (variant -> drug links) ─
 
 EVIDENCE_CONFIDENCE = {
     "1A": "high", "1B": "high",
@@ -395,15 +357,14 @@ EVIDENCE_CONFIDENCE = {
 }
 
 def split_variant_list(raw):
-    """FIX: PharmGKB's variant/haplotype columns can list several distinct
-    star alleles evaluated together in one annotation, comma-separated
-    (e.g. "CYP2D6*1, CYP2D6*2, CYP2D6*5, CYP2D6*10" — four separate alleles).
-    That's different from a diplotype like "CYP2D6*1/*4", which uses "/" and
-    represents one person's actual two-allele genotype and must NOT be
-    split. This only splits on comma/semicolon, leaves "/" untouched, and
-    (unlike split_multi_value_field) never strips a leading "word:" pattern,
-    since HGVS notation can legitimately contain a colon
-    (e.g. "NM_000106.5:c.1457G>A") and stripping it would corrupt real data.
+    """PharmGKB's variant/haplotype columns can list several distinct star
+    alleles evaluated together in one annotation, comma-separated (e.g.
+    "CYP2D6*1, CYP2D6*2, CYP2D6*5, CYP2D6*10"). That's different from a
+    diplotype like "CYP2D6*1/*4", which uses "/" and represents one person's
+    actual two-allele genotype and must NOT be split. This only splits on
+    comma/semicolon, leaves "/" untouched, and never strips a leading
+    "word:" pattern (HGVS notation can legitimately contain a colon, e.g.
+    "NM_000106.5:c.1457G>A").
     """
     if not raw or raw == "nan":
         return []
@@ -436,10 +397,6 @@ def parse_clinical_variants(path):
 
         conf = EVIDENCE_CONFIDENCE.get(ev_level, "low")
 
-        # FIX: this is the variant-fragmentation fix — split the raw field
-        # into its distinct alleles (comma/semicolon only, "/" diplotypes
-        # left intact) instead of using the whole comma-joined blob as one
-        # node name. Every triple below is now created per split variant.
         for variant in split_variant_list(variant_raw):
             nodes.append({
                 "name":  variant,
@@ -448,7 +405,7 @@ def parse_clinical_variants(path):
                 "label": "Variant"
             })
 
-            # Gene → HAS_CLINICAL_VARIANT → Variant
+            # Gene -> HAS_CLINICAL_VARIANT -> Variant
             if gene and gene != "nan":
                 triples.append(make_triple(
                     gene, "Gene", "HAS_CLINICAL_VARIANT",
@@ -457,9 +414,7 @@ def parse_clinical_variants(path):
                     evidence_level=ev_level
                 ))
 
-            # Variant → AFFECTS_RESPONSE_TO → Drug
-            # FIX: split on comma-or-semicolon (was ";" only) and canonicalize
-            # each piece instead of using raw chemical text as the node name.
+            # Variant -> AFFECTS_RESPONSE_TO -> Drug
             if chemicals and chemicals != "nan":
                 for chem in split_multi_value_field(chemicals):
                     canonical_drug = canonicalize_drug(chem)
@@ -472,11 +427,7 @@ def parse_clinical_variants(path):
                             source_term=chem
                         ))
 
-            # Variant → LINKED_TO_ADR → ADR
-            # FIX: this is the main fragmentation fix — split properly (comma OR
-            # semicolon, category-prefix stripped) and canonicalize each piece
-            # to one of the 5 target ADR nodes, instead of using the raw
-            # (sometimes giant, comma-joined) phenotype blob as the node name.
+            # Variant -> LINKED_TO_ADR -> ADR
             if phenotypes_raw and phenotypes_raw != "nan":
                 for phen in split_multi_value_field(phenotypes_raw):
                     canonical_adr = canonicalize_adr(phen)
@@ -498,9 +449,7 @@ def parse_clinical_variants(path):
     return nodes, triples
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 5 — PharmGKB Variant Annotations
-# ─────────────────────────────────────────────────────────────
+# ── Source 5 — PharmGKB Variant Annotations ──────────────────────
 
 def parse_variant_drug_annotations(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -532,9 +481,6 @@ def parse_variant_drug_annotations(path):
         if "immune" in sentence.lower() or "hypersensitivity" in sentence.lower():
             mechanism = "immune_mediated"
 
-        # FIX: same variant-fragmentation fix as parse_clinical_variants —
-        # split comma/semicolon-joined allele lists, leave "/" diplotypes
-        # intact, and create nodes/triples per split variant.
         for variant in split_variant_list(variant_raw):
             nodes.append({
                 "name":      variant,
@@ -547,9 +493,7 @@ def parse_variant_drug_annotations(path):
                 "label":     "Variant"
             })
 
-            # Variant → PHARMACOGENOMIC_ASSOCIATION → Drug
-            # FIX: canonicalize drug name (handles comma/semicolon lists and
-            # aliases consistently with the rest of the script).
+            # Variant -> PHARMACOGENOMIC_ASSOCIATION -> Drug
             for d in split_multi_value_field(drug):
                 canonical_drug = canonicalize_drug(d)
                 if canonical_drug:
@@ -564,7 +508,7 @@ def parse_variant_drug_annotations(path):
                         source_term=d
                     ))
 
-            # Gene → HAS_VARIANT → Variant
+            # Gene -> HAS_VARIANT -> Variant
             if gene and gene != "nan":
                 for g in split_multi_value_field(gene):
                     triples.append(make_triple(
@@ -597,13 +541,7 @@ def parse_variant_pheno_annotations(path):
         if not is_target_drug(drug) and not is_target_adr(phenotype):
             continue
 
-        # FIX: split the variant field too (same fragmentation bug as the
-        # other two parsers) so the same allele name matches the Variant
-        # nodes created elsewhere instead of silently failing to link up.
         for variant in split_variant_list(variant_raw):
-            # FIX: this field previously went straight into the node name with
-            # NO splitting at all. Now split + canonicalize like the other
-            # phenotype fields.
             if phenotype and phenotype != "nan":
                 for phen in split_multi_value_field(phenotype):
                     canonical_adr = canonicalize_adr(phen)
@@ -627,9 +565,7 @@ def parse_variant_pheno_annotations(path):
     return nodes, triples
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 6 — CPIC
-# ─────────────────────────────────────────────────────────────
+# ── Source 6 — CPIC ───────────────────────────────────────────────
 
 def parse_cpic(recs_path, drugs_path):
     if not os.path.exists(recs_path):
@@ -661,7 +597,6 @@ def parse_cpic(recs_path, drugs_path):
 
         if not gene_symbol or not drug_name_raw:
             continue
-        # FIX: canonicalize instead of using the raw CPIC drug name directly.
         canonical_drug = canonicalize_drug(drug_name_raw)
         if not canonical_drug:
             continue
@@ -702,9 +637,7 @@ def parse_cpic(recs_path, drugs_path):
     return nodes, triples
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 7 — SIDER
-# ─────────────────────────────────────────────────────────────
+# ── Source 7 — SIDER ──────────────────────────────────────────────
 
 def parse_sider(se_path, names_path):
     id_to_name = {}
@@ -741,9 +674,6 @@ def parse_sider(se_path, names_path):
             if stitch_flat not in target_stitch_ids:
                 continue
 
-            # FIX: canonicalize the MedDRA term instead of keeping raw text
-            # as the node name, so SIDER's phrasing merges with PharmGKB's
-            # and ClinVar's for the same underlying ADR.
             canonical_adr = canonicalize_adr(side_effect)
             if not canonical_adr:
                 continue
@@ -780,9 +710,7 @@ def parse_sider(se_path, names_path):
     return nodes, triples
 
 
-# ─────────────────────────────────────────────────────────────
-# SOURCE 8 — ClinVar
-# ─────────────────────────────────────────────────────────────
+# ── Source 8 — ClinVar ────────────────────────────────────────────
 
 def parse_clinvar(path):
     TARGET_GENES = {
@@ -829,9 +757,6 @@ def parse_clinvar(path):
             if not rsid or rsid == "-1" or rsid == "nan":
                 continue
 
-            # FIX: split ClinVar's pipe-delimited PhenotypeList and
-            # canonicalize each entry, instead of treating the whole
-            # "diseaseA|diseaseB|diseaseC" string as one ADR node.
             canonical_adrs = []
             if phenotype_list_raw and phenotype_list_raw != "nan":
                 for phen in phenotype_list_raw.split("|"):
@@ -887,13 +812,9 @@ def parse_clinvar(path):
     return nodes, triples
 
 
-# ─────────────────────────────────────────────────────────────
-# NEO4J LOADER — unchanged from original
-# ─────────────────────────────────────────────────────────────
+# ── Neo4j loader for `build` ───────────────────────────────────────
 
-def load_into_neo4j(all_nodes, all_triples, uri, user, password):
-    driver = GraphDatabase.driver(uri, auth=(user, password))
-
+def load_into_neo4j(all_nodes, all_triples, driver):
     with driver.session() as session:
         print("  Clearing existing data in this database...")
         session.run("MATCH (n) DETACH DELETE n")
@@ -967,15 +888,8 @@ def load_into_neo4j(all_nodes, all_triples, uri, user, password):
 
         print(f"  Total edges: {total_edges:,}")
 
-    driver.close()
 
-
-# ─────────────────────────────────────────────────────────────
-# VERIFY
-# ─────────────────────────────────────────────────────────────
-
-def verify(uri, user, password):
-    driver = GraphDatabase.driver(uri, auth=(user, password))
+def print_build_verification(driver):
     with driver.session() as session:
         total_n = session.run("MATCH (n) RETURN count(n) AS c").single()["c"]
         total_e = session.run("MATCH ()-[r]->() RETURN count(r) AS c").single()["c"]
@@ -997,9 +911,6 @@ def verify(uri, user, password):
         ):
             print(f"  {rec['t']:<40}: {rec['c']:,}")
 
-        # NEW: explicitly show the 5 canonical ADR nodes and their connectivity,
-        # since that was the whole point of the fix — confirm they're no longer
-        # fragmented.
         print("\nCanonical ADR node connectivity:")
         for rec in session.run(
             "MATCH (n:ADR) "
@@ -1028,26 +939,19 @@ def verify(uri, user, password):
             status = "OK" if result > 0 else "MISSING"
             print(f"  [{status}] {drug} -> {adr}: {result} edges")
 
-    driver.close()
 
-
-# ─────────────────────────────────────────────────────────────
-# MAIN
-# ─────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
-
-    base = BASE_DIR
+def cmd_build():
+    base = DATA_DIR
     all_nodes   = []
     all_triples = []
 
     print("\n" + "="*50)
     print("SOURCE 1 — PharmGKB Genes")
     print("="*50)
-    # FIX: don't fold this straight into all_nodes yet — genes.tsv is the
-    # full PharmGKB gene catalog (25,041 rows), and most of it has no
-    # relevance to this KG. Held separately so it can be filtered down to
-    # only genes actually referenced by an edge, once all edges are known.
+    # genes.tsv is the full PharmGKB gene catalog (25,041 rows), and most of
+    # it has no relevance to this KG. Held separately so it can be filtered
+    # down to only genes actually referenced by an edge, once all edges are
+    # known.
     gene_ref_nodes = parse_genes(
         os.path.join(base, "genes", "genes.tsv"))
 
@@ -1060,11 +964,11 @@ if __name__ == "__main__":
     print("\n" + "="*50)
     print("SOURCE 3 — PharmGKB Variants (rsID reference)")
     print("="*50)
-    # FIX: same deferred-filtering treatment as genes above — variants.tsv
-    # is the full reference list; most rows aren't relevant to our target
-    # drugs/ADRs and the ones that ARE relevant already get created directly
-    # by parse_clinical_variants / parse_variant_drug_annotations, so this
-    # is genuinely just extra reference metadata for variants already in use.
+    # Same deferred-filtering treatment as genes above — variants.tsv is the
+    # full reference list; most rows aren't relevant to our target drugs/ADRs
+    # and the ones that ARE relevant already get created directly by
+    # parse_clinical_variants / parse_variant_drug_annotations, so this is
+    # genuinely just extra reference metadata for variants already in use.
     variant_ref_nodes = parse_variants(
         os.path.join(base, "variants", "variants.tsv"))
 
@@ -1112,10 +1016,9 @@ if __name__ == "__main__":
     all_nodes   += cv2_nodes
     all_triples += cv2_triples
 
-    # FIX: now that every edge source has been parsed, filter the gene/
-    # variant reference dumps down to only entries that are actually an
-    # endpoint of at least one edge. This is what eliminates the orphaned
-    # nodes (98.6% of Gene, 74.1% of Variant in the last run) without
+    # Now that every edge source has been parsed, filter the gene/variant
+    # reference dumps down to only entries that are actually an endpoint of
+    # at least one edge. This is what eliminates orphaned nodes without
     # touching any node that's genuinely in use.
     referenced_gene_names = set()
     referenced_variant_names = set()
@@ -1148,22 +1051,22 @@ if __name__ == "__main__":
     print("\n" + "="*50)
     print("Loading into Neo4j...")
     print("="*50)
-    load_into_neo4j(all_nodes, all_triples,
-                    NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
+    with get_driver() as driver:
+        load_into_neo4j(all_nodes, all_triples, driver)
 
-    print("\n" + "="*50)
-    print("Verification")
-    print("="*50)
-    verify(NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD)
+        print("\n" + "="*50)
+        print("Verification")
+        print("="*50)
+        print_build_verification(driver)
 
     print("\nDone! Try these in Neo4j browser:")
     print()
-    print("// Cisplatin → variants → ototoxicity")
+    print("// Cisplatin -> variants -> ototoxicity")
     print("MATCH (d:Drug {name:'cisplatin'})<-[:AFFECTS_RESPONSE_TO]-(v:Variant)")
     print("      -[:LINKED_TO_ADR]->(a:ADR {name:'Ototoxicity'})")
     print("RETURN d.name, v.name, a.name LIMIT 20")
     print()
-    print("// Full chain: Gene → Variant → Drug → ADR")
+    print("// Full chain: Gene -> Variant -> Drug -> ADR")
     print("MATCH (g:Gene)-[:HAS_CLINICAL_VARIANT]->(v:Variant)")
     print("      -[:AFFECTS_RESPONSE_TO]->(d:Drug {name:'cisplatin'})")
     print("RETURN g.name, v.name, d.name LIMIT 20")
@@ -1171,3 +1074,352 @@ if __name__ == "__main__":
     print("// CPIC guidelines for oncology drugs")
     print("MATCH (g:Gene)-[r:CPIC_GUIDELINE_FOR]->(d:Drug)")
     print("RETURN g.name, d.name, r.classification")
+
+
+# ═════════════════════════════════════════════════════════════
+# LOAD — rebuild the graph from kg_export/ (portable, no source data needed)
+# ═════════════════════════════════════════════════════════════
+
+def cmd_load():
+    with open(os.path.join(EXPORT_DIR, "nodes.json"), encoding="utf-8") as f:
+        nodes = json.load(f)
+    with open(os.path.join(EXPORT_DIR, "edges.json"), encoding="utf-8") as f:
+        edges = json.load(f)
+
+    print(f"Loaded {len(nodes):,} node records and {len(edges):,} edge records from {EXPORT_DIR}/")
+
+    with get_driver() as driver, driver.session() as session:
+        print("Clearing existing data in this database...")
+        session.run("MATCH (n) DETACH DELETE n")
+
+        for label in LABELS:
+            session.run(
+                f"CREATE CONSTRAINT IF NOT EXISTS "
+                f"FOR (n:{label}) REQUIRE n.name IS UNIQUE"
+            )
+        print("Constraints ready.")
+
+        by_label = defaultdict(list)
+        for n in nodes:
+            by_label[n["label"]].append(n["properties"])
+
+        total_nodes = 0
+        for label, props_list in by_label.items():
+            for i in range(0, len(props_list), BATCH_SIZE):
+                chunk = props_list[i:i + BATCH_SIZE]
+                session.run(
+                    f"UNWIND $nodes AS n "
+                    f"MERGE (x:{label} {{name: n.name}}) "
+                    f"SET x += n",
+                    nodes=chunk
+                )
+                total_nodes += len(chunk)
+            print(f"  {label:<12}: {len(props_list):,} nodes")
+        print(f"Total nodes: {total_nodes:,}")
+
+        by_pattern = defaultdict(list)
+        for e in edges:
+            key = (e["head_label"], e["relation"], e["tail_label"])
+            by_pattern[key].append(e)
+
+        total_edges = 0
+        for (hl, rel, tl), items in by_pattern.items():
+            for i in range(0, len(items), BATCH_SIZE):
+                chunk = items[i:i + BATCH_SIZE]
+                extra_props = set()
+                for item in chunk:
+                    extra_props.update(item.get("properties", {}).keys())
+                set_clause = ", ".join([f"r.{p} = item.properties.{p}" for p in extra_props])
+                if set_clause:
+                    set_clause = "SET " + set_clause
+
+                session.run(
+                    f"UNWIND $items AS item "
+                    f"MATCH (a:{hl} {{name: item.head}}) "
+                    f"MATCH (b:{tl} {{name: item.tail}}) "
+                    f"MERGE (a)-[r:{rel}]->(b) "
+                    f"{set_clause}",
+                    items=chunk
+                )
+                total_edges += len(chunk)
+        print(f"Total edges: {total_edges:,}")
+
+    print("\nDone.")
+
+
+# ═════════════════════════════════════════════════════════════
+# EXPORT — dump the live graph to kg_export/
+# ═════════════════════════════════════════════════════════════
+
+def cmd_export():
+    os.makedirs(EXPORT_DIR, exist_ok=True)
+
+    all_node_records = []
+    with get_driver() as driver, driver.session() as session:
+        for label in LABELS:
+            result = session.run(f"MATCH (n:{label}) RETURN n AS node")
+            for record in result:
+                node = record["node"]
+                props = dict(node.items())
+                all_node_records.append({
+                    "label": label,
+                    "properties": props,
+                })
+        print(f"Exported {len(all_node_records):,} nodes")
+
+        edge_result = session.run(
+            "MATCH (a)-[r]->(b) "
+            "RETURN labels(a)[0] AS head_label, a.name AS head, "
+            "       type(r) AS relation, properties(r) AS rel_props, "
+            "       labels(b)[0] AS tail_label, b.name AS tail"
+        )
+        all_edge_records = []
+        for record in edge_result:
+            all_edge_records.append({
+                "head_label": record["head_label"],
+                "head":       record["head"],
+                "relation":   record["relation"],
+                "tail_label": record["tail_label"],
+                "tail":       record["tail"],
+                "properties": dict(record["rel_props"]),
+            })
+        print(f"Exported {len(all_edge_records):,} edges")
+
+    with open(os.path.join(EXPORT_DIR, "nodes.json"), "w", encoding="utf-8") as f:
+        json.dump(all_node_records, f, indent=2, ensure_ascii=False)
+
+    with open(os.path.join(EXPORT_DIR, "edges.json"), "w", encoding="utf-8") as f:
+        json.dump(all_edge_records, f, indent=2, ensure_ascii=False)
+
+    nodes_size = os.path.getsize(os.path.join(EXPORT_DIR, "nodes.json")) / 1024
+    edges_size = os.path.getsize(os.path.join(EXPORT_DIR, "edges.json")) / 1024
+    print(f"\nWrote {EXPORT_DIR}/nodes.json ({nodes_size:.1f} KB)")
+    print(f"Wrote {EXPORT_DIR}/edges.json ({edges_size:.1f} KB)")
+
+
+# ═════════════════════════════════════════════════════════════
+# AUDIT — health-check an existing graph
+# ═════════════════════════════════════════════════════════════
+#
+#   1. Node counts by label
+#   2. Leftover-fragmentation scan (names still containing "," "|" or a
+#      "Category:" prefix — signs the splitting/canonicalization missed
+#      something)
+#   3. Blank/"nan" name scan
+#   4. Orphaned nodes (zero relationships in any direction) per label
+#   5. Case-insensitive duplicate scan for Gene (the one label with no
+#      canonicalization step)
+#   6. Canonical ADR connectivity (the 10 target categories)
+#   7. Drug connectivity (all target drugs — flags any that loaded as a
+#      node but never got an edge)
+#   8. END-TO-END reasoning chain check for the 6 primary drug-ADR pairs:
+#      does Gene -> Variant -> Drug AND Variant -> ADR both exist, i.e. can
+#      the graph support a genetic explanation, not just a raw drug-ADR edge?
+
+# Reuses the build-section constants as the single source of truth instead
+# of keeping a second hardcoded copy of the same 28 drugs / 10 ADR
+# categories.
+CANONICAL_ADRS = list(CTCAE_MAP.keys())
+AUDIT_TARGET_DRUGS = list(TARGET_DRUGS.keys())
+
+PRIMARY_PAIRS = [
+    ("cisplatin",    "Ototoxicity"),
+    ("doxorubicin",  "Cardiotoxicity"),
+    ("vincristine",  "Peripheral Neuropathy"),
+    ("methotrexate", "Mucositis"),
+    ("methotrexate", "Hepatotoxicity"),
+    ("paclitaxel",   "Peripheral Neuropathy"),
+]
+
+# Relationship types that can carry a variant->drug or gene->variant or
+# variant->ADR connection, per the build schema above.
+GENE_TO_VARIANT_RELS   = ["HAS_CLINICAL_VARIANT", "HAS_VARIANT"]
+VARIANT_TO_DRUG_RELS   = ["AFFECTS_RESPONSE_TO", "PHARMACOGENOMIC_ASSOCIATION"]
+VARIANT_TO_ADR_RELS    = ["LINKED_TO_ADR", "ASSOCIATED_WITH_ADR", "CLINVAR_ASSOCIATED_ADR"]
+
+
+def _section(title):
+    print(f"\n{'='*60}\n{title}\n{'='*60}")
+
+
+def cmd_audit():
+    issues = []
+
+    with get_driver() as driver, driver.session() as session:
+
+        # ── 1. Node counts ──────────────────────────────────────────
+        _section("1. NODE COUNTS BY LABEL")
+        for label in LABELS:
+            c = session.run(f"MATCH (n:{label}) RETURN count(n) AS c").single()["c"]
+            print(f"  {label:<12}: {c:,}")
+
+        # ── 2. Leftover fragmentation scan ──────────────────────────
+        _section("2. FRAGMENTATION SCAN (names still containing , | or Category:)")
+        for label in LABELS:
+            result = session.run(
+                f"MATCH (n:{label}) "
+                f"WHERE n.name CONTAINS ',' OR n.name CONTAINS '|' "
+                f"   OR n.name =~ '^[A-Za-z][A-Za-z ]{{1,30}}:.*' "
+                f"RETURN n.name AS name LIMIT 10"
+            )
+            rows = [r["name"] for r in result]
+            if rows:
+                issues.append(f"{label}: {len(rows)}+ nodes still show fragmentation artifacts")
+                print(f"  [ISSUE] {label}: found fragmented-looking names, e.g.:")
+                for name in rows:
+                    print(f"           - {name}")
+            else:
+                print(f"  [OK] {label}: no fragmentation artifacts found")
+
+        # ── 3. Blank / "nan" name scan ──────────────────────────────
+        _section("3. BLANK / NAN NAME SCAN")
+        for label in LABELS:
+            result = session.run(
+                f"MATCH (n:{label}) "
+                f"WHERE n.name IS NULL OR n.name = '' OR toLower(n.name) = 'nan' "
+                f"RETURN count(n) AS c"
+            )
+            c = result.single()["c"]
+            if c > 0:
+                issues.append(f"{label}: {c} nodes with blank/nan names")
+                print(f"  [ISSUE] {label}: {c} nodes with blank/nan names")
+            else:
+                print(f"  [OK] {label}: none")
+
+        # ── 4. Orphaned nodes ────────────────────────────────────────
+        _section("4. ORPHANED NODES (zero relationships in either direction)")
+        for label in LABELS:
+            result = session.run(
+                f"MATCH (n:{label}) "
+                f"WHERE COUNT {{ (n)--() }} = 0 "
+                f"RETURN count(n) AS c, collect(n.name)[0..5] AS sample"
+            )
+            rec = result.single()
+            c, sample = rec["c"], rec["sample"]
+            total = session.run(f"MATCH (n:{label}) RETURN count(n) AS c").single()["c"]
+            pct = (c / total * 100) if total else 0
+            flag = "[ISSUE]" if (label in ("Drug", "ADR") and c > 0) else "[INFO]"
+            if label in ("Drug", "ADR") and c > 0:
+                issues.append(f"{label}: {c} orphaned nodes ({pct:.1f}%) — dead weight, e.g. {sample}")
+            print(f"  {flag} {label}: {c:,} / {total:,} orphaned ({pct:.1f}%)"
+                  + (f" — e.g. {sample}" if sample else ""))
+
+        # ── 5. Gene case-duplicate scan ──────────────────────────────
+        _section("5. GENE CASE-INSENSITIVE DUPLICATE SCAN")
+        result = session.run(
+            "MATCH (n:Gene) "
+            "WITH toLower(n.name) AS lname, collect(n.name) AS variants "
+            "WHERE size(variants) > 1 "
+            "RETURN lname, variants LIMIT 15"
+        )
+        rows = list(result)
+        if rows:
+            issues.append(f"Gene: {len(rows)}+ case-insensitive duplicate groups found")
+            print(f"  [ISSUE] Found case-variant duplicate gene nodes, e.g.:")
+            for r in rows:
+                print(f"           - {r['variants']}")
+        else:
+            print("  [OK] No case-insensitive duplicate gene names found")
+
+        # ── 6. Canonical ADR connectivity ────────────────────────────
+        _section(f"6. CANONICAL ADR CONNECTIVITY (all {len(CANONICAL_ADRS)} target categories)")
+        for adr in CANONICAL_ADRS:
+            result = session.run(
+                "OPTIONAL MATCH (n:ADR {name:$name}) "
+                "RETURN n IS NOT NULL AS exists, "
+                "       COUNT { (n)<-[]-() } AS incoming",
+                name=adr
+            )
+            rec = result.single()
+            if not rec["exists"]:
+                issues.append(f"ADR '{adr}': node does not exist in the graph at all")
+                print(f"  [MISSING] {adr}")
+            elif rec["incoming"] == 0:
+                issues.append(f"ADR '{adr}': node exists but has zero incoming edges")
+                print(f"  [EMPTY]   {adr}: 0 incoming edges")
+            else:
+                print(f"  [OK]      {adr}: {rec['incoming']:,} incoming edges")
+
+        # ── 7. Drug connectivity ─────────────────────────────────────
+        _section(f"7. DRUG CONNECTIVITY (all {len(AUDIT_TARGET_DRUGS)} target drugs)")
+        for drug in AUDIT_TARGET_DRUGS:
+            result = session.run(
+                "OPTIONAL MATCH (n:Drug {name:$name}) "
+                "RETURN n IS NOT NULL AS exists, "
+                "       COUNT { (n)--() } AS degree",
+                name=drug
+            )
+            rec = result.single()
+            if not rec["exists"]:
+                print(f"  [ABSENT]  {drug}: no node loaded (not in your PharmGKB drugs.tsv under this name)")
+            elif rec["degree"] == 0:
+                issues.append(f"Drug '{drug}': node exists but has zero edges")
+                print(f"  [EMPTY]   {drug}: node exists, 0 edges")
+            else:
+                print(f"  [OK]      {drug}: {rec['degree']:,} edges")
+
+        # ── 8. End-to-end reasoning chain for the primary pairs ──────
+        _section("8. END-TO-END REASONING CHAIN — Gene->Variant->Drug AND Variant->ADR")
+        for drug, adr in PRIMARY_PAIRS:
+            gv_rel = "|".join(GENE_TO_VARIANT_RELS)
+            vd_rel = "|".join(VARIANT_TO_DRUG_RELS)
+            va_rel = "|".join(VARIANT_TO_ADR_RELS)
+
+            result = session.run(
+                f"MATCH (g:Gene)-[:{gv_rel}]->(v:Variant)-[:{vd_rel}]->(d:Drug {{name:$drug}}) "
+                f"MATCH (v)-[:{va_rel}]->(a:ADR {{name:$adr}}) "
+                f"RETURN count(DISTINCT v) AS chain_variants, "
+                f"       count(DISTINCT g) AS chain_genes",
+                drug=drug, adr=adr
+            )
+            rec = result.single()
+            n_variants, n_genes = rec["chain_variants"], rec["chain_genes"]
+
+            if n_variants == 0:
+                issues.append(
+                    f"{drug} -> {adr}: NO full Gene->Variant->Drug + Variant->ADR chain exists "
+                    f"(this pair cannot get a real genetic explanation from the KG as-is)"
+                )
+                print(f"  [BROKEN]  {drug} -> {adr}: no complete reasoning chain")
+            else:
+                print(f"  [OK]      {drug} -> {adr}: {n_variants} variant(s) complete the chain, "
+                      f"{n_genes} gene(s) involved")
+
+    # ── SUMMARY ────────────────────────────────────────────────────
+    _section("SUMMARY")
+    if not issues:
+        print("  No issues found. KG looks structurally sound.")
+    else:
+        print(f"  {len(issues)} issue(s) found:\n")
+        for i, issue in enumerate(issues, 1):
+            print(f"  {i}. {issue}")
+
+
+# ═════════════════════════════════════════════════════════════
+# CLI
+# ═════════════════════════════════════════════════════════════
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="OncologyKG build/load/export/audit CLI"
+    )
+    parser.add_argument(
+        "command",
+        choices=["build", "load", "export", "audit"],
+        help="build: rebuild from raw source data in data/. "
+             "load: rebuild from the committed kg_export/ snapshot. "
+             "export: dump the live graph to kg_export/. "
+             "audit: health-check an existing graph."
+    )
+    args = parser.parse_args()
+
+    {
+        "build":  cmd_build,
+        "load":   cmd_load,
+        "export": cmd_export,
+        "audit":  cmd_audit,
+    }[args.command]()
+
+
+if __name__ == "__main__":
+    main()
