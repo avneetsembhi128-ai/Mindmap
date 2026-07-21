@@ -2,6 +2,7 @@ import os
 import sys
 import re
 import csv
+import json
 import itertools
 from time import sleep
 import numpy as np
@@ -25,9 +26,14 @@ client = OpenAI(
     default_headers=HEADERS,
 )
 
+
+
 # ==========================================
 # 2. CORE INFERENCE FUNCTIONS (NATIVE OPENAI) 
+# This section has : Keyword extraction, KG Translation, Evidence Synthesis and Reasoning, and Retry Logic and Guardrails. 
 # ==========================================
+
+# Simple general purpose chat completion helper - calls openAI with user prompt and returns response
 def chat_35(prompt):
     try:
         completion = client.chat.completions.create(
@@ -39,10 +45,7 @@ def chat_35(prompt):
         print(f"Error in chat_35: {e}", flush=True)
         return ""
 
-# CHANGED: reference's version says "extract clinical entities, diseases, or symptoms" —
-# reworded for your domain (drugs / genes / variants / ADR terms) since this function is
-# now actually called in main() (the reference never called it — it used pre-extracted
-# entities from NER_chatgpt.json instead, which you don't have).
+# Extractions relevant entities from patient text
 def prompt_extract_keyword(input_text):
     prompt = f"""You are a pharmacogenomics assistant. Extract entities from the following patient text.
 
@@ -63,7 +66,7 @@ Output the extracted entities as a clean, comma-separated list. Do not include i
         print(f"Error extracting keywords: {e}", flush=True)
         return ""
 
-# UNCHANGED from reference — already domain-agnostic ("knowledge graph paths").
+# Translates raw KG path relationship to readable sentence
 def prompt_path_finding(path_input):
     prompt = f"""There are some knowledge graph paths. They follow entity->relationship->entity format.
 
@@ -90,7 +93,7 @@ Output:"""
         )
         return completion.choices[0].message.content
 
-# UNCHANGED from reference — already domain-agnostic ("knowledge graph connections").
+# Translates raw KG neighbor connections into readable sentences. 
 def prompt_neighbor(neighbor):
     prompt = f"""There are some knowledge graph connections. They follow entity->relationship->entity list format.
 
@@ -117,9 +120,7 @@ Output:"""
         )
         return completion.choices[0].message.content
 
-# CHANGED: reference is "AI doctor diagnoses disease, recommends medication" — this is the
-# domain swap to pharmacogenomics ADR/gene explanation. Structure (system framing, evidence
-# block, Output1/2/3, exact reply format) kept identical to the reference.
+# Main reasoning that synthesizes inputs, graph path evidence and neighbor evidence
 def final_answer(question_text, response_of_KG_list_path, response_of_KG_neighbor):
     prompt = f"""You are an excellent clinical pharmacogenomicist, and you explain how genetic variants affect drug metabolism and cause adverse drug reactions (ADRs), based on the patient case in the conversation.
 
@@ -175,7 +176,7 @@ Patient
         )
         return completion.choices[0].message.content
 
-# UNCHANGED from reference (unused helper, kept for fidelity).
+# Alternative single-document reasoning prompt. 
 def prompt_document(question, instruction):
     prompt = f"""You are an excellent clinical pharmacogenomicist, and you explain adverse drug reactions based on the patient case in the conversation.
 
@@ -196,7 +197,7 @@ What genetic variants or genes could explain the patient's adverse drug reaction
         print(f"Error in prompt_document: {e}", flush=True)
         return ""
 
-# UNCHANGED from reference.
+# Checks if LLM response waas successful to the user. 
 def is_unable_to_answer(response_text):
     judge_prompt = (
         "You are evaluating whether a response actually answers the question, "
@@ -223,10 +224,13 @@ def is_unable_to_answer(response_text):
     except:
         return False
 
+
 # ==========================================
 # 3. GRAPH HELPER FUNCTIONS
+# Section covers - combinatorial utility, shortest path traversal, and bidirectional neighborhood retrieval. 
 # ==========================================
-# combine_lists: UNCHANGED from reference.
+
+# Generates all possible combinations across multiple entity lists
 def combine_lists(*lists):
     combinations = list(itertools.product(*lists))
     results = []
@@ -240,14 +244,7 @@ def combine_lists(*lists):
         results.append(new_combination)
     return results
 
-# CHANGED (round 2 — bug fix): same root cause as get_entity_neighbors above. The
-# directed-only query "-[*..5]->" can only find a path if it happens to run the way your
-# schema's edges point. Question 1 worked because 'cisplatin HAS_SIDE_EFFECT Ototoxicity'
-# happens to point forward — but if match_kg ever contains two entities whose connecting
-# edges run the other way (or a mix), this returns nothing even though the KG has the
-# connection. Now tries directed first (cheaper, matches the original MindMap method),
-# and only falls back to an undirected search if that finds nothing. Returns which mode
-# worked as a third value so you can see it happen instead of it being invisible.
+# Parse Cypher path objects returned by Neo4j into readable string 
 def _parse_path_records(records, candidate_list):
     global exist_entity
     paths = []
@@ -286,7 +283,7 @@ def _parse_path_records(records, candidate_list):
         paths = sorted(paths, key=len)[:5]
     return paths, exist_entity
 
-
+# Find graph paths connecting two entities with fallback logic
 def find_shortest_path(start_entity_name, end_entity_name, candidate_list):
     global exist_entity
     with driver.session() as session:
@@ -322,15 +319,7 @@ def find_shortest_path(start_entity_name, end_entity_name, candidate_list):
 
     return paths, exist_entity, "none"
 
-# CHANGED (round 2 — bug fix, not new functionality): the outgoing-only query below was
-# structurally blind to any edge where this entity is the TARGET rather than the source —
-# e.g. your KG models genetic evidence as (Variant)-[:LINKED_TO_ADR]->(ADR), so querying
-# neighbors of an ADR node with only "(e)-[r]->(n)" can never surface the variants that
-# cause it. That silently starved the exact evidence this project needs (genetic causes of
-# ADRs), so this now also queries incoming edges. Direction is preserved in the returned
-# rows (outgoing rows keep entity->relation->neighbor order; incoming rows are written
-# neighbor->relation->entity) so the natural-language conversion step downstream doesn't
-# get the causality backwards.
+# Fetch 1-hop neighbors around an entity across both edge directions 
 def get_entity_neighbors(entity_name: str) -> list:
     outgoing_query = """
     MATCH (e)-[r]->(n)
@@ -368,15 +357,14 @@ def get_entity_neighbors(entity_name: str) -> list:
             ])
     return neighbor_list
 
+
+
 # ==========================================
 # 4. MAIN PIPELINE EXECUTION
 # ==========================================
 if __name__ == "__main__":
 
-    # CHANGED: your Neo4j connection (auth required), vs. reference's auth=None localhost.
-    # Read from env vars, same convention as OncologyKG/kg.py, so this reproduces on
-    # another machine without editing source — just set NEO4J_PASSWORD to match
-    # whatever you used for `python kg.py load` / `build`.
+    # Environment and Neo4j connection setup 
     NEO4J_URI      = os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687")
     NEO4J_USER     = os.environ.get("NEO4J_USER", "neo4j")
     NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
@@ -389,31 +377,38 @@ if __name__ == "__main__":
         )
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
-    # CHANGED: reference's "wipe graph + reload from train.txt" block is REMOVED —
-    # your KG is already built and loaded; this script should never touch that.
-
-    # CHANGED: reference's node-label list for matching (ChatDoctor5k used one label,
-    # so it didn't need this). Your KG has multiple labels to check against.
+    # CSV output initialization and test questions
     NODE_LABELS = ["Gene", "Drug", "Variant", "ADR", "Phenotype"]
 
     with open('output.csv', 'w', newline='', encoding='utf-8') as f4:
         writer = csv.writer(f4)
         writer.writerow(['Question', 'MindMap'])
-
-    # CHANGED: reference loaded questions + pre-extracted entities from the ChatDoctor5k
-    # dataset files (NER_chatgpt.json, entity/keyword embeddings .pkl). You don't have
-    # those, so: your own question list here, and entities are extracted live via the LLM
-    # (prompt_extract_keyword) instead of read from a pre-extracted file.
     TEST_QUESTIONS = [
+        # 1. CISPLATIN — OTOTOXICITY
+        # Q1.1: Informal / Symptom-based (Parent or Patient perspective)
         "I am a child receiving cisplatin for cancer and developed hearing loss and tinnitus. What genetic variants make me susceptible to this ototoxicity?",
-        "After several rounds of cisplatin, my child is showing significant hearing loss and now needs a hearing aid. Could this be genetic.",
-        "What genes or variants have been linked to cisplatin ototoxicity risk in pediatric cancer patients?"
+        # Q1.2: Informal / Clinical consequence variation
+        "After several rounds of cisplatin, my child is showing significant hearing loss and now needs a hearing aid. Could this be genetic?",
+        # Q1.3: Direct / Clinical phrasing
+        "What genes or variants have been linked to cisplatin ototoxicity risk in pediatric cancer patients?",
+        # Q1.4: Direct / Alternative terminology ("sensorineural hearing loss" / "Platinol")
+        "Are there known PGx risk alleles associated with Platinol-induced sensorineural hearing loss in children?",
+
+        # 2. ANTHRACYCLINES — CARDIOTOXICITY
+        # Q2.1: Informal / Symptom-based (Parent or Patient perspective)
+        "My 8-year-old was treated with anthracyclines for leukemia, and the doctors are concerned about early signs of heart failure and cardiac strain. Could a genetic variant explain why my child developed cardiotoxicity?",
+        # Q2.2: Informal / Drug subclass mention (Doxorubicin / Daunorubicin)
+        "After receiving doxorubicin for pediatric lymphoma, my child developed severe shortness of breath and heart muscle damage. Is there a genetic cause for this?",
+        # Q2.3: Direct / Clinical phrasing
+        "Which pharmacogenomic biomarkers or genetic pathways predict anthracycline-induced cardiotoxicity in childhood cancer survivors?",
+        # Q2.4: Direct / Specific mechanism & phenotype query
+        "What genetic variants are implicated in congestive heart failure and cardiomyopathy secondary to pediatric anthracycline therapy?"
     ]
 
     for input_text_0 in TEST_QUESTIONS:
         print('\nQuestion:\n', input_text_0, flush=True)
 
-        # CHANGED: live entity extraction (reference read this from NER_chatgpt.json).
+        # Dynamic entity extraction and database lookup
         raw_entities = prompt_extract_keyword(input_text_0)
         question_kg = [e.strip() for e in raw_entities.split(",") if e.strip()]
 
@@ -421,11 +416,6 @@ if __name__ == "__main__":
             print("<Warning> no entities found", input_text_0, flush=True)
             continue
 
-        # CHANGED: reference matched entities via cosine similarity against precomputed
-        # embeddings for the ChatDoctor5k dataset (entity_embeddings.pkl / keyword_
-        # embeddings.pkl). You don't have those files, so this is a direct Neo4j lookup
-        # instead — exact match (case-insensitive) against your node names, across your
-        # five labels.
         match_kg = []
         with driver.session() as session:
             for kg_entity in question_kg:
@@ -446,7 +436,7 @@ if __name__ == "__main__":
 
         print('Matched Entities from KG Lookup:', match_kg, flush=True)
 
-        # UNCHANGED from reference — path-combination control flow.
+        # Multi entity path finding and traversal
         result_path = []
         path_directions_seen = set()
         if len(match_kg) > 1:
@@ -507,11 +497,7 @@ if __name__ == "__main__":
         print(f"Path Finding Complete. Found {len(result_path)} paths. "
               f"(direction: {', '.join(sorted(path_directions_seen)) or 'n/a'})", flush=True)
 
-        # CHANGED (round 2 — bug fix): previously neighbor_list.extend(neighbors) collected
-        # everything per entity, then main sliced the COMBINED list to [:3] below — meaning
-        # if cisplatin's outgoing HAS_SIDE_EFFECT list alone had 3+ entries, Ototoxicity's
-        # variants (the evidence you actually care about) never made it into the prompt at
-        # all. Now capped per entity at collection time instead.
+        # Per entity neighbor fetching
         neighbor_list = []
         for match_entity in match_kg:
             neighbors = get_entity_neighbors(match_entity)
@@ -519,8 +505,9 @@ if __name__ == "__main__":
 
         print(f"Neighbor Fetch Complete. Found {len(neighbor_list)} neighbors.", flush=True)
 
-        # UNCHANGED from reference.
         response_of_KG_list_path = "{}"
+
+        # Path summarization prompt
         if result_path and isinstance(result_path, list):
             result_new_path = ["->".join(total_path_i) for total_path_i in result_path[:3]]
             path_str_block = "\n".join(result_new_path)
@@ -529,24 +516,24 @@ if __name__ == "__main__":
                 response_of_KG_list_path = prompt_path_finding(path_str_block)
 
         neighbor_new_list = ["->".join(neighbor_i) for neighbor_i in neighbor_list]
-        # CHANGED: was neighbor_new_list[:3] — a flat cap across ALL entities combined.
-        # Now each entity already contributed at most NEIGHBOR_CAP_PER_ENTITY above, so
-        # this is just an overall safety cap to keep the prompt a reasonable size, not the
-        # thing doing the (broken) per-entity limiting.
         neighbor_input = "\n".join(neighbor_new_list[:MAX_NEIGHBOR_EVIDENCE])
-
         response_of_KG_neighbor = "{}"
+
+        # Neighbor summarization prompt
         if neighbor_new_list:
             response_of_KG_neighbor = prompt_neighbor(neighbor_input)
             if is_unable_to_answer(response_of_KG_neighbor):
                 response_of_KG_neighbor = prompt_neighbor(neighbor_input)
 
         output_all = final_answer(input_text_0, response_of_KG_list_path, response_of_KG_neighbor)
+
+        # Final mindmap synthesis
         if is_unable_to_answer(output_all):
             output_all = final_answer(input_text_0, response_of_KG_list_path, response_of_KG_neighbor)
 
         print('\nMindMap Output:\n', output_all, flush=True)
 
+        # Results output logging 
         with open('output.csv', 'a+', newline='', encoding='utf-8') as f6:
             writer = csv.writer(f6)
             writer.writerow([input_text_0, output_all])
