@@ -17,7 +17,7 @@ committed to this repo. This is the easiest way to get the exact graph used for
 downstream work, with no PharmGKB/CPIC/SIDER/ClinVar downloads required.
 
 ```bash
-pip install -r requirements.txt
+pip install -r ../requirements.txt
 
 # Start a local Neo4j instance (Desktop or Docker), then:
 export NEO4J_PASSWORD="your-password-here"   # PowerShell: $env:NEO4J_PASSWORD = "..."
@@ -30,7 +30,7 @@ Use this if you want to verify the build logic, pull fresher source data, or cha
 the target drug/ADR scope (edit `TARGET_DRUGS` / `ADR_CANONICAL_MAP` near the top of
 `kg.py`).
 
-1. Install dependencies: `pip install -r requirements.txt`
+1. Install dependencies: `pip install -r ../requirements.txt`
 2. Download the raw source files (see **Data sources** below) into `data/` matching
    the layout listed there. `data/` is gitignored — it is not committed because
    ClinVar alone is ~420 MB.
@@ -76,13 +76,16 @@ download date when you fetch a fresh snapshot. The data currently used for this 
 OncologyKG/
   kg.py              build / load / export / audit — one CLI, one shared
                       Neo4j connection helper
-  requirements.txt
   README.md
   data/              raw source data (gitignored, see Data sources above)
   kg_export/
     nodes.json       committed — the portable graph snapshot
     edges.json
 ```
+
+Dependencies live in the top-level [`requirements.txt`](../requirements.txt) — it's a
+superset covering both `kg.py` and the MindMap pipeline (`OncologyKGMM.py`) that
+consumes this graph, so one `pip install` covers the whole project.
 
 ## Requirements
 

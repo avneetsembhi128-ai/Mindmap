@@ -12,9 +12,11 @@ from openai import OpenAI
 # ==========================================
 # 1. API CONNECTION CONFIGURATION
 # ==========================================
-BASE_URL = "http://127.0.0.1:11434/v1"
+# Overridable via env vars so this reproduces on another machine without editing
+# source — same convention as OncologyKG/kg.py's NEO4J_URI/NEO4J_USER.
+BASE_URL = os.environ.get("LLM_BASE_URL", "http://127.0.0.1:11434/v1")
 HEADERS = {}
-MODEL = "qwen3:8b"
+MODEL = os.environ.get("LLM_MODEL", "qwen3:8b")
 
 # NEW: caps for the neighbor-evidence fix below — how many relationships each individual
 # matched entity can contribute, and an overall ceiling on top of that.
@@ -377,9 +379,19 @@ def get_entity_neighbors(entity_name: str) -> list:
 if __name__ == "__main__":
 
     # CHANGED: your Neo4j connection (auth required), vs. reference's auth=None localhost.
-    NEO4J_URI      = "neo4j://127.0.0.1:7687"
-    NEO4J_USER     = "neo4j"
-    NEO4J_PASSWORD = "oncology123"
+    # Read from env vars, same convention as OncologyKG/kg.py, so this reproduces on
+    # another machine without editing source — just set NEO4J_PASSWORD to match
+    # whatever you used for `python kg.py load` / `build`.
+    NEO4J_URI      = os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687")
+    NEO4J_USER     = os.environ.get("NEO4J_USER", "neo4j")
+    NEO4J_PASSWORD = os.environ.get("NEO4J_PASSWORD")
+    if not NEO4J_PASSWORD:
+        raise SystemExit(
+            "Set the NEO4J_PASSWORD environment variable before running this script "
+            "(must match the password used to build/load the graph in OncologyKG).\n"
+            "PowerShell:  $env:NEO4J_PASSWORD = \"your-password-here\"\n"
+            "bash:        export NEO4J_PASSWORD=\"your-password-here\""
+        )
     driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
     # CHANGED: reference's "wipe graph + reload from train.txt" block is REMOVED —

@@ -1,4 +1,4 @@
-# Raw source data — too large for GitHub, and regenerable via build_oncology_kg.py
+# Raw source data — too large for GitHub, and regenerable via OncologyKG/kg.py
 OncologyKG/data/
 
 # Neo4j / local DB artifacts

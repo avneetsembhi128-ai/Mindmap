@@ -1,31 +1,77 @@
-# MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models
+# MindMap for Pediatric Oncology ADR
 
-We are updating MindMap's LLM and evaluating whether this framework is viable for our project that utilizes LLMs to synthesize published research on adverse drug reactions.
+This is an adaptation of **MindMap** — [Knowledge Graph Prompting Sparks Graph of
+Thoughts in Large Language Models](https://arxiv.org/pdf/2308.09729.pdf) (Wen et al.,
+ACL'24) — retargeted to synthesize published research on pediatric oncology adverse
+drug reactions (ADRs), using a purpose-built knowledge graph instead of the paper's
+original chatdoctor5k dataset.
 
-This is the official codebase of the **MindMap** :snowflake: framework for eliciting the graph-of-thoughts reasoning capability in LLMs, proposed in [MindMap: Knowledge Graph Prompting Sparks Graph of Thoughts in Large Language Models](https://arxiv.org/pdf/2308.09729.pdf).
-
-This paper has been accepted by ACL'24.
-
-# Overview
-We present **MindMap**, a plug-and-play prompting approach, which enables LLMs to comprehend graphical inputs to build their own mind map that supports evidence-grounded generation. Here is an overview of our model architecture:
-![https://github.com/willing510/MindMap/blob/main/fig/mind%20map.png](https://github.com/willing510/MindMap/blob/main/fig/mind%20map.png)
-
-# Run MindMap
-As the chatdoctor5k dataset for example. First, you need to create a Blank Sandbox on [https://sandbox.neo4j.com/](https://sandbox.neo4j.com/), click "connect via drivers", find your url and user password. Then replace the following parts in MindMap.py:
-```
-uri = "Your_url"
-username = "Your_user"     
-password = "Your_password"
-```
-Note that the data of CMCKG is too large, and it will take about two days to wait. We recommend clicking "extend your project" in neo4j sandbox. But don't worry, the EMCKG used by chatdoctor5k will be ready to build on your facility in no time.
-Then, don't forget to replace your openai_key in MindMap.py.
-
+## How it fits together
 
 ```
-python MindMap.py
+OncologyKG/            builds and hosts the knowledge graph (Neo4j)
+  kg.py                  build / load / export / audit — see OncologyKG/README.md
+  kg_export/              committed graph snapshot (nodes.json, edges.json)
+
+OncologyKGMM.py         MindMap's graph-of-thoughts pipeline, adapted to query
+                         OncologyKG instead of chatdoctor5k
 ```
-# Citation
-If you find this paper interesting, please consider cite it through
+
+`OncologyKGMM.py` extracts entities from a clinical question with a local LLM,
+looks them up in the Gene/Drug/Variant/ADR/Phenotype graph, finds paths and
+neighbor evidence between matched entities, and asks the LLM to synthesize a
+grounded answer — the same reasoning flow as the original MindMap, just pointed
+at this graph.
+
+## Run it
+
+1. **Build/load the graph.** See [OncologyKG/README.md](OncologyKG/README.md) —
+   fastest path is `cd OncologyKG && python kg.py load`, which needs a running
+   Neo4j instance and `NEO4J_PASSWORD` set. Remember the password you use here —
+   step 4 below must match it.
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Have an LLM endpoint available.** By default `OncologyKGMM.py` talks to a
+   local Ollama server serving `qwen3:8b`. Pull the model first
+   (`ollama pull qwen3:8b`), or point at a different OpenAI-compatible endpoint
+   via env vars (see below) instead of editing the script.
+
+4. **Set environment variables** (same convention as `OncologyKG/kg.py` — nothing
+   is hardcoded, so this reproduces on another machine without touching source):
+
+   | Variable | Default | Purpose |
+   |---|---|---|
+   | `NEO4J_PASSWORD` | *(required, no default)* | Must match whatever password you used for `kg.py load`/`build` in step 1 |
+   | `NEO4J_URI` | `neo4j://127.0.0.1:7687` | Neo4j connection URI |
+   | `NEO4J_USER` | `neo4j` | Neo4j username |
+   | `LLM_BASE_URL` | `http://127.0.0.1:11434/v1` | OpenAI-compatible chat completions endpoint |
+   | `LLM_MODEL` | `qwen3:8b` | Model name passed to that endpoint |
+
+   ```bash
+   # PowerShell
+   $env:NEO4J_PASSWORD = "your-password-here"
+   # bash
+   export NEO4J_PASSWORD="your-password-here"
+   ```
+
+   The script exits with a clear error if `NEO4J_PASSWORD` isn't set — a
+   mismatch with the graph's actual password (rather than a missing var) will
+   instead surface as a Neo4j auth error at connection time.
+
+5. **Run it:**
+   ```bash
+   python OncologyKGMM.py
+   ```
+   Questions are defined in `TEST_QUESTIONS` at the bottom of the file. Results
+   are written to `output.csv` (question + generated answer per row).
+
+## Citation
+
+If you build on the original MindMap approach, please cite:
 
 ```latex
 @inproceedings{wen2023mindmap,
