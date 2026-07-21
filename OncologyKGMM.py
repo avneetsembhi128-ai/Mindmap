@@ -12,17 +12,13 @@ from openai import OpenAI
 # ==========================================
 # 1. API CONNECTION CONFIGURATION
 # ==========================================
-# Overridable via env vars so this reproduces on another machine without editing
-# source — same convention as OncologyKG/kg.py's NEO4J_URI/NEO4J_USER.
 BASE_URL = os.environ.get("LLM_BASE_URL", "http://127.0.0.1:11434/v1")
 HEADERS = {}
 MODEL = os.environ.get("LLM_MODEL", "qwen3:8b")
-
-# NEW: caps for the neighbor-evidence fix below — how many relationships each individual
-# matched entity can contribute, and an overall ceiling on top of that.
-NEIGHBOR_CAP_PER_ENTITY = 4
-MAX_NEIGHBOR_EVIDENCE = 15
-
+# Limit how much neighbor evidence is retrieved from KG - prevents long prompts sent to LLM. 
+NEIGHBOR_CAP_PER_ENTITY = 15
+MAX_NEIGHBOR_EVIDENCE = 30
+# Create the OpenAI compatible client to communicate with Ollama. 
 client = OpenAI(
     base_url=BASE_URL,
     api_key="ollama",
@@ -30,7 +26,7 @@ client = OpenAI(
 )
 
 # ==========================================
-# 2. CORE INFERENCE FUNCTIONS (NATIVE OPENAI) — unchanged from reference
+# 2. CORE INFERENCE FUNCTIONS (NATIVE OPENAI) 
 # ==========================================
 def chat_35(prompt):
     try:
@@ -339,12 +335,14 @@ def get_entity_neighbors(entity_name: str) -> list:
     outgoing_query = """
     MATCH (e)-[r]->(n)
     WHERE e.name = $entity_name
-    RETURN type(r) AS relationship_type, collect(n.name) AS neighbor_entities
+    RETURN type(r) AS relationship_type, n.name AS neighbor_name
+    ORDER BY relationship_type, neighbor_name
     """
     incoming_query = """
     MATCH (n)-[r]->(e)
     WHERE e.name = $entity_name
-    RETURN type(r) AS relationship_type, collect(n.name) AS neighbor_entities
+    RETURN type(r) AS relationship_type, n.name AS neighbor_name
+    ORDER BY relationship_type, neighbor_name
     """
     with driver.session() as session:
         neighbor_list = []
@@ -352,22 +350,19 @@ def get_entity_neighbors(entity_name: str) -> list:
         result = session.run(outgoing_query, entity_name=entity_name)
         for record in result:
             rel_type = record["relationship_type"]
-            neighbors = record["neighbor_entities"]
+            neighbor_name = record["neighbor_name"]
             neighbor_list.append([
                 entity_name.replace("_", " "),
                 rel_type.replace("_", " "),
-                ','.join([x.replace("_", " ") for x in neighbors])
+                neighbor_name.replace("_", " ")
             ])
 
         result = session.run(incoming_query, entity_name=entity_name)
         for record in result:
             rel_type = record["relationship_type"]
-            neighbors = record["neighbor_entities"]
-            # Reversed order vs. the outgoing block above: these neighbors are the
-            # SOURCE of the edge (e.g. the variant that causes this ADR), so the row
-            # is written neighbor->relation->entity, not entity->relation->neighbor.
+            neighbor_name = record["neighbor_name"]
             neighbor_list.append([
-                ','.join([x.replace("_", " ") for x in neighbors]),
+                neighbor_name.replace("_", " "),
                 rel_type.replace("_", " "),
                 entity_name.replace("_", " ")
             ])
@@ -411,15 +406,8 @@ if __name__ == "__main__":
     # (prompt_extract_keyword) instead of read from a pre-extracted file.
     TEST_QUESTIONS = [
         "I am a child receiving cisplatin for cancer and developed hearing loss and tinnitus. What genetic variants make me susceptible to this ototoxicity?",
-        "I am a child receiving doxorubicin chemotherapy and developed heart failure and cardiomyopathy. What genetic variants are associated with this cardiotoxicity?",
-        "I am receiving vincristine and have developed painful peripheral neuropathy with numbness in my hands and feet. What gene is responsible?",
-        "I am taking methotrexate and have developed severe mouth sores and stomatitis. What genetic variants cause this reaction?",
-        "I am taking methotrexate and my liver function tests are abnormal showing hepatotoxicity. What genetic variants could be causing this?",
-        "I am receiving paclitaxel and developed peripheral neuropathy. What genetic variants make me susceptible to this side effect?",
-        "I am taking codeine for pain and feeling extremely drowsy and having difficulty breathing. What gene could be causing this reaction?",
-        "I have been taking abacavir and developed a severe hypersensitivity reaction with rash and fever. What is the genetic cause?",
-        "I have been prescribed warfarin and I am experiencing unusual bleeding. What genetic variants could be responsible?",
-        "I am taking clopidogrel after a heart attack but my doctor says it may not be working. What genetic reason could explain this?",
+        "After several rounds of cisplatin, my child is showing significant hearing loss and now needs a hearing aid. Could this be genetic.",
+        "What genes or variants have been linked to cisplatin ototoxicity risk in pediatric cancer patients?"
     ]
 
     for input_text_0 in TEST_QUESTIONS:
