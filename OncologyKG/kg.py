@@ -278,6 +278,41 @@ def is_target_adr(text):
     return any(k in text.lower() for k in TARGET_ADR_KEYWORDS)
 
 
+def enrich_with_cross_referenced_mechanism(triples):
+    """LINKED_TO_ADR/AFFECTS_RESPONSE_TO edges (from clinicalVariants.tsv)
+    carry PharmGKB's formal evidence_level grading but no mechanism/
+    description text. ASSOCIATED_WITH_ADR/PHARMACOGENOMIC_ASSOCIATION edges
+    (from variantAnnotations) carry mechanism/description but no formal
+    grade. When the SAME variant connects to the SAME drug/ADR through both
+    source tables, this copies the mechanism text across to the graded edge,
+    tagging its origin (mechanism_source) so it's traceable back to the
+    annotation source rather than looking like it came from the graded edge
+    itself.
+    """
+    mechanism_lookup = {}
+    for t in triples:
+        if t["relation"] in ("ASSOCIATED_WITH_ADR", "PHARMACOGENOMIC_ASSOCIATION"):
+            key = (t["head"], t["tail"])
+            if t.get("mechanism") or t.get("description"):
+                mechanism_lookup[key] = {
+                    "mechanism": t.get("mechanism", ""),
+                    "description": t.get("description", ""),
+                }
+
+    enriched = 0
+    for t in triples:
+        if t["relation"] in ("LINKED_TO_ADR", "AFFECTS_RESPONSE_TO"):
+            key = (t["head"], t["tail"])
+            if key in mechanism_lookup and not t.get("description"):
+                t["mechanism"] = mechanism_lookup[key]["mechanism"]
+                t["description"] = mechanism_lookup[key]["description"]
+                t["mechanism_source"] = "cross-referenced from PharmGKB variantAnnotations"
+                enriched += 1
+
+    print(f"  Enriched {enriched:,} clinicalVariants edges with cross-referenced mechanism text")
+    return triples
+
+
 # ── Source 1 — PharmGKB Genes ────────────────────────────────────
 
 def parse_genes(path):
@@ -307,8 +342,6 @@ def parse_drugs(path):
         raw_name = str(row.get("Name", "")).strip()
         if not raw_name or raw_name == "nan":
             continue
-        # Canonicalize instead of using the raw row text as the node name, so
-        # alias rows (e.g. "Adriamycin") merge into "doxorubicin".
         canonical = canonicalize_drug(raw_name)
         if not canonical:
             continue
@@ -948,10 +981,6 @@ def cmd_build():
     print("\n" + "="*50)
     print("SOURCE 1 — PharmGKB Genes")
     print("="*50)
-    # genes.tsv is the full PharmGKB gene catalog (25,041 rows), and most of
-    # it has no relevance to this KG. Held separately so it can be filtered
-    # down to only genes actually referenced by an edge, once all edges are
-    # known.
     gene_ref_nodes = parse_genes(
         os.path.join(base, "genes", "genes.tsv"))
 
@@ -964,11 +993,6 @@ def cmd_build():
     print("\n" + "="*50)
     print("SOURCE 3 — PharmGKB Variants (rsID reference)")
     print("="*50)
-    # Same deferred-filtering treatment as genes above — variants.tsv is the
-    # full reference list; most rows aren't relevant to our target drugs/ADRs
-    # and the ones that ARE relevant already get created directly by
-    # parse_clinical_variants / parse_variant_drug_annotations, so this is
-    # genuinely just extra reference metadata for variants already in use.
     variant_ref_nodes = parse_variants(
         os.path.join(base, "variants", "variants.tsv"))
 
@@ -1015,6 +1039,11 @@ def cmd_build():
         os.path.join(base, "clinvar_variant_summary.txt.gz"))
     all_nodes   += cv2_nodes
     all_triples += cv2_triples
+
+    print("\n" + "="*50)
+    print("Enriching clinicalVariants edges with cross-referenced mechanism text")
+    print("="*50)
+    all_triples = enrich_with_cross_referenced_mechanism(all_triples)
 
     # Now that every edge source has been parsed, filter the gene/variant
     # reference dumps down to only entries that are actually an endpoint of
@@ -1216,9 +1245,6 @@ def cmd_export():
 #      does Gene -> Variant -> Drug AND Variant -> ADR both exist, i.e. can
 #      the graph support a genetic explanation, not just a raw drug-ADR edge?
 
-# Reuses the build-section constants as the single source of truth instead
-# of keeping a second hardcoded copy of the same 28 drugs / 10 ADR
-# categories.
 CANONICAL_ADRS = list(CTCAE_MAP.keys())
 AUDIT_TARGET_DRUGS = list(TARGET_DRUGS.keys())
 
@@ -1231,8 +1257,6 @@ PRIMARY_PAIRS = [
     ("paclitaxel",   "Peripheral Neuropathy"),
 ]
 
-# Relationship types that can carry a variant->drug or gene->variant or
-# variant->ADR connection, per the build schema above.
 GENE_TO_VARIANT_RELS   = ["HAS_CLINICAL_VARIANT", "HAS_VARIANT"]
 VARIANT_TO_DRUG_RELS   = ["AFFECTS_RESPONSE_TO", "PHARMACOGENOMIC_ASSOCIATION"]
 VARIANT_TO_ADR_RELS    = ["LINKED_TO_ADR", "ASSOCIATED_WITH_ADR", "CLINVAR_ASSOCIATED_ADR"]
@@ -1247,13 +1271,11 @@ def cmd_audit():
 
     with get_driver() as driver, driver.session() as session:
 
-        # ── 1. Node counts ──────────────────────────────────────────
         _section("1. NODE COUNTS BY LABEL")
         for label in LABELS:
             c = session.run(f"MATCH (n:{label}) RETURN count(n) AS c").single()["c"]
             print(f"  {label:<12}: {c:,}")
 
-        # ── 2. Leftover fragmentation scan ──────────────────────────
         _section("2. FRAGMENTATION SCAN (names still containing , | or Category:)")
         for label in LABELS:
             result = session.run(
@@ -1271,7 +1293,6 @@ def cmd_audit():
             else:
                 print(f"  [OK] {label}: no fragmentation artifacts found")
 
-        # ── 3. Blank / "nan" name scan ──────────────────────────────
         _section("3. BLANK / NAN NAME SCAN")
         for label in LABELS:
             result = session.run(
@@ -1286,7 +1307,6 @@ def cmd_audit():
             else:
                 print(f"  [OK] {label}: none")
 
-        # ── 4. Orphaned nodes ────────────────────────────────────────
         _section("4. ORPHANED NODES (zero relationships in either direction)")
         for label in LABELS:
             result = session.run(
@@ -1304,7 +1324,6 @@ def cmd_audit():
             print(f"  {flag} {label}: {c:,} / {total:,} orphaned ({pct:.1f}%)"
                   + (f" — e.g. {sample}" if sample else ""))
 
-        # ── 5. Gene case-duplicate scan ──────────────────────────────
         _section("5. GENE CASE-INSENSITIVE DUPLICATE SCAN")
         result = session.run(
             "MATCH (n:Gene) "
@@ -1321,7 +1340,6 @@ def cmd_audit():
         else:
             print("  [OK] No case-insensitive duplicate gene names found")
 
-        # ── 6. Canonical ADR connectivity ────────────────────────────
         _section(f"6. CANONICAL ADR CONNECTIVITY (all {len(CANONICAL_ADRS)} target categories)")
         for adr in CANONICAL_ADRS:
             result = session.run(
@@ -1340,7 +1358,6 @@ def cmd_audit():
             else:
                 print(f"  [OK]      {adr}: {rec['incoming']:,} incoming edges")
 
-        # ── 7. Drug connectivity ─────────────────────────────────────
         _section(f"7. DRUG CONNECTIVITY (all {len(AUDIT_TARGET_DRUGS)} target drugs)")
         for drug in AUDIT_TARGET_DRUGS:
             result = session.run(
@@ -1358,7 +1375,6 @@ def cmd_audit():
             else:
                 print(f"  [OK]      {drug}: {rec['degree']:,} edges")
 
-        # ── 8. End-to-end reasoning chain for the primary pairs ──────
         _section("8. END-TO-END REASONING CHAIN — Gene->Variant->Drug AND Variant->ADR")
         for drug, adr in PRIMARY_PAIRS:
             gv_rel = "|".join(GENE_TO_VARIANT_RELS)
@@ -1385,7 +1401,6 @@ def cmd_audit():
                 print(f"  [OK]      {drug} -> {adr}: {n_variants} variant(s) complete the chain, "
                       f"{n_genes} gene(s) involved")
 
-    # ── SUMMARY ────────────────────────────────────────────────────
     _section("SUMMARY")
     if not issues:
         print("  No issues found. KG looks structurally sound.")
