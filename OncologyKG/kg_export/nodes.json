@@ -3518,7 +3518,6 @@
     "label": "Variant",
     "properties": {
       "name": "NUDT15*1",
-      "star_allele": "NUDT15*1",
       "rsid": "",
       "source_terms": "NUDT15*1, NUDT15*3, NUDT15*4, NUDT15*5, NUDT15*6, NUDT15*7, NUDT15*8, NUDT15*9"
     }
@@ -5121,7 +5120,6 @@
     "label": "Variant",
     "properties": {
       "name": "CYP2B6*1",
-      "star_allele": "CYP2B6*1",
       "rsid": "",
       "source_terms": "CYP2B6*1, CYP2B6*6"
     }
@@ -7859,7 +7857,6 @@
     "label": "Variant",
     "properties": {
       "name": "SLCO1B1*1",
-      "star_allele": "SLCO1B1*1",
       "rsid": "",
       "source_terms": "SLCO1B1*1, SLCO1B1*15"
     }
@@ -9483,7 +9480,6 @@
     "label": "Variant",
     "properties": {
       "name": "CYP2C8*1",
-      "star_allele": "CYP2C8*1",
       "rsid": "",
       "source_terms": "CYP2C8*1, CYP2C8*2, CYP2C8*3, CYP2C8*4"
     }
@@ -9746,16 +9742,6 @@
   {
     "label": "Variant",
     "properties": {
-      "name": "NAT1*4",
-      "star_allele": "NAT1*4",
-      "rsid": "",
-      "source_terms": "NAT1*3, NAT1*4, NAT1*10",
-      "hgvs": ""
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
       "name": "NAT1*10",
       "star_allele": "NAT1*10",
       "rsid": "",
@@ -9780,16 +9766,6 @@
       "star_allele": "CYP2B6*29",
       "rsid": "",
       "source_terms": "CYP2B6*1, CYP2B6*29",
-      "hgvs": ""
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "name": "CYP2C19*1",
-      "star_allele": "CYP2C19*1",
-      "rsid": "",
-      "source_terms": "CYP2C19*1, CYP2C19*2",
       "hgvs": ""
     }
   },
@@ -10030,16 +10006,6 @@
       "rsid": "rs72846714",
       "source_terms": "",
       "location": "NC_000010.11:103118697",
-      "hgvs": ""
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "name": "CYP2A6*1",
-      "star_allele": "CYP2A6*1",
-      "rsid": "",
-      "source_terms": "CYP2A6*1, CYP2A6*4, CYP2A6*7, CYP2A6*9",
       "hgvs": ""
     }
   },

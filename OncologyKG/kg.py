@@ -405,6 +405,35 @@ def split_variant_list(raw):
     return [p.strip() for p in parts if p.strip()]
 
 
+_BASELINE_CLAUSE_RE = re.compile(r"as compared to (.+?)[\.\s]*$", re.IGNORECASE)
+
+def _extract_baseline_text(sentence):
+    """FIX: PharmGKB comparison sentences follow 'SUBJECT is associated with
+    EFFECT ... as compared to BASELINE'. The baseline is a reference group,
+    not itself a finding — e.g. "GSTM1 null is associated with decreased
+    likelihood of Ototoxicity ... as compared to GSTM1 non-null" is a claim
+    about GSTM1 null, not GSTM1 non-null. Without stripping the baseline out,
+    split_variant_list() (which correctly splits comma-joined allele lists)
+    was also creating an edge for the baseline allele/genotype, silently
+    attaching the subject's directional claim to a group the sentence
+    explicitly says is different — confirmed across GSTM1, GSTT1, TPMT,
+    SLCO1B1, CYP2C19 and more, spanning ASSOCIATED_WITH_ADR and
+    PHARMACOGENOMIC_ASSOCIATION edges alike. Returns the baseline clause
+    text, or '' if the sentence has no comparison at all (a single-arm
+    finding, where every variant token in Variant/Haplotypes is a
+    legitimate subject — including cross-referenced mechanism text with no
+    "as compared to" clause).
+    """
+    if not sentence:
+        return ""
+    m = _BASELINE_CLAUSE_RE.search(sentence)
+    return m.group(1) if m else ""
+
+
+def _normalize_for_match(s):
+    return re.sub(r"\s+", "", s).lower()
+
+
 def parse_clinical_variants(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
     nodes   = []
@@ -514,7 +543,17 @@ def parse_variant_drug_annotations(path):
         if "immune" in sentence.lower() or "hypersensitivity" in sentence.lower():
             mechanism = "immune_mediated"
 
+        # FIX: extract the baseline clause once per row, before looping
+        # over the split variants below.
+        baseline_text = _extract_baseline_text(sentence)
+
         for variant in split_variant_list(variant_raw):
+            # FIX: skip creating any edge for the baseline allele/genotype —
+            # it's the reference group the sentence compares AGAINST, not a
+            # finding in its own right. See _extract_baseline_text above.
+            if baseline_text and _normalize_for_match(variant) in _normalize_for_match(baseline_text):
+                continue
+
             nodes.append({
                 "name":      variant,
                 "hgvs":      variant if variant.startswith("c.") or
@@ -574,7 +613,19 @@ def parse_variant_pheno_annotations(path):
         if not is_target_drug(drug) and not is_target_adr(phenotype):
             continue
 
+        # FIX: extract the baseline clause once per row, before looping
+        # over the split variants below.
+        baseline_text = _extract_baseline_text(sentence)
+
         for variant in split_variant_list(variant_raw):
+            # FIX: skip creating any edge for the baseline allele/genotype —
+            # this is the bug confirmed for GSTM1 non-null/null, GSTT1
+            # non-null/null, TPMT *1, and others: the baseline was silently
+            # inheriting the subject's directional claim. See
+            # _extract_baseline_text above.
+            if baseline_text and _normalize_for_match(variant) in _normalize_for_match(baseline_text):
+                continue
+
             if phenotype and phenotype != "nan":
                 for phen in split_multi_value_field(phenotype):
                     canonical_adr = canonicalize_adr(phen)
