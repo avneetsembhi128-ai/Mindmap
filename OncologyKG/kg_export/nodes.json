@@ -3,2222 +3,6 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily A member 3",
-      "name": "ABCA3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily B member 1",
-      "name": "ABCB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily B member 4",
-      "name": "ABCB4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 1 (ABCC1 blood group)",
-      "name": "ABCC1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 10",
-      "name": "ABCC10"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 11",
-      "name": "ABCC11"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 2",
-      "name": "ABCC2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 3",
-      "name": "ABCC3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 4 (PEL blood group)",
-      "name": "ABCC4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily C member 5",
-      "name": "ABCC5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP binding cassette subfamily G member 1",
-      "name": "ABCG1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "ATP binding cassette subfamily G member 2 (JR blood group)",
-      "name": "ABCG2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "angiotensin I converting enzyme",
-      "name": "ACE"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "acyl-CoA synthetase short chain family member 2",
-      "name": "ACSS2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "actin gamma 1",
-      "name": "ACTG1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "acylphosphatase 2",
-      "name": "ACYP2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "adenosine deaminase",
-      "name": "ADA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "adducin 1",
-      "name": "ADD1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "alcohol dehydrogenase 1A (class I), alpha polypeptide",
-      "name": "ADH1A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "alcohol dehydrogenase 1C (class I), gamma polypeptide",
-      "name": "ADH1C"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "adenosine A2a receptor",
-      "name": "ADORA2A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ADORA2A antisense RNA 1",
-      "name": "ADORA2A-AS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "adenosine A3 receptor",
-      "name": "ADORA3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "adrenoceptor alpha 2C",
-      "name": "ADRA2C"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "adrenoceptor beta 1",
-      "name": "ADRB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "adrenoceptor beta 2",
-      "name": "ADRB2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ArfGAP with GTPase domain, ankyrin repeat and PH domain 3",
-      "name": "AGAP3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "angiotensin II receptor type 1",
-      "name": "AGTR1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "aryl hydrocarbon receptor repressor",
-      "name": "AHRR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "aldo-keto reductase family 1 member C3",
-      "name": "AKR1C3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "AKT serine/threonine kinase 1",
-      "name": "AKT1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "AKT serine/threonine kinase 2",
-      "name": "AKT2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "aldehyde dehydrogenase 1 family member A1",
-      "name": "ALDH1A1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "aldehyde dehydrogenase 3 family member A1",
-      "name": "ALDH3A1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "adenosine monophosphate deaminase 1",
-      "name": "AMPD1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "aquaporin 1 (Colton blood group)",
-      "name": "AQP1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "amphiregulin",
-      "name": "AREG"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "AT-rich interaction domain 5B",
-      "name": "ARID5B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "alpha tubulin acetyltransferase 1",
-      "name": "ATAT1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "autophagy related 16 like 1",
-      "name": "ATG16L1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "5-aminoimidazole-4-carboxamide ribonucleotide formyltransferase/IMP cyclohydrolase",
-      "name": "ATIC"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATM serine/threonine kinase",
-      "name": "ATM"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATP synthase F1 subunit epsilon",
-      "name": "ATP5F1E"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ATPase copper transporting beta",
-      "name": "ATP7B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "BTB domain and CNC homolog 1",
-      "name": "BACH1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "BRCA1 associated RING domain 1",
-      "name": "BARD1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "BCL2 apoptosis regulator",
-      "name": "BCL2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "BCL2 like 11",
-      "name": "BCL2L11"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "baculoviral IAP repeat containing 5",
-      "name": "BIRC5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "bleomycin hydrolase",
-      "name": "BLMH"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "bone morphogenetic protein 7",
-      "name": "BMP7"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "chromosome 18 open reading frame 56",
-      "name": "C18orf56"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "chromosome 1 open reading frame 167",
-      "name": "C1orf167"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "complement C6",
-      "name": "C6"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "chromosome 6 open reading frame 15",
-      "name": "C6orf15"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "chromosome 8 open reading frame 34",
-      "name": "C8orf34"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "capping actin protein, gelsolin like",
-      "name": "CAPG"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "caspase 7",
-      "name": "CASP7"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "carbonyl reductase 1",
-      "name": "CBR1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "carbonyl reductase 3",
-      "name": "CBR3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cyclin D1",
-      "name": "CCND1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cyclin K",
-      "name": "CCNK"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytidine deaminase",
-      "name": "CDA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "centrosomal protein 72",
-      "name": "CEP72"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "carbohydrate sulfotransferase 1",
-      "name": "CHST1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "chloride voltage-gated channel 6",
-      "name": "CLCN6"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytidine/uridine monophosphate kinase 1",
-      "name": "CMPK1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cyclin and CBS domain divalent metal cation transport mediator 2",
-      "name": "CNNM2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "catechol-O-methyltransferase",
-      "name": "COMT"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "carboxypeptidase A2",
-      "name": "CPA2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cystathionine gamma-lyase",
-      "name": "CTH"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytotoxic T-lymphocyte associated protein 4",
-      "name": "CTLA4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "catenin beta 1",
-      "name": "CTNNB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "CTP synthase 1",
-      "name": "CTPS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "C-X-C motif chemokine ligand 12",
-      "name": "CXCL12"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "C-X-C motif chemokine ligand 8",
-      "name": "CXCL8"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome b-245 alpha chain",
-      "name": "CYBA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 1 subfamily A member 1",
-      "name": "CYP1A1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 1 subfamily A member 2",
-      "name": "CYP1A2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 1 subfamily B member 1",
-      "name": "CYP1B1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 24 subfamily A member 1",
-      "name": "CYP24A1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 27 subfamily B member 1",
-      "name": "CYP27B1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 2 subfamily A member 6",
-      "name": "CYP2A6"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 2 subfamily B member 6",
-      "name": "CYP2B6"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 2 subfamily C member 19",
-      "name": "CYP2C19"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 2 subfamily C member 8",
-      "name": "CYP2C8"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 2 subfamily C member 9",
-      "name": "CYP2C9"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 2 subfamily D member 6",
-      "name": "CYP2D6"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 2 subfamily E member 1",
-      "name": "CYP2E1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome P450 family 2 subfamily F member 1",
-      "name": "CYP2F1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 3 subfamily A member 4",
-      "name": "CYP3A4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "cytochrome P450 family 3 subfamily A member 5",
-      "name": "CYP3A5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "death associated protein kinase 1",
-      "name": "DAPK1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "discoidin, CUB and LCCL domain containing 1",
-      "name": "DCBLD1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "deoxycytidine kinase",
-      "name": "DCK"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "dCMP deaminase",
-      "name": "DCTD"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "DDRGK domain containing 1",
-      "name": "DDRGK1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "dihydrofolate reductase",
-      "name": "DHFR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "dedicator of cytokinesis 8",
-      "name": "DOCK8"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "docking protein 5",
-      "name": "DOK5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "DOP1 leucine zipper like protein B",
-      "name": "DOP1B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "dihydropyrimidine dehydrogenase",
-      "name": "DPYD"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "drosha ribonuclease III",
-      "name": "DROSHA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "DS cell adhesion molecule",
-      "name": "DSCAM"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "dynein cytoplasmic 2 heavy chain 1",
-      "name": "DYNC2H1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "enoyl-CoA hydratase, short chain 1",
-      "name": "ECHS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "EFR3 homolog A",
-      "name": "EFR3A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "epidermal growth factor receptor",
-      "name": "EGFR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "egl-9 family hypoxia inducible factor 3",
-      "name": "EGLN3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "eukaryotic translation initiation factor 3 subunit A",
-      "name": "EIF3A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "endoglin",
-      "name": "ENG"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "enolase superfamily member 1",
-      "name": "ENOSF1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "endothelial PAS domain protein 1",
-      "name": "EPAS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "EPH receptor A5",
-      "name": "EPHA5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "epoxide hydrolase 1",
-      "name": "EPHX1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "erb-b2 receptor tyrosine kinase 2",
-      "name": "ERBB2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "erb-b2 receptor tyrosine kinase 3",
-      "name": "ERBB3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ERCC excision repair 1, endonuclease non-catalytic subunit",
-      "name": "ERCC1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ERCC excision repair 2, TFIIH core complex helicase subunit",
-      "name": "ERCC2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "estrogen receptor 1",
-      "name": "ESR1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ETS proto-oncogene 2, transcription factor",
-      "name": "ETS2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "FAST kinase domains 3",
-      "name": "FASTKD3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "F-box protein 21",
-      "name": "FBXO21"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "Fc gamma receptor IIa",
-      "name": "FCGR2A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "Fc gamma receptor IIIa",
-      "name": "FCGR3A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "FYVE, RhoGEF and PH domain containing 4",
-      "name": "FGD4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "fibroblast growth factor receptor 4",
-      "name": "FGFR4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "fms related receptor tyrosine kinase 1",
-      "name": "FLT1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "fms related receptor tyrosine kinase 3",
-      "name": "FLT3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "fms related receptor tyrosine kinase 4",
-      "name": "FLT4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "farnesyltransferase, CAAX box, subunit beta",
-      "name": "FNTB"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "folate hydrolase 1",
-      "name": "FOLH1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "forkhead box O1",
-      "name": "FOXO1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "forkhead box P3",
-      "name": "FOXP3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "folylpolyglutamate synthase",
-      "name": "FPGS"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "follistatin like 5",
-      "name": "FSTL5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "FTO alpha-ketoglutarate dependent dioxygenase",
-      "name": "FTO"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "glucose-6-phosphate dehydrogenase",
-      "name": "G6PD"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "polypeptide N-acetylgalactosaminyltransferase 14",
-      "name": "GALNT14"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "polypeptide N-acetylgalactosaminyltransferase 18",
-      "name": "GALNT18"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "GATA binding protein 3",
-      "name": "GATA3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "gamma-glutamyl hydrolase",
-      "name": "GGH"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "G protein subunit alpha q",
-      "name": "GNAQ"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "GNAS complex locus",
-      "name": "GNAS"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "G protein subunit beta 3",
-      "name": "GNB3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "G protein nucleolar 3",
-      "name": "GNL3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glycine N-methyltransferase",
-      "name": "GNMT"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione peroxidase 5",
-      "name": "GPX5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutamate ionotropic receptor AMPA type subunit 1",
-      "name": "GRIA1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "G protein-coupled receptor kinase 5",
-      "name": "GRK5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glycogen synthase kinase 3 beta",
-      "name": "GSK3B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione-disulfide reductase",
-      "name": "GSR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione S-transferase alpha 1",
-      "name": "GSTA1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione S-transferase alpha 5",
-      "name": "GSTA5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione S-transferase mu 1",
-      "name": "GSTM1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione S-transferase mu 3",
-      "name": "GSTM3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione S-transferase pi 1",
-      "name": "GSTP1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glutathione S-transferase theta 1",
-      "name": "GSTT1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "hyaluronan synthase 3",
-      "name": "HAS3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "HLA complex P5 (non-protein coding)",
-      "name": "HCP5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "hypoxia inducible factor 1 subunit alpha",
-      "name": "HIF1A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "major histocompatibility complex, class I, A",
-      "name": "HLA-A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "major histocompatibility complex, class I, B",
-      "name": "HLA-B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class I, C",
-      "name": "HLA-C"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class II, DP beta 1",
-      "name": "HLA-DPB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class II, DQ alpha 1",
-      "name": "HLA-DQA1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class II, DQ beta 1",
-      "name": "HLA-DQB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class II, DR beta 1",
-      "name": "HLA-DRB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class II, DR beta 3",
-      "name": "HLA-DRB3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class I, E",
-      "name": "HLA-E"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "major histocompatibility complex, class I, G",
-      "name": "HLA-G"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "hyaluronan mediated motility receptor",
-      "name": "HMMR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "hepatocyte nuclear factor 4 alpha",
-      "name": "HNF4A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "5-hydroxytryptamine receptor 2C",
-      "name": "HTR2C"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "interleukin 10",
-      "name": "IL10"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "interleukin 12B",
-      "name": "IL12B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "interleukin 17F",
-      "name": "IL17F"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "interleukin 2",
-      "name": "IL2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "inosine monophosphate dehydrogenase 1",
-      "name": "IMPDH1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "inosine monophosphate dehydrogenase 2",
-      "name": "IMPDH2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "insulin receptor",
-      "name": "INSR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "interferon regulatory factor 6",
-      "name": "IRF6"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "insulin receptor substrate 1",
-      "name": "IRS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "inosine triphosphatase",
-      "name": "ITPA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "potassium voltage-gated channel subfamily Q member 5",
-      "name": "KCNQ5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "kinase insert domain receptor",
-      "name": "KDR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "killer cell lectin like receptor C1",
-      "name": "KLRC1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "killer cell lectin like receptor D1",
-      "name": "KLRD1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "galectin 3",
-      "name": "LGALS3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "DNA ligase 3",
-      "name": "LIG3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "long intergenic non-protein coding RNA 251",
-      "name": "LINC00251"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "LDL receptor related protein 2",
-      "name": "LRP2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "lymphotoxin alpha",
-      "name": "LTA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "mitotic arrest deficient 1 like 1",
-      "name": "MAD1L1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "MAF bZIP transcription factor K",
-      "name": "MAFK"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "mitogen-activated protein kinase kinase kinase 1",
-      "name": "MAP3K1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "MDM4 regulator of p53",
-      "name": "MDM4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "methyl-CpG binding protein 2",
-      "name": "MECP2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "maternally expressed 3 (non-protein coding)",
-      "name": "MEG3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "microRNA 335",
-      "name": "MIR335"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "microRNA 5189",
-      "name": "MIR5189"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "microRNA 595",
-      "name": "MIR595"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "MLLT3 super elongation complex subunit",
-      "name": "MLLT3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "maestro heat like repeat family member 2A",
-      "name": "MROH2A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "mutS homolog 5",
-      "name": "MSH5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "methylenetetrahydrofolate dehydrogenase, cyclohydrolase and formyltetrahydrofolate synthetase 1",
-      "name": "MTHFD1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "methylenetetrahydrofolate reductase",
-      "name": "MTHFR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "melatonin receptor 1B",
-      "name": "MTNR1B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "mechanistic target of rapamycin kinase",
-      "name": "MTOR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "5-methyltetrahydrofolate-homocysteine methyltransferase",
-      "name": "MTR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "mitochondrially encoded 12S RNA",
-      "name": "MT-RNR1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "5-methyltetrahydrofolate-homocysteine methyltransferase reductase",
-      "name": "MTRR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "mucin like 3",
-      "name": "MUCL3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "mutY DNA glycosylase",
-      "name": "MUTYH"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "myomesin 2",
-      "name": "MYOM2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "N-6 adenine-specific DNA methyltransferase 1",
-      "name": "N6AMT1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "sodium leak channel, non-selective",
-      "name": "NALCN"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "N-acetyltransferase 1",
-      "name": "NAT1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "N-acetyltransferase 2",
-      "name": "NAT2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "neutrophil cytosolic factor 4",
-      "name": "NCF4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "N-terminal EF-hand calcium binding protein 1",
-      "name": "NECAB1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "nuclear factor of activated T cells 2",
-      "name": "NFATC2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "NFKB inhibitor alpha",
-      "name": "NFKBIA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "NME/NM23 nucleoside diphosphate kinase 4",
-      "name": "NME4"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "nitric oxide synthase 1",
-      "name": "NOS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "nitric oxide synthase 2",
-      "name": "NOS2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "nitric oxide synthase 3",
-      "name": "NOS3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "NAD(P)H quinone dehydrogenase 1",
-      "name": "NQO1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "N-ribosyldihydronicotinamide:quinone dehydrogenase 2",
-      "name": "NQO2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "nuclear receptor subfamily 1 group I member 2",
-      "name": "NR1I2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "nuclear receptor subfamily 1 group I member 3",
-      "name": "NR1I3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "NRAS proto-oncogene, GTPase",
-      "name": "NRAS"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "neuropilin 2",
-      "name": "NRP2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "5'-nucleotidase, cytosolic II",
-      "name": "NT5C2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "5'-nucleotidase, cytosolic IIIA",
-      "name": "NT5C3A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "nudix hydrolase 15",
-      "name": "NUDT15"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "opioid receptor mu 1",
-      "name": "OPRM1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "otospiralin",
-      "name": "OTOS"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "purinergic receptor P2Y12",
-      "name": "P2RY12"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "protein kinase C and casein kinase substrate in neurons 2",
-      "name": "PACSIN2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "phosphodiesterase 4B",
-      "name": "PDE4B"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "platelet derived growth factor receptor alpha",
-      "name": "PDGFRA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "platelet derived growth factor receptor beta",
-      "name": "PDGFRB"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "p53 apoptosis effector related to PMP22",
-      "name": "PERP"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "phosphatidylinositol glycan anchor biosynthesis class B",
-      "name": "PIGB"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha",
-      "name": "PIK3CA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "phosphoinositide-3-kinase regulatory subunit 1",
-      "name": "PIK3R1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "phosphoinositide-3-kinase regulatory subunit 2",
-      "name": "PIK3R2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "peptidylprolyl cis/trans isomerase, NIMA-interacting 1",
-      "name": "PIN1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "polycystin 1 like 2 (gene/pseudogene)",
-      "name": "PKD1L2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "patatin like phospholipase domain containing 3",
-      "name": "PNPLA3"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "DNA polymerase gamma, catalytic subunit",
-      "name": "POLG"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "paraoxonase 1",
-      "name": "PON1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "cytochrome p450 oxidoreductase",
-      "name": "POR"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "protein phosphatase 1 regulatory subunit 18",
-      "name": "PPP1R18"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "protein phosphatase 2 regulatory subunit B'delta",
-      "name": "PPP2R5D"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "proline rich coiled-coil 2A",
-      "name": "PRRC2A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "phosphatase and tensin homolog",
-      "name": "PTEN"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "prostaglandin-endoperoxide synthase 1",
-      "name": "PTGS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "protein tyrosine phosphatase non-receptor type 22",
-      "name": "PTPN22"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "protein tyrosine phosphatase receptor type M",
-      "name": "PTPRM"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "glycogen phosphorylase L",
-      "name": "PYGL"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "RAB7A, member RAS oncogene family",
-      "name": "RAB7A"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "Rac family small GTPase 2",
-      "name": "RAC2"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "RAD50 double strand break repair protein",
-      "name": "RAD50"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "RAD52 homolog, DNA repair protein",
-      "name": "RAD52"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "Raf-1 proto-oncogene, serine/threonine kinase",
-      "name": "RAF1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ralA binding protein 1",
-      "name": "RALBP1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "retinoic acid receptor gamma",
-      "name": "RARG"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "arginyl-tRNA synthetase 1",
-      "name": "RARS1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ring-box 1",
-      "name": "RBX1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "RELA proto-oncogene, NF-kB subunit",
-      "name": "RELA"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ret proto-oncogene",
-      "name": "RET"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "REV1 DNA directed polymerase",
-      "name": "REV1"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "REV3 like, DNA directed polymerase zeta catalytic subunit",
-      "name": "REV3L"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "regulator of G protein signaling 5",
-      "name": "RGS5"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
-      "full_name": "ring finger protein 8",
-      "name": "RNF8"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "No",
       "full_name": "ribonucleotide reductase catalytic subunit M1",
       "name": "RRM1"
     }
@@ -2243,6 +27,14 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "RUN domain containing 3B",
+      "name": "RUNDC3B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "retinoid X receptor alpha",
       "name": "RXRA"
     }
@@ -2259,8 +51,40 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "ryanodine receptor 3",
+      "name": "RYR3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "small Cajal body-specific RNA 5",
+      "name": "SCARNA5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "sodium voltage-gated channel alpha subunit 10",
       "name": "SCN10A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "sodium voltage-gated channel alpha subunit 5",
+      "name": "SCN5A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "synthesis of cytochrome C oxidase 2",
+      "name": "SCO2"
     }
   },
   {
@@ -2275,8 +99,32 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "semaphorin 5A",
+      "name": "SEMA5A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "serpin family A member 1",
+      "name": "SERPINA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "serpin family A member 5",
       "name": "SERPINA5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "serpin family A member 6",
+      "name": "SERPINA6"
     }
   },
   {
@@ -2291,8 +139,96 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "SET domain containing 3, actin N3(tau)-histidine methyltransferase",
+      "name": "SETD3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "SET domain containing 4",
+      "name": "SETD4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "sideroflexin 4",
+      "name": "SFXN4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "SH3 domain binding protein 2",
+      "name": "SH3BP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "SHC adaptor protein 1",
+      "name": "SHC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "serine hydroxymethyltransferase 1",
       "name": "SHMT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "sirtuin 2",
+      "name": "SIRT2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 10 member 2",
+      "name": "SLC10A2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 13 member 3",
+      "name": "SLC13A3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 14 member 2",
+      "name": "SLC14A2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 15 member 1",
+      "name": "SLC15A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 15 member 2",
+      "name": "SLC15A2"
     }
   },
   {
@@ -2355,6 +291,14 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "solute carrier family 22 member 17",
+      "name": "SLC22A17"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "solute carrier family 22 member 2",
       "name": "SLC22A2"
     }
@@ -2373,6 +317,30 @@
       "has_cpic": "No",
       "full_name": "solute carrier family 22 member 5",
       "name": "SLC22A5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 22 member 6",
+      "name": "SLC22A6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 22 member 7",
+      "name": "SLC22A7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 25 member 48",
+      "name": "SLC25A48"
     }
   },
   {
@@ -2405,6 +373,14 @@
       "has_cpic": "No",
       "full_name": "solute carrier family 29 member 1 (Augustine blood group)",
       "name": "SLC29A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier family 29 member 3",
+      "name": "SLC29A3"
     }
   },
   {
@@ -2459,8 +435,32 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "solute carrier organic anion transporter family member 4C1",
+      "name": "SLCO4C1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "solute carrier organic anion transporter family member 6A1",
+      "name": "SLCO6A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "slit guidance ligand 1",
       "name": "SLIT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "SMAD family member 3",
+      "name": "SMAD3"
     }
   },
   {
@@ -2475,8 +475,24 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "SMCR8-C9orf72 complex subunit",
+      "name": "SMCR8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "small nuclear ribonucleoprotein 13",
       "name": "SNU13"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "suppressor of cytokine signaling 3",
+      "name": "SOCS3"
     }
   },
   {
@@ -2507,8 +523,64 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "spermatogenesis associated 9",
+      "name": "SPATA9"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "sperm antigen with calponin homology and coiled-coil domains 1 like",
+      "name": "SPECC1L"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "SPG7 matrix AAA peptidase subunit, paraplegin",
+      "name": "SPG7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "signal transducer and activator of transcription 3",
+      "name": "STAT3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "signal transducer and activator of transcription 4",
       "name": "STAT4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "stromal interaction molecule 1",
+      "name": "STIM1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "succinate-CoA ligase ADP-forming subunit beta",
+      "name": "SUCLA2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "sulfatase 2",
+      "name": "SULF2"
     }
   },
   {
@@ -2525,6 +597,30 @@
       "has_cpic": "No",
       "full_name": "small ubiquitin like modifier 4",
       "name": "SUMO4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "synaptotagmin 14",
+      "name": "SYT14"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "TGF-beta activated kinase 1 (MAP3K7) binding protein 2",
+      "name": "TAB2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "T cell activation RhoGTPase activating protein",
+      "name": "TAGAP"
     }
   },
   {
@@ -2571,6 +667,38 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "toll like receptor 9",
+      "name": "TLR9"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "transmembrane protein 43",
+      "name": "TMEM43"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "transmembrane protein 91",
+      "name": "TMEM91"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "transmembrane and immunoglobulin domain containing 3",
+      "name": "TMIGD3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "tumor necrosis factor",
       "name": "TNF"
     }
@@ -2611,6 +739,22 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "TNF superfamily member 13b",
+      "name": "TNFSF13B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "TNFAIP3 interacting protein 1",
+      "name": "TNIP1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "DNA topoisomerase I",
       "name": "TOP1"
     }
@@ -2621,6 +765,14 @@
       "has_cpic": "No",
       "full_name": "DNA topoisomerase II alpha",
       "name": "TOP2A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DNA topoisomerase II beta",
+      "name": "TOP2B"
     }
   },
   {
@@ -2651,8 +803,32 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "tryptase alpha/beta 1",
+      "name": "TPSAB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "TNF receptor associated factor 1",
       "name": "TRAF1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "transient receptor potential cation channel subfamily A member 1",
+      "name": "TRPA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "thrombospondin type laminin G domain and EAR repeats",
+      "name": "TSPEAR"
     }
   },
   {
@@ -2771,8 +947,48 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "UDP glucuronosyltransferase 2 family, polypeptide A2",
+      "name": "UGT2A2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "UDP glucuronosyltransferase family 2 member B15",
+      "name": "UGT2B15"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "UDP glucuronosyltransferase family 2 member B7",
+      "name": "UGT2B7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "unc-51 like kinase 3",
       "name": "ULK3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "beta-ureidopropionase 1",
+      "name": "UPB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ubiquitin specific peptidase 5",
+      "name": "USP5"
     }
   },
   {
@@ -2789,6 +1005,46 @@
       "has_cpic": "No",
       "full_name": "vascular endothelial growth factor A",
       "name": "VEGFA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "vascular endothelial growth factor C",
+      "name": "VEGFC"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "vitamin K epoxide reductase complex subunit 1",
+      "name": "VKORC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "WD repeat domain 24",
+      "name": "WDR24"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "wolframin ER transmembrane glycoprotein",
+      "name": "WFS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "WD repeat containing antisense to TP53",
+      "name": "WRAP53"
     }
   },
   {
@@ -2843,6 +1099,14 @@
     "label": "Gene",
     "properties": {
       "has_cpic": "No",
+      "full_name": "X-ray repair cross complementing 5",
+      "name": "XRCC5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
       "full_name": "xylosyltransferase 2",
       "name": "XYLT2"
     }
@@ -2853,6 +1117,4038 @@
       "has_cpic": "No",
       "full_name": "zinc finger DHHC-type palmitoyltransferase 3",
       "name": "ZDHHC3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "zinc finger protein, FOG family member 1",
+      "name": "ZFPM1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "zinc finger protein 215",
+      "name": "ZNF215"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "zinc finger protein 335",
+      "name": "ZNF335"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "zinc finger and SCAN domain containing 25",
+      "name": "ZSCAN25"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily A member 1",
+      "name": "ABCA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily A member 2",
+      "name": "ABCA2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily A member 3",
+      "name": "ABCA3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily B member 1",
+      "name": "ABCB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily B member 11",
+      "name": "ABCB11"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily B member 4",
+      "name": "ABCB4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily B member 5",
+      "name": "ABCB5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 1 (ABCC1 blood group)",
+      "name": "ABCC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 10",
+      "name": "ABCC10"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 11",
+      "name": "ABCC11"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP-binding cassette, sub-family C (CFTR/MRP), member 13, pseudogene",
+      "name": "ABCC13"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 2",
+      "name": "ABCC2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 3",
+      "name": "ABCC3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 4 (PEL blood group)",
+      "name": "ABCC4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 5",
+      "name": "ABCC5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 6",
+      "name": "ABCC6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 8",
+      "name": "ABCC8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily C member 9",
+      "name": "ABCC9"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily G member 1",
+      "name": "ABCG1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "ATP binding cassette subfamily G member 2 (JR blood group)",
+      "name": "ABCG2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP binding cassette subfamily G member 5",
+      "name": "ABCG5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "abhydrolase domain containing 18",
+      "name": "ABHD18"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "angiotensin I converting enzyme",
+      "name": "ACE"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "atypical chemokine receptor 1 (Duffy blood group)",
+      "name": "ACKR1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "acyl-CoA thioesterase 1",
+      "name": "ACOT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "acyl-CoA synthetase short chain family member 2",
+      "name": "ACSS2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "actin gamma 1",
+      "name": "ACTG1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "acylphosphatase 2",
+      "name": "ACYP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenosine deaminase",
+      "name": "ADA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenylate cyclase 2",
+      "name": "ADCY2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenylate cyclase 9",
+      "name": "ADCY9"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adducin 1",
+      "name": "ADD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "alcohol dehydrogenase 1A (class I), alpha polypeptide",
+      "name": "ADH1A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "alcohol dehydrogenase 1B (class I), beta polypeptide",
+      "name": "ADH1B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "alcohol dehydrogenase 1C (class I), gamma polypeptide",
+      "name": "ADH1C"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "alcohol dehydrogenase 7 (class IV), mu or sigma polypeptide",
+      "name": "ADH7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenosine kinase",
+      "name": "ADK"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenosine A2a receptor",
+      "name": "ADORA2A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ADORA2A antisense RNA 1",
+      "name": "ADORA2A-AS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenosine A3 receptor",
+      "name": "ADORA3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "adrenoceptor alpha 2C",
+      "name": "ADRA2C"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "adrenoceptor beta 1",
+      "name": "ADRB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "adrenoceptor beta 2",
+      "name": "ADRB2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ArfGAP with GTPase domain, ankyrin repeat and PH domain 3",
+      "name": "AGAP3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "AGBL carboxypeptidase 4",
+      "name": "AGBL4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "angiotensin II receptor type 1",
+      "name": "AGTR1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aryl hydrocarbon receptor repressor",
+      "name": "AHRR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aldo-keto reductase family 1 member C3",
+      "name": "AKR1C3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "AKT serine/threonine kinase 1",
+      "name": "AKT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "AKT serine/threonine kinase 2",
+      "name": "AKT2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aldehyde dehydrogenase 1 family member A1",
+      "name": "ALDH1A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aldehyde dehydrogenase 3 family member A1",
+      "name": "ALDH3A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "arachidonate 5-lipoxygenase",
+      "name": "ALOX5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "adenosine monophosphate deaminase 1",
+      "name": "AMPD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aminopeptidase O (putative)",
+      "name": "AOPEP"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aldehyde oxidase 1",
+      "name": "AOX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "apurinic/apyrimidinic endodeoxyribonuclease 1",
+      "name": "APEX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aquaporin 1 (Colton blood group)",
+      "name": "AQP1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "aquaporin 2",
+      "name": "AQP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "amphiregulin",
+      "name": "AREG"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Rho GTPase activating protein 28",
+      "name": "ARHGAP28"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "AT-rich interaction domain 5B",
+      "name": "ARID5B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ARVCF delta catenin family member",
+      "name": "ARVCF"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "arsenite methyltransferase",
+      "name": "AS3MT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "asparagine synthetase (glutamine-hydrolyzing)",
+      "name": "ASNS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "astrotactin 2",
+      "name": "ASTN2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "alpha tubulin acetyltransferase 1",
+      "name": "ATAT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "activating transcription factor 5",
+      "name": "ATF5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "autophagy related 16 like 1",
+      "name": "ATG16L1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "5-aminoimidazole-4-carboxamide ribonucleotide formyltransferase/IMP cyclohydrolase",
+      "name": "ATIC"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "atlastin GTPase 2",
+      "name": "ATL2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATM serine/threonine kinase",
+      "name": "ATM"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATPase phospholipid transporting 10A (putative)",
+      "name": "ATP10A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATP synthase F1 subunit epsilon",
+      "name": "ATP5F1E"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ATPase copper transporting beta",
+      "name": "ATP7B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "B9 domain containing 2",
+      "name": "B9D2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "BTB domain and CNC homolog 1",
+      "name": "BACH1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "BAI1 associated protein 3",
+      "name": "BAIAP3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "BRCA1 associated RING domain 1",
+      "name": "BARD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "BCL2 apoptosis regulator",
+      "name": "BCL2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "BCL2 like 11",
+      "name": "BCL2L11"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "bradykinin receptor B1",
+      "name": "BDKRB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "baculoviral IAP repeat containing 5",
+      "name": "BIRC5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "bleomycin hydrolase",
+      "name": "BLMH"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "bone morphogenetic protein 7",
+      "name": "BMP7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "chromosome 18 open reading frame 56",
+      "name": "C18orf56"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "chromosome 1 open reading frame 167",
+      "name": "C1orf167"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "complement C6",
+      "name": "C6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "chromosome 6 open reading frame 15",
+      "name": "C6orf15"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "chromosome 8 open reading frame 34",
+      "name": "C8orf34"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "capping actin protein, gelsolin like",
+      "name": "CAPG"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "caspase 7",
+      "name": "CASP7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "caspase 8",
+      "name": "CASP8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "catalase",
+      "name": "CAT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "carbonyl reductase 1",
+      "name": "CBR1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "carbonyl reductase 3",
+      "name": "CBR3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "coiled-coil domain containing 22",
+      "name": "CCDC22"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "coiled-coil glutamate rich protein 2",
+      "name": "CCER2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "C-C motif chemokine ligand 5",
+      "name": "CCL5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cyclin D1",
+      "name": "CCND1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cyclin K",
+      "name": "CCNK"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CD44 molecule (IN blood group)",
+      "name": "CD44"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytidine deaminase",
+      "name": "CDA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cell division cycle associated 3",
+      "name": "CDCA3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "corneodesmosin",
+      "name": "CDSN"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CUGBP Elav-like family member 4",
+      "name": "CELF4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "centrosomal protein 72",
+      "name": "CEP72"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ceramide synthase 6",
+      "name": "CERS6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "carboxylesterase 1",
+      "name": "CES1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "carboxylesterase 1 pseudogene 1",
+      "name": "CES1P1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "CF transmembrane conductance regulator",
+      "name": "CFTR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "carbohydrate sulfotransferase 1",
+      "name": "CHST1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "chloride voltage-gated channel 6",
+      "name": "CLCN6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "claudin 34",
+      "name": "CLDN34"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytidine/uridine monophosphate kinase 1",
+      "name": "CMPK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cyclin and CBS domain divalent metal cation transport mediator 2",
+      "name": "CNNM2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CCR4-NOT transcription complex subunit 3",
+      "name": "CNOT3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CCR4-NOT transcription complex subunit 4",
+      "name": "CNOT4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "collagen type XVIII alpha 1 chain",
+      "name": "COL18A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "collagen type I alpha 2 chain",
+      "name": "COL1A2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "collagen type XXVI alpha 1 chain",
+      "name": "COL26A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "collectin subfamily member 10",
+      "name": "COLEC10"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "catechol-O-methyltransferase",
+      "name": "COMT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "carboxypeptidase A2",
+      "name": "CPA2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cold shock domain containing E1",
+      "name": "CSDE1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "colony stimulating factor 1 receptor",
+      "name": "CSF1R"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CUB and Sushi multiple domains 3",
+      "name": "CSMD3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "casein kinase 2 alpha 3",
+      "name": "CSNK2A3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CTD phosphatase subunit 1",
+      "name": "CTDP1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cystathionine gamma-lyase",
+      "name": "CTH"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytotoxic T-lymphocyte associated protein 4",
+      "name": "CTLA4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "catenin beta 1",
+      "name": "CTNNB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "CTP synthase 1",
+      "name": "CTPS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cullin 7",
+      "name": "CUL7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cut like homeobox 2",
+      "name": "CUX2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "C-X-C motif chemokine ligand 12",
+      "name": "CXCL12"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "C-X-C motif chemokine ligand 14",
+      "name": "CXCL14"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "C-X-C motif chemokine ligand 8",
+      "name": "CXCL8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome b5 type A",
+      "name": "CYB5A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome b5 reductase 3",
+      "name": "CYB5R3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome b-245 alpha chain",
+      "name": "CYBA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome c, somatic pseudogene 5",
+      "name": "CYCSP5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 1 subfamily A member 1",
+      "name": "CYP1A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 1 subfamily A member 2",
+      "name": "CYP1A2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 1 subfamily B member 1",
+      "name": "CYP1B1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 24 subfamily A member 1",
+      "name": "CYP24A1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 27 subfamily B member 1",
+      "name": "CYP27B1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 2 subfamily A member 6",
+      "name": "CYP2A6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 2 subfamily A member 7",
+      "name": "CYP2A7"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450, family 2, subfamily A, polypeptide 7 pseudogene 1",
+      "name": "CYP2A7P1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 2 subfamily B member 6",
+      "name": "CYP2B6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 2 subfamily C member 19",
+      "name": "CYP2C19"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 2 subfamily C member 8",
+      "name": "CYP2C8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 2 subfamily C member 9",
+      "name": "CYP2C9"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 2 subfamily D member 6",
+      "name": "CYP2D6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 2 subfamily E member 1",
+      "name": "CYP2E1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 2 subfamily F member 1",
+      "name": "CYP2F1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome P450 family 2 subfamily J member 2",
+      "name": "CYP2J2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 3 subfamily A member 4",
+      "name": "CYP3A4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 3 subfamily A member 5",
+      "name": "CYP3A5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "cytochrome P450 family 4 subfamily F member 2",
+      "name": "CYP4F2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DALR anticodon binding domain containing 3",
+      "name": "DALRD3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "death associated protein kinase 1",
+      "name": "DAPK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "discoidin, CUB and LCCL domain containing 1",
+      "name": "DCBLD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "deoxycytidine kinase",
+      "name": "DCK"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dCMP deaminase",
+      "name": "DCTD"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DDRGK domain containing 1",
+      "name": "DDRGK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DEAD-box helicase 53",
+      "name": "DDX53"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "2,4-dienoyl-CoA reductase 2",
+      "name": "DECR2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dihydrofolate reductase",
+      "name": "DHFR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dynein axonemal assembly factor 9",
+      "name": "DNAAF9"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dedicator of cytokinesis 8",
+      "name": "DOCK8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "docking protein 5",
+      "name": "DOK5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DOP1 leucine zipper like protein B",
+      "name": "DOP1B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dermatopontin",
+      "name": "DPT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "dihydropyrimidine dehydrogenase",
+      "name": "DPYD"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dihydropyrimidinase",
+      "name": "DPYS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "drosha ribonuclease III",
+      "name": "DROSHA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DS cell adhesion molecule",
+      "name": "DSCAM"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "double homeobox 1",
+      "name": "DUX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dynein cytoplasmic 2 heavy chain 1",
+      "name": "DYNC2H1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "dynein cytoplasmic 2 light intermediate chain 1",
+      "name": "DYNC2LI1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "enoyl-CoA hydratase, short chain 1",
+      "name": "ECHS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "EGF like repeats and discoidin domains 3",
+      "name": "EDIL3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "EFR3 homolog A",
+      "name": "EFR3A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "epidermal growth factor receptor",
+      "name": "EGFR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "egl-9 family hypoxia inducible factor 3",
+      "name": "EGLN3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "eukaryotic translation initiation factor 3 subunit A",
+      "name": "EIF3A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "endoglin",
+      "name": "ENG"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "enolase superfamily member 1",
+      "name": "ENOSF1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "endothelial PAS domain protein 1",
+      "name": "EPAS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "EPH receptor A5",
+      "name": "EPHA5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "epoxide hydrolase 1",
+      "name": "EPHX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "erythropoietin",
+      "name": "EPO"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "endoplasmic reticulum aminopeptidase 1",
+      "name": "ERAP1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "endoplasmic reticulum aminopeptidase 2",
+      "name": "ERAP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "erb-b2 receptor tyrosine kinase 2",
+      "name": "ERBB2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "erb-b2 receptor tyrosine kinase 3",
+      "name": "ERBB3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ERCC excision repair 1, endonuclease non-catalytic subunit",
+      "name": "ERCC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ERCC excision repair 2, TFIIH core complex helicase subunit",
+      "name": "ERCC2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ERCC excision repair 5, endonuclease",
+      "name": "ERCC5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "estrogen receptor 1",
+      "name": "ESR1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "electron transfer flavoprotein subunit beta",
+      "name": "ETFB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ETS proto-oncogene 2, transcription factor",
+      "name": "ETS2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "FA complementation group I",
+      "name": "FANCI"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "FAST kinase domains 3",
+      "name": "FASTKD3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "F-box protein 21",
+      "name": "FBXO21"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Fc gamma receptor IIa",
+      "name": "FCGR2A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Fc gamma receptor IIIa",
+      "name": "FCGR3A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ferrochelatase",
+      "name": "FECH"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "FYVE, RhoGEF and PH domain containing 4",
+      "name": "FGD4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "fibroblast growth factor 14",
+      "name": "FGF14"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "fibroblast growth factor receptor 2",
+      "name": "FGFR2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "fibroblast growth factor receptor 4",
+      "name": "FGFR4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "FKBP prolyl isomerase family member 15",
+      "name": "FKBP15"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "flotillin 1",
+      "name": "FLOT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "fms related receptor tyrosine kinase 1",
+      "name": "FLT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "fms related receptor tyrosine kinase 3",
+      "name": "FLT3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "fms related receptor tyrosine kinase 4",
+      "name": "FLT4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "flavin containing dimethylaniline monoxygenase 2",
+      "name": "FMO2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "flavin containing dimethylaniline monoxygenase 3",
+      "name": "FMO3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "farnesyltransferase, CAAX box, subunit beta",
+      "name": "FNTB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "folate hydrolase 1",
+      "name": "FOLH1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "forkhead box O1",
+      "name": "FOXO1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "forkhead box P3",
+      "name": "FOXP3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "folylpolyglutamate synthase",
+      "name": "FPGS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "follistatin like 5",
+      "name": "FSTL5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "FTO alpha-ketoglutarate dependent dioxygenase",
+      "name": "FTO"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "frizzled class receptor 3",
+      "name": "FZD3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "glucose-6-phosphate dehydrogenase",
+      "name": "G6PD"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "GA binding protein transcription factor subunit alpha",
+      "name": "GABPA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "gamma-aminobutyric acid type A receptor subunit pi",
+      "name": "GABRP"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "polypeptide N-acetylgalactosaminyltransferase 14",
+      "name": "GALNT14"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "polypeptide N-acetylgalactosaminyltransferase 18",
+      "name": "GALNT18"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "GATA binding protein 3",
+      "name": "GATA3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutamate-cysteine ligase catalytic subunit",
+      "name": "GCLC"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "gamma-glutamyl hydrolase",
+      "name": "GGH"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "gamma-glutamyltransferase 1",
+      "name": "GGT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "guanine monophosphate synthase",
+      "name": "GMPS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "G protein subunit alpha q",
+      "name": "GNAQ"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "GNAS complex locus",
+      "name": "GNAS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "G protein subunit beta 3",
+      "name": "GNB3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "G protein nucleolar 3",
+      "name": "GNL3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glycine N-methyltransferase",
+      "name": "GNMT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "G protein-coupled receptor 35",
+      "name": "GPR35"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione peroxidase 3",
+      "name": "GPX3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione peroxidase 5",
+      "name": "GPX5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutamate ionotropic receptor AMPA type subunit 1",
+      "name": "GRIA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "G protein-coupled receptor kinase 5",
+      "name": "GRK5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glycogen synthase kinase 3 beta",
+      "name": "GSK3B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione-disulfide reductase",
+      "name": "GSR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione synthetase",
+      "name": "GSS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase alpha 1",
+      "name": "GSTA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase alpha 2",
+      "name": "GSTA2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase alpha 5",
+      "name": "GSTA5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase alpha 6, pseudogene",
+      "name": "GSTA6P"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase mu 1",
+      "name": "GSTM1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase mu 3",
+      "name": "GSTM3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase mu 5",
+      "name": "GSTM5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase pi 1",
+      "name": "GSTP1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glutathione S-transferase theta 1",
+      "name": "GSTT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "hyaluronan synthase 3",
+      "name": "HAS3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "HLA complex group 21 (non-protein coding)",
+      "name": "HCG21"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "HLA complex group 22 (gene/pseudogene)",
+      "name": "HCG22"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "HLA complex P5 (non-protein coding)",
+      "name": "HCP5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "HEAT repeat containing 4",
+      "name": "HEATR4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DNA helicase B",
+      "name": "HELB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "homeostatic iron regulator",
+      "name": "HFE"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "hypoxia inducible factor 1 subunit alpha",
+      "name": "HIF1A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "major histocompatibility complex, class I, A",
+      "name": "HLA-A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "major histocompatibility complex, class I, B",
+      "name": "HLA-B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class I, C",
+      "name": "HLA-C"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DP beta 1",
+      "name": "HLA-DPB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DQ alpha 1",
+      "name": "HLA-DQA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DQ beta 1",
+      "name": "HLA-DQB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DR alpha",
+      "name": "HLA-DRA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DR beta 1",
+      "name": "HLA-DRB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DR beta 3",
+      "name": "HLA-DRB3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class II, DR beta 5",
+      "name": "HLA-DRB5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class I, E",
+      "name": "HLA-E"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "major histocompatibility complex, class I, G",
+      "name": "HLA-G"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "hyaluronan mediated motility receptor",
+      "name": "HMMR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "hepatocyte nuclear factor 4 alpha",
+      "name": "HNF4A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "histamine N-methyltransferase",
+      "name": "HNMT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "hook microtubule tethering protein 1",
+      "name": "HOOK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "haptoglobin-related protein",
+      "name": "HPR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "hemopexin",
+      "name": "HPX"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "histamine receptor H1",
+      "name": "HRH1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "histamine receptor H2",
+      "name": "HRH2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "histamine receptor H4",
+      "name": "HRH4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "heat shock protein 90 alpha family class A member 1",
+      "name": "HSP90AA1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "heat shock protein family A (Hsp70) member 1A",
+      "name": "HSPA1A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "heat shock protein family A (Hsp70) member 1 like",
+      "name": "HSPA1L"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "5-hydroxytryptamine receptor 2C",
+      "name": "HTR2C"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "inhibitor of nuclear factor kappa B kinase subunit beta",
+      "name": "IKBKB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "inhibitor of nuclear factor kappa B kinase subunit epsilon",
+      "name": "IKBKE"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 10",
+      "name": "IL10"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 12B",
+      "name": "IL12B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 13",
+      "name": "IL13"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 17F",
+      "name": "IL17F"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 19",
+      "name": "IL19"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 2",
+      "name": "IL2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 4",
+      "name": "IL4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 6",
+      "name": "IL6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 6 receptor",
+      "name": "IL6R"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interleukin 6 cytokine family signal transducer",
+      "name": "IL6ST"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "inosine monophosphate dehydrogenase 1",
+      "name": "IMPDH1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "inosine monophosphate dehydrogenase 2",
+      "name": "IMPDH2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "insulin receptor",
+      "name": "INSR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "insulin receptor related receptor",
+      "name": "INSRR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "interferon regulatory factor 6",
+      "name": "IRF6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "insulin receptor substrate 1",
+      "name": "IRS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "integrin subunit beta 3",
+      "name": "ITGB3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "inosine triphosphatase",
+      "name": "ITPA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Janus kinase 1",
+      "name": "JAK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "jumonji domain containing 8",
+      "name": "JMJD8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "potassium inwardly rectifying channel subfamily J member 11",
+      "name": "KCNJ11"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "potassium voltage-gated channel subfamily Q member 1",
+      "name": "KCNQ1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "potassium voltage-gated channel subfamily Q member 5",
+      "name": "KCNQ5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "kinase insert domain receptor",
+      "name": "KDR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "kinesin light chain 1",
+      "name": "KLC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "kinesin light chain 3",
+      "name": "KLC3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "killer cell lectin like receptor C1",
+      "name": "KLRC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "killer cell lectin like receptor D1",
+      "name": "KLRD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "keratin associated protein 10-4",
+      "name": "KRTAP10-4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "La ribonucleoprotein 1B",
+      "name": "LARP1B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "galectin 3",
+      "name": "LGALS3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DNA ligase 3",
+      "name": "LIG3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "LIM domain containing 1",
+      "name": "LIMD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "long intergenic non-protein coding RNA 251",
+      "name": "LINC00251"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "LDL receptor related protein 2",
+      "name": "LRP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "LSM2 homolog, U6 small nuclear RNA and mRNA degradation associated",
+      "name": "LSM2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "leukocyte specific transcript 1",
+      "name": "LST1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "lymphotoxin alpha",
+      "name": "LTA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "lymphotoxin beta",
+      "name": "LTB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mitotic arrest deficient 1 like 1",
+      "name": "MAD1L1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "MAF bZIP transcription factor",
+      "name": "MAF"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "MAF bZIP transcription factor K",
+      "name": "MAFK"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mitogen-activated protein kinase kinase kinase 1",
+      "name": "MAP3K1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mitogen-activated protein kinase 1",
+      "name": "MAPK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microtubule associated serine/threonine kinase 3",
+      "name": "MAST3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microcephalin 1",
+      "name": "MCPH1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "MDM4 regulator of p53",
+      "name": "MDM4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "methyl-CpG binding protein 2",
+      "name": "MECP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mediator complex subunit 12L",
+      "name": "MED12L"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mediator complex subunit 4",
+      "name": "MED4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "maternally expressed 3 (non-protein coding)",
+      "name": "MEG3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mesoderm specific transcript",
+      "name": "MEST"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "methyltransferase 14, N6-adenosine-methyltransferase non-catalytic subunit",
+      "name": "METTL14"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "methyltransferase 3, N6-adenosine-methyltransferase complex catalytic subunit",
+      "name": "METTL3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "O-6-methylguanine-DNA methyltransferase",
+      "name": "MGMT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 1206",
+      "name": "MIR1206"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 191",
+      "name": "MIR191"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 2053",
+      "name": "MIR2053"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 23a",
+      "name": "MIR23A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 23b",
+      "name": "MIR23B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 24-1",
+      "name": "MIR24-1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 24-2",
+      "name": "MIR24-2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 27a",
+      "name": "MIR27A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 27b",
+      "name": "MIR27B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 3074",
+      "name": "MIR3074"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 335",
+      "name": "MIR335"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 425",
+      "name": "MIR425"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 4268",
+      "name": "MIR4268"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 4288",
+      "name": "MIR4288"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 5189",
+      "name": "MIR5189"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "microRNA 595",
+      "name": "MIR595"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "MLLT3 super elongation complex subunit",
+      "name": "MLLT3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "motilin",
+      "name": "MLN"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "molybdenum cofactor sulfurase",
+      "name": "MOCOS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "myeloperoxidase",
+      "name": "MPO"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "maestro heat like repeat family member 2A",
+      "name": "MROH2A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mitochondrial ribosomal protein L37",
+      "name": "MRPL37"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mutS homolog 3",
+      "name": "MSH3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mutS homolog 5",
+      "name": "MSH5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mutS homolog 6",
+      "name": "MSH6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "methylenetetrahydrofolate dehydrogenase, cyclohydrolase and formyltetrahydrofolate synthetase 1",
+      "name": "MTHFD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "methylenetetrahydrofolate reductase",
+      "name": "MTHFR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 1",
+      "name": "MT-ND1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "melatonin receptor 1B",
+      "name": "MTNR1B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mechanistic target of rapamycin kinase",
+      "name": "MTOR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "5-methyltetrahydrofolate-homocysteine methyltransferase",
+      "name": "MTR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "mitochondrially encoded 12S RNA",
+      "name": "MT-RNR1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "5-methyltetrahydrofolate-homocysteine methyltransferase reductase",
+      "name": "MTRR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mucin like 3",
+      "name": "MUCL3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "mutY DNA glycosylase",
+      "name": "MUTYH"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "MYB binding protein 1a",
+      "name": "MYBBP1A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "myomixer, myoblast fusion factor",
+      "name": "MYMX"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "myosin IH",
+      "name": "MYO1H"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "myomesin 2",
+      "name": "MYOM2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "N-6 adenine-specific DNA methyltransferase 1",
+      "name": "N6AMT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "sodium leak channel, non-selective",
+      "name": "NALCN"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "N-acetyltransferase 1",
+      "name": "NAT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "N-acetyltransferase 2",
+      "name": "NAT2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "neutrophil cytosolic factor 4",
+      "name": "NCF4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear receptor coactivator 3",
+      "name": "NCOA3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "N-terminal EF-hand calcium binding protein 1",
+      "name": "NECAB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NIMA related kinase 4",
+      "name": "NEK4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "neuraminidase 2",
+      "name": "NEU2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear factor of activated T cells 2",
+      "name": "NFATC2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NFE2 like bZIP transcription factor 2",
+      "name": "NFE2L2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear factor kappa B subunit 1",
+      "name": "NFKB1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear factor kappa B subunit 2",
+      "name": "NFKB2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NFKB inhibitor alpha",
+      "name": "NFKBIA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NFKB inhibitor beta",
+      "name": "NFKBIB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NHL repeat containing E3 ubiquitin protein ligase 1",
+      "name": "NHLRC1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "neuroligin 1",
+      "name": "NLGN1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NME/NM23 nucleoside diphosphate kinase 4",
+      "name": "NME4"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nitric oxide synthase 1",
+      "name": "NOS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nitric oxide synthase 1 adaptor protein",
+      "name": "NOS1AP"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nitric oxide synthase 2",
+      "name": "NOS2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nitric oxide synthase 3",
+      "name": "NOS3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "natriuretic peptide A",
+      "name": "NPPA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NPPA antisense RNA 1",
+      "name": "NPPA-AS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NAD(P)H quinone dehydrogenase 1",
+      "name": "NQO1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "N-ribosyldihydronicotinamide:quinone dehydrogenase 2",
+      "name": "NQO2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear receptor subfamily 1 group H member 2",
+      "name": "NR1H2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear receptor subfamily 1 group I member 2",
+      "name": "NR1I2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "nuclear receptor subfamily 1 group I member 3",
+      "name": "NR1I3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "NRAS proto-oncogene, GTPase",
+      "name": "NRAS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "neuropilin 2",
+      "name": "NRP2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "5'-nucleotidase, cytosolic II",
+      "name": "NT5C2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "5'-nucleotidase, cytosolic IIIA",
+      "name": "NT5C3A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "neurotrophic receptor tyrosine kinase 1",
+      "name": "NTRK1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "nudix hydrolase 15",
+      "name": "NUDT15"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "opioid receptor mu 1",
+      "name": "OPRM1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "olfactory receptor family 4 subfamily D member 6",
+      "name": "OR4D6"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "O-sialoglycoprotein endopeptidase",
+      "name": "OSGEP"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "otospiralin",
+      "name": "OTOS"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "purinergic receptor P2Y1",
+      "name": "P2RY1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "purinergic receptor P2Y12",
+      "name": "P2RY12"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein kinase C and casein kinase substrate in neurons 2",
+      "name": "PACSIN2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphodiesterase 4B",
+      "name": "PDE4B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "platelet derived growth factor receptor alpha",
+      "name": "PDGFRA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "platelet derived growth factor receptor beta",
+      "name": "PDGFRB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "PDZ domain containing ring finger 3",
+      "name": "PDZRN3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphatidylethanolamine N-methyltransferase",
+      "name": "PEMT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "p53 apoptosis effector related to PMP22",
+      "name": "PERP"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphatidylinositol glycan anchor biosynthesis class B",
+      "name": "PIGB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "PIGB opposite strand 1",
+      "name": "PIGBOS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit alpha",
+      "name": "PIK3CA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphoinositide-3-kinase regulatory subunit 1",
+      "name": "PIK3R1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphoinositide-3-kinase regulatory subunit 2",
+      "name": "PIK3R2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "peptidylprolyl cis/trans isomerase, NIMA-interacting 1",
+      "name": "PIN1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "polycystin 1 like 2 (gene/pseudogene)",
+      "name": "PKD1L2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "PBX/knotted 1 homeobox 1",
+      "name": "PKNOX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phospholipase C gamma 2",
+      "name": "PLCG2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "patatin like phospholipase domain containing 3",
+      "name": "PNPLA3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "DNA polymerase gamma, catalytic subunit",
+      "name": "POLG"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RNA polymerase I and III subunit C",
+      "name": "POLR1C"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RNA polymerase I subunit G",
+      "name": "POLR1G"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RNA polymerase II subunit A",
+      "name": "POLR2A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RNA polymerase II, I and III subunit F",
+      "name": "POLR2F"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "paraoxonase 1",
+      "name": "PON1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "cytochrome p450 oxidoreductase",
+      "name": "POR"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "peroxisome proliferator activated receptor alpha",
+      "name": "PPARA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "peroxisome proliferator activated receptor delta",
+      "name": "PPARD"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "peroxisome proliferator activated receptor gamma",
+      "name": "PPARG"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein phosphatase 1 regulatory subunit 13 like",
+      "name": "PPP1R13L"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein phosphatase 1 regulatory subunit 18",
+      "name": "PPP1R18"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein phosphatase 2 regulatory subunit B'delta",
+      "name": "PPP2R5D"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "proline rich coiled-coil 2A",
+      "name": "PRRC2A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "serine protease 53",
+      "name": "PRSS53"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "pleckstrin and Sec7 domain containing",
+      "name": "PSD"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "psoriasis susceptibility 1 candidate 1",
+      "name": "PSORS1C1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "phosphatase and tensin homolog",
+      "name": "PTEN"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "prostaglandin-endoperoxide synthase 1",
+      "name": "PTGS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein tyrosine phosphatase non-receptor type 2",
+      "name": "PTPN2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein tyrosine phosphatase non-receptor type 22",
+      "name": "PTPN22"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein tyrosine phosphatase receptor type M",
+      "name": "PTPRM"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "protein tyrosine phosphatase receptor type N2",
+      "name": "PTPRN2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Pvt1 oncogene (non-protein coding)",
+      "name": "PVT1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "glycogen phosphorylase L",
+      "name": "PYGL"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "pygopus family PHD finger 2",
+      "name": "PYGO2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RAB27A, member RAS oncogene family",
+      "name": "RAB27A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RAB7A, member RAS oncogene family",
+      "name": "RAB7A"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Rac family small GTPase 2",
+      "name": "RAC2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RAD50 double strand break repair protein",
+      "name": "RAD50"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RAD52 homolog, DNA repair protein",
+      "name": "RAD52"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "Raf-1 proto-oncogene, serine/threonine kinase",
+      "name": "RAF1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ralA binding protein 1",
+      "name": "RALBP1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "retinoic acid receptor beta",
+      "name": "RARB"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "retinoic acid receptor gamma",
+      "name": "RARG"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "arginyl-tRNA synthetase 1",
+      "name": "RARS1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ribonucleoprotein, PTB binding 2",
+      "name": "RAVER2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RNA binding motif single stranded interacting protein 3",
+      "name": "RBMS3"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ring-box 1",
+      "name": "RBX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "REL proto-oncogene, NF-kB subunit",
+      "name": "REL"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RELA proto-oncogene, NF-kB subunit",
+      "name": "RELA"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ret proto-oncogene",
+      "name": "RET"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "REV1 DNA directed polymerase",
+      "name": "REV1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "REV3 like, DNA directed polymerase zeta catalytic subunit",
+      "name": "REV3L"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "regulator of G protein signaling 5",
+      "name": "RGS5"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "rhomboid domain containing 1",
+      "name": "RHBDD1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ribosomal oxygenase 1",
+      "name": "RIOX1"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "RHO family interacting cell polarization regulator 2",
+      "name": "RIPOR2"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ring finger protein 212B",
+      "name": "RNF212B"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ring finger protein 8",
+      "name": "RNF8"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ribosomal protein L13",
+      "name": "RPL13"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "No",
+      "full_name": "ribosomal protein S20 pseudogene 2",
+      "name": "RPS20P2"
     }
   },
   {
@@ -3133,6 +5429,33 @@
       "name": "vincristine",
       "source_terms": "vincristine",
       "drug_class": "Vinca alkaloid"
+    }
+  },
+  {
+    "label": "Variant",
+    "properties": {
+      "gene_symbols": "NUDT15",
+      "name": "rs116855232",
+      "rsid": "rs116855232",
+      "source_terms": "",
+      "location": "NC_000013.11:48045719"
+    }
+  },
+  {
+    "label": "Variant",
+    "properties": {
+      "name": "HLA-B*57:01",
+      "rsid": "",
+      "source_terms": ""
+    }
+  },
+  {
+    "label": "Variant",
+    "properties": {
+      "name": "UGT1A1*1",
+      "star_allele": "UGT1A1*1",
+      "rsid": "",
+      "source_terms": "UGT1A1*1, UGT1A1*28"
     }
   },
   {
@@ -25230,33 +27553,6 @@
       "name": "rs9958628",
       "rsid": "rs9958628",
       "location": "NC_000018.10:6739625"
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "gene_symbols": "NUDT15",
-      "name": "rs116855232",
-      "rsid": "rs116855232",
-      "source_terms": "",
-      "location": "NC_000013.11:48045719"
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "name": "HLA-B*57:01",
-      "rsid": "",
-      "source_terms": ""
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "name": "UGT1A1*1",
-      "star_allele": "UGT1A1*1",
-      "rsid": "",
-      "source_terms": "UGT1A1*1, UGT1A1*28"
     }
   },
   {

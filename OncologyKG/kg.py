@@ -1031,6 +1031,33 @@ def cmd_build():
         if t["tail_label"] == "Variant":
             referenced_variant_names.add(t["tail"])
 
+    # Backfill missing Gene->Variant edges for variants that are already known
+    # relevant (drug/ADR-connected via some other edge above) but never got a
+    # HAS_VARIANT/HAS_CLINICAL_VARIANT edge, because the PharmGKB annotation row
+    # that established their drug/ADR relevance happened to have an empty Gene
+    # column (confirmed for 22 of 23 variants shared between doxorubicin and
+    # Cardiotoxicity — audited as a broken Gene->Variant->Drug+ADR chain despite
+    # both individually being well-connected). variants.tsv's Gene Symbols column
+    # already has this mapping — parse_variants stashed it as a node property
+    # above; this turns it into an edge. Scoped strictly to variants already in
+    # referenced_variant_names so it can't pull in the ~5,300 reference-file
+    # variants the rest of this filtering step exists to drop.
+    backfill_triples = []
+    for node in variant_ref_nodes:
+        if node["name"] not in referenced_variant_names:
+            continue
+        for gene in split_multi_value_field(node.get("gene_symbols", "")):
+            backfill_triples.append(make_triple(
+                gene, "Gene", "HAS_VARIANT",
+                node["name"], "Variant",
+                "PharmGKB_variants", "medium"
+            ))
+    print(f"  Backfilled {len(backfill_triples):,} Gene->Variant edges from "
+          f"variants.tsv's Gene Symbols column")
+    all_triples += backfill_triples
+    for t in backfill_triples:
+        referenced_gene_names.add(t["head"])
+
     gene_ref_kept = [n for n in gene_ref_nodes if n["name"] in referenced_gene_names]
     variant_ref_kept = [n for n in variant_ref_nodes if n["name"] in referenced_variant_names]
 
