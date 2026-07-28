@@ -2,22 +2,6 @@
   {
     "label": "Gene",
     "properties": {
-      "has_cpic": "Yes",
-      "full_name": "glucose-6-phosphate dehydrogenase",
-      "name": "G6PD"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
-      "has_cpic": "Yes",
-      "full_name": "thiopurine S-methyltransferase",
-      "name": "TPMT"
-    }
-  },
-  {
-    "label": "Gene",
-    "properties": {
       "has_cpic": "No",
       "full_name": "ATP binding cassette subfamily A member 3",
       "name": "ABCA3"
@@ -1109,6 +1093,14 @@
       "has_cpic": "No",
       "full_name": "FTO alpha-ketoglutarate dependent dioxygenase",
       "name": "FTO"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
+      "has_cpic": "Yes",
+      "full_name": "glucose-6-phosphate dehydrogenase",
+      "name": "G6PD"
     }
   },
   {
@@ -2650,6 +2642,14 @@
   {
     "label": "Gene",
     "properties": {
+      "has_cpic": "Yes",
+      "full_name": "thiopurine S-methyltransferase",
+      "name": "TPMT"
+    }
+  },
+  {
+    "label": "Gene",
+    "properties": {
       "has_cpic": "No",
       "full_name": "TNF receptor associated factor 1",
       "name": "TRAF1"
@@ -3133,33 +3133,6 @@
       "name": "vincristine",
       "source_terms": "vincristine",
       "drug_class": "Vinca alkaloid"
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "gene_symbols": "NUDT15",
-      "name": "rs116855232",
-      "rsid": "rs116855232",
-      "source_terms": "",
-      "location": "NC_000013.11:48045719"
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "name": "HLA-B*57:01",
-      "rsid": "",
-      "source_terms": ""
-    }
-  },
-  {
-    "label": "Variant",
-    "properties": {
-      "name": "UGT1A1*1",
-      "star_allele": "UGT1A1*1",
-      "rsid": "",
-      "source_terms": "UGT1A1*1, UGT1A1*28"
     }
   },
   {
@@ -25260,6 +25233,33 @@
     }
   },
   {
+    "label": "Variant",
+    "properties": {
+      "gene_symbols": "NUDT15",
+      "name": "rs116855232",
+      "rsid": "rs116855232",
+      "source_terms": "",
+      "location": "NC_000013.11:48045719"
+    }
+  },
+  {
+    "label": "Variant",
+    "properties": {
+      "name": "HLA-B*57:01",
+      "rsid": "",
+      "source_terms": ""
+    }
+  },
+  {
+    "label": "Variant",
+    "properties": {
+      "name": "UGT1A1*1",
+      "star_allele": "UGT1A1*1",
+      "rsid": "",
+      "source_terms": "UGT1A1*1, UGT1A1*28"
+    }
+  },
+  {
     "label": "ADR",
     "properties": {
       "ctcae_term": "Alanine aminotransferase increased",
@@ -25347,24 +25347,6 @@
       "ctcae_grades": "1-4",
       "name": "Peripheral Neuropathy",
       "source_terms": "Neuropathic pain"
-    }
-  },
-  {
-    "label": "Phenotype",
-    "properties": {
-      "name": "G6PD Normal"
-    }
-  },
-  {
-    "label": "Phenotype",
-    "properties": {
-      "name": "TPMT Normal Metabolizer"
-    }
-  },
-  {
-    "label": "Phenotype",
-    "properties": {
-      "name": "NUDT15 Normal Metabolizer"
     }
   }
 ]

@@ -1,250 +1,6 @@
 [
   {
     "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "LINKED_TO_ADR",
-    "tail_label": "ADR",
-    "tail": "Thrombocytopenia",
-    "properties": {
-      "source_term": "Thrombocytopenia",
-      "confidence": "low",
-      "description": "Genotype TT is associated with Agranulocytosis, Alopecia, febrile neutropenia, Leukopenia, Neutropenia, Thrombocytopenia and Toxic liver disease when treated with azathioprine in people with Arthritis, Rheumatoid, Lupus Erythematosus, Systemic, Pemphigus, Polyarteritis nodosa NOS or Vasculitis.",
-      "source": "PharmGKB_clinicalVariants",
-      "mechanism": "",
-      "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "AFFECTS_RESPONSE_TO",
-    "tail_label": "Drug",
-    "tail": "mercaptopurine",
-    "properties": {
-      "source_term": "mercaptopurine",
-      "confidence": "low",
-      "description": "Genotype CT is associated with decreased dose of mercaptopurine in children with Acute lymphoblastic leukemia as compared to genotype CC.",
-      "source": "PharmGKB_clinicalVariants",
-      "mechanism": "unknown",
-      "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "PHARMACOGENOMIC_ASSOCIATION",
-    "tail_label": "Drug",
-    "tail": "mercaptopurine",
-    "properties": {
-      "source_term": "mercaptopurine",
-      "confidence": "medium",
-      "description": "Genotype CT is associated with decreased dose of mercaptopurine in children with Acute lymphoblastic leukemia as compared to genotype CC.",
-      "source": "PharmGKB_variantAnnotations",
-      "phenotype_category": "Dosage",
-      "mechanism": "unknown",
-      "direction": "decreased"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "PHARMACOGENOMIC_ASSOCIATION",
-    "tail_label": "Drug",
-    "tail": "thioguanine",
-    "properties": {
-      "source_term": "thioguanine",
-      "confidence": "medium",
-      "description": "Allele T is not associated with concentrations of thioguanine in people with Autoimmune Diseases, Lupus Erythematosus, Systemic or Sjogren's Syndrome as compared to allele C.",
-      "source": "PharmGKB_variantAnnotations",
-      "phenotype_category": "Metabolism/PK",
-      "mechanism": "immune_mediated",
-      "direction": "nan"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "ASSOCIATED_WITH_ADR",
-    "tail_label": "ADR",
-    "tail": "Hepatotoxicity",
-    "properties": {
-      "source_term": "Toxic liver disease",
-      "confidence": "medium",
-      "description": "Genotype TT is associated with Agranulocytosis, Alopecia, febrile neutropenia, Leukopenia, Neutropenia, Thrombocytopenia and Toxic liver disease when treated with azathioprine in people with Arthritis, Rheumatoid, Lupus Erythematosus, Systemic, Pemphigus, Polyarteritis nodosa NOS or Vasculitis.",
-      "side_effect_type": "nan",
-      "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "ASSOCIATED_WITH_ADR",
-    "tail_label": "ADR",
-    "tail": "Neutropenia",
-    "properties": {
-      "source_term": "Neutropenia",
-      "confidence": "medium",
-      "description": "Genotype TT is associated with increased severity of Alopecia, Neutropenia, Thrombocytosis and Myelosuppression when treated with azathioprine in women with Connective Tissue Diseases.",
-      "side_effect_type": "severity of",
-      "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "ASSOCIATED_WITH_ADR",
-    "tail_label": "ADR",
-    "tail": "Thrombocytopenia",
-    "properties": {
-      "source_term": "Thrombocytopenia",
-      "confidence": "medium",
-      "description": "Genotype TT is associated with Agranulocytosis, Alopecia, febrile neutropenia, Leukopenia, Neutropenia, Thrombocytopenia and Toxic liver disease when treated with azathioprine in people with Arthritis, Rheumatoid, Lupus Erythematosus, Systemic, Pemphigus, Polyarteritis nodosa NOS or Vasculitis.",
-      "side_effect_type": "nan",
-      "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "rs116855232",
-    "relation": "ASSOCIATED_WITH_ADR",
-    "tail_label": "ADR",
-    "tail": "Myelosuppression",
-    "properties": {
-      "source_term": "Myelosuppression",
-      "confidence": "medium",
-      "description": "Genotype TT is associated with increased severity of Alopecia, Neutropenia, Thrombocytosis and Myelosuppression when treated with azathioprine in women with Connective Tissue Diseases.",
-      "side_effect_type": "severity of",
-      "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "HLA-B*57:01",
-    "relation": "LINKED_TO_ADR",
-    "tail_label": "ADR",
-    "tail": "Hepatotoxicity",
-    "properties": {
-      "source_term": "Drug-induced liver injury",
-      "confidence": "high",
-      "description": "HLA-B *57:01 is associated with increased risk of drug-induced liver injury when treated with amoxicillin, clavulanate or flucloxacillin.",
-      "source": "PharmGKB_clinicalVariants",
-      "mechanism": "",
-      "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "HLA-B*57:01",
-    "relation": "LINKED_TO_ADR",
-    "tail_label": "ADR",
-    "tail": "Hypersensitivity",
-    "properties": {
-      "source_term": "Drug Hypersensitivity",
-      "confidence": "high",
-      "description": "HLA-B *57:01 is associated with increased likelihood of Drug Hypersensitivity when treated with beta-lactam antibacterials, penicillins in people with HIV infectious disease.",
-      "source": "PharmGKB_clinicalVariants",
-      "mechanism": "",
-      "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "HLA-B*57:01",
-    "relation": "ASSOCIATED_WITH_ADR",
-    "tail_label": "ADR",
-    "tail": "Hepatotoxicity",
-    "properties": {
-      "source_term": "Drug-induced liver injury",
-      "confidence": "medium",
-      "description": "HLA-B *57:01 is associated with increased risk of drug-induced liver injury when treated with amoxicillin, clavulanate or flucloxacillin.",
-      "side_effect_type": "risk of",
-      "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "HLA-B*57:01",
-    "relation": "ASSOCIATED_WITH_ADR",
-    "tail_label": "ADR",
-    "tail": "Hypersensitivity",
-    "properties": {
-      "source_term": "Drug Hypersensitivity",
-      "confidence": "medium",
-      "description": "HLA-B *57:01 is associated with increased likelihood of Drug Hypersensitivity when treated with beta-lactam antibacterials, penicillins in people with HIV infectious disease.",
-      "side_effect_type": "likelihood of",
-      "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "UGT1A1*1",
-    "relation": "LINKED_TO_ADR",
-    "tail_label": "ADR",
-    "tail": "Neutropenia",
-    "properties": {
-      "source_term": "Neutropenia",
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1B"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "UGT1A1*1",
-    "relation": "LINKED_TO_ADR",
-    "tail_label": "ADR",
-    "tail": "Thrombocytopenia",
-    "properties": {
-      "source_term": "Thrombocytopenia",
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "UGT1A1*1",
-    "relation": "AFFECTS_RESPONSE_TO",
-    "tail_label": "Drug",
-    "tail": "irinotecan",
-    "properties": {
-      "source_term": "irinotecan",
-      "confidence": "low",
-      "description": "UGT1A1 *1/*28 is associated with decreased dose of irinotecan in women with Colorectal Neoplasms.",
-      "source": "PharmGKB_clinicalVariants",
-      "mechanism": "unknown",
-      "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
-    }
-  },
-  {
-    "head_label": "Variant",
-    "head": "UGT1A1*1",
-    "relation": "PHARMACOGENOMIC_ASSOCIATION",
-    "tail_label": "Drug",
-    "tail": "irinotecan",
-    "properties": {
-      "source_term": "irinotecan",
-      "confidence": "medium",
-      "description": "UGT1A1 *1/*28 is associated with decreased dose of irinotecan in women with Colorectal Neoplasms.",
-      "source": "PharmGKB_variantAnnotations",
-      "phenotype_category": "Dosage",
-      "mechanism": "unknown",
-      "direction": "decreased"
-    }
-  },
-  {
-    "head_label": "Variant",
     "head": "UGT1A1*28",
     "relation": "LINKED_TO_ADR",
     "tail_label": "ADR",
@@ -60641,801 +60397,6 @@
   },
   {
     "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "G6PD A- 202A_376G",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "G6PD Mediterranean",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "Dallas",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "Panama",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "Sassari",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "Cagliari",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "Birmingham",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "G6PD deficiency",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "G6PD",
-    "relation": "CPIC_GUIDELINE_FOR",
-    "tail_label": "Drug",
-    "tail": "doxorubicin",
-    "properties": {
-      "confidence": "high",
-      "recommendation": "No reason to avoid based on G6PD status",
-      "source": "CPIC",
-      "classification": "Strong"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*1",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*2",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*3A",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*3C",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*9",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*3B",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*8",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs1142345",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs1800460",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*21",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*33",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*34",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*32",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT low activity",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "pharmacokinetic"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT intermediate activity",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT poor metabolizer",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT deficiency",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs1800462",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs12199316",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "CPIC_GUIDELINE_FOR",
-    "tail_label": "Drug",
-    "tail": "mercaptopurine",
-    "properties": {
-      "confidence": "high",
-      "recommendation": "Initiate therapy with standard starting dose of mecaptopurine (e.g., 75 mg/m2/day for malignancy or 1.5 mg/kg/day for nonmalignancy). During therapy, adjust the doses of myelosuppressive agents, as per standard clinical practice. It usually takes at least 2 weeks of stable dosing to reach steady sta",
-      "source": "CPIC",
-      "classification": "Strong"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "CPIC_GUIDELINE_FOR",
-    "tail_label": "Drug",
-    "tail": "thioguanine",
-    "properties": {
-      "confidence": "high",
-      "recommendation": "Initiate therapy with standard starting dose of thioguanine (e.g., 40 mg/m2/day for malignancy). During therapy, adjust the doses of myelosuppressive agents, as per standard clinical practice. It usually takes at least 2 weeks of stable dosing to reach steady state after each dose adjustment.",
-      "source": "CPIC",
-      "classification": "Strong"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*1",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*2",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*3A",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*3C",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*9",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*3B",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*7",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*10",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*12",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*13",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*16",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*17",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*18",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*23",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*4",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*5",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*6",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*8",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*14",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*15",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs1142345",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs12201199",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs17839843",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs3931660",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "rs1800460",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*21",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*33",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*34",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*19",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*20",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*22",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*30",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*32",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*24",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*25",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "TPMT",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
-    "tail": "TPMT*37",
-    "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Gene",
     "head": "ABCA3",
     "relation": "HAS_VARIANT",
     "tail_label": "Variant",
@@ -67484,6 +66445,102 @@
   },
   {
     "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "G6PD A- 202A_376G",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "G6PD Mediterranean",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "Dallas",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "Panama",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "Sassari",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "Cagliari",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "Birmingham",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "G6PD",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "G6PD deficiency",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
     "head": "GALNT14",
     "relation": "HAS_VARIANT",
     "tail_label": "Variant",
@@ -68243,18 +67300,6 @@
     "head": "HLA-B",
     "relation": "HAS_CLINICAL_VARIANT",
     "tail_label": "Variant",
-    "tail": "HLA-B*57:01",
-    "properties": {
-      "confidence": "high",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "HLA-B",
-    "relation": "HAS_CLINICAL_VARIANT",
-    "tail_label": "Variant",
     "tail": "HLA-B*58:01",
     "properties": {
       "confidence": "high",
@@ -68356,6 +67401,18 @@
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
       "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "HLA-B",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "HLA-B*57:01",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
     }
   },
   {
@@ -70391,18 +69448,6 @@
     "head": "NUDT15",
     "relation": "HAS_VARIANT",
     "tail_label": "Variant",
-    "tail": "rs116855232",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "NUDT15",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
     "tail": "NUDT15*3",
     "properties": {
       "confidence": "medium",
@@ -70545,13 +69590,13 @@
   {
     "head_label": "Gene",
     "head": "NUDT15",
-    "relation": "HAS_CLINICAL_VARIANT",
+    "relation": "HAS_VARIANT",
     "tail_label": "Variant",
     "tail": "rs116855232",
     "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
     }
   },
   {
@@ -70656,6 +69701,18 @@
     "relation": "HAS_CLINICAL_VARIANT",
     "tail_label": "Variant",
     "tail": "rs746071566",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "NUDT15",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs116855232",
     "properties": {
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
@@ -73748,6 +72805,666 @@
   },
   {
     "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*1",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*2",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*3A",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*3C",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*9",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*3B",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*8",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs1142345",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs1800460",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*21",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*33",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*34",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*32",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT low activity",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "pharmacokinetic"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT intermediate activity",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT poor metabolizer",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT deficiency",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs1800462",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs12199316",
+    "properties": {
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*1",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*2",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*3A",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*3C",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*9",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*3B",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*7",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*10",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*12",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*13",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*16",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*17",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*18",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*23",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*4",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*5",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*6",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*8",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*14",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*15",
+    "properties": {
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1A"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs1142345",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs12201199",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs17839843",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs3931660",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "rs1800460",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*21",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*33",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*34",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*19",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*20",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*22",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*30",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*32",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*24",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*25",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "TPMT",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "TPMT*37",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Gene",
     "head": "TRAF1",
     "relation": "HAS_VARIANT",
     "tail_label": "Variant",
@@ -73967,18 +73684,6 @@
     "head": "UGT1A1",
     "relation": "HAS_VARIANT",
     "tail_label": "Variant",
-    "tail": "UGT1A1*1",
-    "properties": {
-      "confidence": "medium",
-      "source": "PharmGKB_variantAnnotations",
-      "mechanism": "unknown"
-    }
-  },
-  {
-    "head_label": "Gene",
-    "head": "UGT1A1",
-    "relation": "HAS_VARIANT",
-    "tail_label": "Variant",
     "tail": "UGT1A1*28",
     "properties": {
       "confidence": "medium",
@@ -74097,13 +73802,13 @@
   {
     "head_label": "Gene",
     "head": "UGT1A1",
-    "relation": "HAS_CLINICAL_VARIANT",
+    "relation": "HAS_VARIANT",
     "tail_label": "Variant",
     "tail": "UGT1A1*1",
     "properties": {
-      "confidence": "low",
-      "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "confidence": "medium",
+      "source": "PharmGKB_variantAnnotations",
+      "mechanism": "unknown"
     }
   },
   {
@@ -74176,6 +73881,18 @@
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
       "evidence_level": "4"
+    }
+  },
+  {
+    "head_label": "Gene",
+    "head": "UGT1A1",
+    "relation": "HAS_CLINICAL_VARIANT",
+    "tail_label": "Variant",
+    "tail": "UGT1A1*1",
+    "properties": {
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
     }
   },
   {
@@ -75088,66 +74805,6 @@
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
       "evidence_level": "3"
-    }
-  },
-  {
-    "head_label": "Phenotype",
-    "head": "G6PD Normal",
-    "relation": "RECOMMENDATION_FOR",
-    "tail_label": "Drug",
-    "tail": "doxorubicin",
-    "properties": {
-      "gene": "G6PD",
-      "confidence": "high",
-      "source": "CPIC"
-    }
-  },
-  {
-    "head_label": "Phenotype",
-    "head": "TPMT Normal Metabolizer",
-    "relation": "RECOMMENDATION_FOR",
-    "tail_label": "Drug",
-    "tail": "mercaptopurine",
-    "properties": {
-      "gene": "TPMT",
-      "confidence": "high",
-      "source": "CPIC"
-    }
-  },
-  {
-    "head_label": "Phenotype",
-    "head": "TPMT Normal Metabolizer",
-    "relation": "RECOMMENDATION_FOR",
-    "tail_label": "Drug",
-    "tail": "thioguanine",
-    "properties": {
-      "gene": "TPMT",
-      "confidence": "high",
-      "source": "CPIC"
-    }
-  },
-  {
-    "head_label": "Phenotype",
-    "head": "NUDT15 Normal Metabolizer",
-    "relation": "RECOMMENDATION_FOR",
-    "tail_label": "Drug",
-    "tail": "mercaptopurine",
-    "properties": {
-      "gene": "TPMT",
-      "confidence": "high",
-      "source": "CPIC"
-    }
-  },
-  {
-    "head_label": "Phenotype",
-    "head": "NUDT15 Normal Metabolizer",
-    "relation": "RECOMMENDATION_FOR",
-    "tail_label": "Drug",
-    "tail": "thioguanine",
-    "properties": {
-      "gene": "TPMT",
-      "confidence": "high",
-      "source": "CPIC"
     }
   },
   {
@@ -77654,6 +77311,250 @@
       "source_term": "Neuropathy",
       "confidence": "medium",
       "source": "SIDER"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "LINKED_TO_ADR",
+    "tail_label": "ADR",
+    "tail": "Thrombocytopenia",
+    "properties": {
+      "source_term": "Thrombocytopenia",
+      "confidence": "low",
+      "description": "Genotype TT is associated with Agranulocytosis, Alopecia, febrile neutropenia, Leukopenia, Neutropenia, Thrombocytopenia and Toxic liver disease when treated with azathioprine in people with Arthritis, Rheumatoid, Lupus Erythematosus, Systemic, Pemphigus, Polyarteritis nodosa NOS or Vasculitis.",
+      "source": "PharmGKB_clinicalVariants",
+      "mechanism": "",
+      "evidence_level": "3",
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "AFFECTS_RESPONSE_TO",
+    "tail_label": "Drug",
+    "tail": "mercaptopurine",
+    "properties": {
+      "source_term": "mercaptopurine",
+      "confidence": "low",
+      "description": "Genotype CT is associated with decreased dose of mercaptopurine in children with Acute lymphoblastic leukemia as compared to genotype CC.",
+      "source": "PharmGKB_clinicalVariants",
+      "mechanism": "unknown",
+      "evidence_level": "3",
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "PHARMACOGENOMIC_ASSOCIATION",
+    "tail_label": "Drug",
+    "tail": "mercaptopurine",
+    "properties": {
+      "source_term": "mercaptopurine",
+      "confidence": "medium",
+      "description": "Genotype CT is associated with decreased dose of mercaptopurine in children with Acute lymphoblastic leukemia as compared to genotype CC.",
+      "source": "PharmGKB_variantAnnotations",
+      "phenotype_category": "Dosage",
+      "mechanism": "unknown",
+      "direction": "decreased"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "PHARMACOGENOMIC_ASSOCIATION",
+    "tail_label": "Drug",
+    "tail": "thioguanine",
+    "properties": {
+      "source_term": "thioguanine",
+      "confidence": "medium",
+      "description": "Allele T is not associated with concentrations of thioguanine in people with Autoimmune Diseases, Lupus Erythematosus, Systemic or Sjogren's Syndrome as compared to allele C.",
+      "source": "PharmGKB_variantAnnotations",
+      "phenotype_category": "Metabolism/PK",
+      "mechanism": "immune_mediated",
+      "direction": "nan"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "ASSOCIATED_WITH_ADR",
+    "tail_label": "ADR",
+    "tail": "Hepatotoxicity",
+    "properties": {
+      "source_term": "Toxic liver disease",
+      "confidence": "medium",
+      "description": "Genotype TT is associated with Agranulocytosis, Alopecia, febrile neutropenia, Leukopenia, Neutropenia, Thrombocytopenia and Toxic liver disease when treated with azathioprine in people with Arthritis, Rheumatoid, Lupus Erythematosus, Systemic, Pemphigus, Polyarteritis nodosa NOS or Vasculitis.",
+      "side_effect_type": "nan",
+      "source": "PharmGKB_variantAnnotations",
+      "direction": "nan"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "ASSOCIATED_WITH_ADR",
+    "tail_label": "ADR",
+    "tail": "Neutropenia",
+    "properties": {
+      "source_term": "Neutropenia",
+      "confidence": "medium",
+      "description": "Genotype TT is associated with increased severity of Alopecia, Neutropenia, Thrombocytosis and Myelosuppression when treated with azathioprine in women with Connective Tissue Diseases.",
+      "side_effect_type": "severity of",
+      "source": "PharmGKB_variantAnnotations",
+      "direction": "increased"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "ASSOCIATED_WITH_ADR",
+    "tail_label": "ADR",
+    "tail": "Thrombocytopenia",
+    "properties": {
+      "source_term": "Thrombocytopenia",
+      "confidence": "medium",
+      "description": "Genotype TT is associated with Agranulocytosis, Alopecia, febrile neutropenia, Leukopenia, Neutropenia, Thrombocytopenia and Toxic liver disease when treated with azathioprine in people with Arthritis, Rheumatoid, Lupus Erythematosus, Systemic, Pemphigus, Polyarteritis nodosa NOS or Vasculitis.",
+      "side_effect_type": "nan",
+      "source": "PharmGKB_variantAnnotations",
+      "direction": "nan"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "rs116855232",
+    "relation": "ASSOCIATED_WITH_ADR",
+    "tail_label": "ADR",
+    "tail": "Myelosuppression",
+    "properties": {
+      "source_term": "Myelosuppression",
+      "confidence": "medium",
+      "description": "Genotype TT is associated with increased severity of Alopecia, Neutropenia, Thrombocytosis and Myelosuppression when treated with azathioprine in women with Connective Tissue Diseases.",
+      "side_effect_type": "severity of",
+      "source": "PharmGKB_variantAnnotations",
+      "direction": "increased"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "HLA-B*57:01",
+    "relation": "LINKED_TO_ADR",
+    "tail_label": "ADR",
+    "tail": "Hepatotoxicity",
+    "properties": {
+      "source_term": "Drug-induced liver injury",
+      "confidence": "high",
+      "description": "HLA-B *57:01 is associated with increased risk of drug-induced liver injury when treated with amoxicillin, clavulanate or flucloxacillin.",
+      "source": "PharmGKB_clinicalVariants",
+      "mechanism": "",
+      "evidence_level": "1A",
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "HLA-B*57:01",
+    "relation": "LINKED_TO_ADR",
+    "tail_label": "ADR",
+    "tail": "Hypersensitivity",
+    "properties": {
+      "source_term": "Drug Hypersensitivity",
+      "confidence": "high",
+      "description": "HLA-B *57:01 is associated with increased likelihood of Drug Hypersensitivity when treated with beta-lactam antibacterials, penicillins in people with HIV infectious disease.",
+      "source": "PharmGKB_clinicalVariants",
+      "mechanism": "",
+      "evidence_level": "1A",
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "HLA-B*57:01",
+    "relation": "ASSOCIATED_WITH_ADR",
+    "tail_label": "ADR",
+    "tail": "Hepatotoxicity",
+    "properties": {
+      "source_term": "Drug-induced liver injury",
+      "confidence": "medium",
+      "description": "HLA-B *57:01 is associated with increased risk of drug-induced liver injury when treated with amoxicillin, clavulanate or flucloxacillin.",
+      "side_effect_type": "risk of",
+      "source": "PharmGKB_variantAnnotations",
+      "direction": "increased"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "HLA-B*57:01",
+    "relation": "ASSOCIATED_WITH_ADR",
+    "tail_label": "ADR",
+    "tail": "Hypersensitivity",
+    "properties": {
+      "source_term": "Drug Hypersensitivity",
+      "confidence": "medium",
+      "description": "HLA-B *57:01 is associated with increased likelihood of Drug Hypersensitivity when treated with beta-lactam antibacterials, penicillins in people with HIV infectious disease.",
+      "side_effect_type": "likelihood of",
+      "source": "PharmGKB_variantAnnotations",
+      "direction": "increased"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "UGT1A1*1",
+    "relation": "LINKED_TO_ADR",
+    "tail_label": "ADR",
+    "tail": "Neutropenia",
+    "properties": {
+      "source_term": "Neutropenia",
+      "confidence": "high",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "1B"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "UGT1A1*1",
+    "relation": "LINKED_TO_ADR",
+    "tail_label": "ADR",
+    "tail": "Thrombocytopenia",
+    "properties": {
+      "source_term": "Thrombocytopenia",
+      "confidence": "low",
+      "source": "PharmGKB_clinicalVariants",
+      "evidence_level": "3"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "UGT1A1*1",
+    "relation": "AFFECTS_RESPONSE_TO",
+    "tail_label": "Drug",
+    "tail": "irinotecan",
+    "properties": {
+      "source_term": "irinotecan",
+      "confidence": "low",
+      "description": "UGT1A1 *1/*28 is associated with decreased dose of irinotecan in women with Colorectal Neoplasms.",
+      "source": "PharmGKB_clinicalVariants",
+      "mechanism": "unknown",
+      "evidence_level": "3",
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+    }
+  },
+  {
+    "head_label": "Variant",
+    "head": "UGT1A1*1",
+    "relation": "PHARMACOGENOMIC_ASSOCIATION",
+    "tail_label": "Drug",
+    "tail": "irinotecan",
+    "properties": {
+      "source_term": "irinotecan",
+      "confidence": "medium",
+      "description": "UGT1A1 *1/*28 is associated with decreased dose of irinotecan in women with Colorectal Neoplasms.",
+      "source": "PharmGKB_variantAnnotations",
+      "phenotype_category": "Dosage",
+      "mechanism": "unknown",
+      "direction": "decreased"
     }
   }
 ]
