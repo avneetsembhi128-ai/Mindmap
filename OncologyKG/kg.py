@@ -2,7 +2,7 @@
 kg.py — unified CLI for OncologyKG
 
 Builds and manages the Pediatric Oncology ADR Knowledge Graph (Gene -> Variant
--> Drug -> ADR) in Neo4j, sourced from PharmGKB, CPIC, SIDER, and ClinVar.
+-> Drug -> ADR) in Neo4j, sourced from PharmGKB, SIDER, and ClinVar.
 
 Subcommands:
     python kg.py load      Rebuild the graph from kg_export/ (committed to the
@@ -10,7 +10,7 @@ Subcommands:
                             fast path to reproduce the exact graph on a new
                             machine.
     python kg.py build     Rebuild the graph from scratch by parsing raw
-                            PharmGKB/CPIC/SIDER/ClinVar files in data/ (see
+                            PharmGKB/SIDER/ClinVar files in data/ (see
                             README.md for where to download them — data/ is
                             gitignored, not committed).
     python kg.py export    Dump the live graph in Neo4j to kg_export/
@@ -47,7 +47,7 @@ DATA_DIR   = os.path.join(SCRIPT_DIR, "data")
 EXPORT_DIR = os.path.join(SCRIPT_DIR, "kg_export")
 
 BATCH_SIZE = 500
-LABELS = ["Gene", "Drug", "Variant", "ADR", "Phenotype"]
+LABELS = ["Gene", "Drug", "Variant", "ADR"]
 
 
 def get_driver():
@@ -62,7 +62,7 @@ def get_driver():
 
 
 # ═════════════════════════════════════════════════════════════
-# BUILD — rebuild the graph from raw PharmGKB/CPIC/SIDER/ClinVar source data
+# BUILD — rebuild the graph from raw PharmGKB/SIDER/ClinVar source data
 # ═════════════════════════════════════════════════════════════
 #
 # Focused on these 6 drug-ADR pairs:
@@ -649,79 +649,7 @@ def parse_variant_pheno_annotations(path):
     return nodes, triples
 
 
-# ── Source 6 — CPIC ───────────────────────────────────────────────
-
-def parse_cpic(recs_path, drugs_path):
-    if not os.path.exists(recs_path):
-        print("  CPIC not found - skipping")
-        return [], []
-
-    drug_lookup = {}
-    if os.path.exists(drugs_path):
-        with open(drugs_path) as f:
-            for d in json.load(f):
-                drug_id   = str(d.get("drugid", "")).strip()
-                drug_name = str(d.get("name",   "")).strip()
-                if drug_id and drug_name:
-                    drug_lookup[drug_id] = drug_name
-
-    with open(recs_path) as f:
-        data = json.load(f)
-
-    nodes, triples = [], []
-    seen = set()
-
-    for rec in data:
-        implications = rec.get("implications", {})
-        if not implications:
-            continue
-        gene_symbol = list(implications.keys())[0].strip()
-        drug_id     = str(rec.get("drugid", "")).strip()
-        drug_name_raw = drug_lookup.get(drug_id, "")
-
-        if not gene_symbol or not drug_name_raw:
-            continue
-        canonical_drug = canonicalize_drug(drug_name_raw)
-        if not canonical_drug:
-            continue
-
-        pair = (gene_symbol, canonical_drug)
-        if pair in seen:
-            continue
-        seen.add(pair)
-
-        nodes.append({"name": gene_symbol, "label": "Gene"})
-        nodes.append({
-            "name":       canonical_drug,
-            "drug_class": get_drug_class(canonical_drug),
-            "label":      "Drug"
-        })
-
-        triples.append(make_triple(
-            gene_symbol, "Gene", "CPIC_GUIDELINE_FOR",
-            canonical_drug, "Drug",
-            "CPIC", "high",
-            classification=rec.get("classification", ""),
-            recommendation=str(rec.get("drugrecommendation", ""))[:300]
-        ))
-
-        lookupkey = rec.get("lookupkey", {})
-        for gene, phenotype in lookupkey.items():
-            if phenotype:
-                pheno_name = f"{gene} {phenotype}"
-                nodes.append({"name": pheno_name, "label": "Phenotype"})
-                triples.append(make_triple(
-                    pheno_name, "Phenotype", "RECOMMENDATION_FOR",
-                    canonical_drug, "Drug",
-                    "CPIC", "high",
-                    gene=gene_symbol
-                ))
-
-    print(f"  CPIC: {len(triples):,} edges for oncology drugs")
-    return nodes, triples
-
-
-# ── Source 7 — SIDER ──────────────────────────────────────────────
+# ── Source 6 — SIDER ──────────────────────────────────────────────
 
 def parse_sider(se_path, names_path):
     id_to_name = {}
@@ -794,7 +722,7 @@ def parse_sider(se_path, names_path):
     return nodes, triples
 
 
-# ── Source 8 — ClinVar ────────────────────────────────────────────
+# ── Source 7 — ClinVar ────────────────────────────────────────────
 
 def parse_clinvar(path):
     TARGET_GENES = {
@@ -904,7 +832,7 @@ def load_into_neo4j(all_nodes, all_triples, driver):
         session.run("MATCH (n) DETACH DELETE n")
 
         for label in ["Gene", "Drug", "Variant", "ADR",
-                       "Phenotype", "Disease", "Mechanism"]:
+                       "Disease", "Mechanism"]:
             session.run(
                 f"CREATE CONSTRAINT IF NOT EXISTS "
                 f"FOR (n:{label}) REQUIRE n.name IS UNIQUE"
@@ -1066,16 +994,7 @@ def cmd_build():
     all_triples += vd_triples + vp_triples
 
     print("\n" + "="*50)
-    print("SOURCE 6 — CPIC Guidelines")
-    print("="*50)
-    cpic_nodes, cpic_triples = parse_cpic(
-        os.path.join(base, "cpic_recommendations.json"),
-        os.path.join(base, "cpic_drugs.json"))
-    all_nodes   += cpic_nodes
-    all_triples += cpic_triples
-
-    print("\n" + "="*50)
-    print("SOURCE 7 — SIDER (MedDRA ADR terms)")
+    print("SOURCE 6 — SIDER (MedDRA ADR terms)")
     print("="*50)
     se_nodes, se_triples = parse_sider(
         os.path.join(base, "SIDER_side_effects.tsv.gz"),
@@ -1084,7 +1003,7 @@ def cmd_build():
     all_triples += se_triples
 
     print("\n" + "="*50)
-    print("SOURCE 8 — ClinVar (clinical severity)")
+    print("SOURCE 7 — ClinVar (clinical severity)")
     print("="*50)
     cv2_nodes, cv2_triples = parse_clinvar(
         os.path.join(base, "clinvar_variant_summary.txt.gz"))
@@ -1150,10 +1069,6 @@ def cmd_build():
     print("MATCH (g:Gene)-[:HAS_CLINICAL_VARIANT]->(v:Variant)")
     print("      -[:AFFECTS_RESPONSE_TO]->(d:Drug {name:'cisplatin'})")
     print("RETURN g.name, v.name, d.name LIMIT 20")
-    print()
-    print("// CPIC guidelines for oncology drugs")
-    print("MATCH (g:Gene)-[r:CPIC_GUIDELINE_FOR]->(d:Drug)")
-    print("RETURN g.name, d.name, r.classification")
 
 
 # ═════════════════════════════════════════════════════════════

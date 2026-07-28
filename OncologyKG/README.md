@@ -1,7 +1,7 @@
 # OncologyKG
 
 A focused Pediatric Oncology Adverse Drug Reaction (ADR) knowledge graph in Neo4j,
-built from PharmGKB, CPIC, SIDER, and ClinVar. It links Genes → Variants → Drugs → ADRs
+built from PharmGKB, SIDER, and ClinVar. It links Genes → Variants → Drugs → ADRs
 for a curated set of chemotherapy agents and clinically significant toxicities
 (ototoxicity, cardiotoxicity, peripheral neuropathy, mucositis, hepatotoxicity,
 neutropenia, thrombocytopenia, myelosuppression, nephrotoxicity, hypersensitivity).
@@ -14,7 +14,7 @@ Everything — build, load, export, audit — lives in one CLI, [`kg.py`](kg.py)
 
 The graph is exported to `kg_export/nodes.json` and `kg_export/edges.json`, both
 committed to this repo. This is the easiest way to get the exact graph used for
-downstream work, with no PharmGKB/CPIC/SIDER/ClinVar downloads required.
+downstream work, with no PharmGKB/SIDER/ClinVar downloads required.
 
 ```bash
 pip install -r ../requirements.txt
@@ -60,7 +60,6 @@ path shown, relative to `OncologyKG/data/`.
 |---|---|---|
 | `genes.tsv`, `drugs.tsv`, `variants.tsv`, `clinicalVariants.tsv` | [PharmGKB downloads](https://www.pharmgkb.org/downloads) | `data/genes/genes.tsv`, `data/drugs/drugs.tsv`, `data/variants/variants.tsv`, `data/clinicalVariants/clinicalVariants.tsv` |
 | `var_drug_ann.tsv`, `var_pheno_ann.tsv`, `var_fa_ann.tsv`, `study_parameters.tsv` | PharmGKB downloads → "Variant Annotations" zip | `data/variantAnnotations/` |
-| `cpic_recommendations.json`, `cpic_drugs.json` | [CPIC public API](https://api.cpicpgx.org/v1/) — `recommendation` and `drug` endpoints | `data/cpic_recommendations.json`, `data/cpic_drugs.json` |
 | `SIDER_side_effects.tsv.gz`, `SIDER_drug_names.tsv` | [SIDER 4.1](http://sideeffects.embl.de/) — `meddra_all_se.tsv.gz` (rename) and `drug_names.tsv` | `data/SIDER_side_effects.tsv.gz`, `data/SIDER_drug_names.tsv` |
 | `clinvar_variant_summary.txt.gz` | [NCBI ClinVar FTP](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz) | `data/clinvar_variant_summary.txt.gz` |
 
