@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --time=00:15:00      # this is 15 minutes (always start with this to test whether your script runs properly before requesting for a longer job time). Time format: D-H:M:S (e.g., 5-0:0:0 is 5 days)
+#SBATCH --time=01:30:00      # bumped from 45 min after job 18419573 timed out mid-run with full evidence caps (15/30) on 10 questions. Time format: D-H:M:S (e.g., 5-0:0:0 is 5 days)
 #SBATCH --account=def-ester # DO NOT MODIFY THIS LINE
 #SBATCH --mem=24G           # total CPU memory
 #SBATCH --nodes=1           # number of nodes requested
@@ -44,13 +44,20 @@ for i in {1..30}; do
     sleep 1
 done
 
-# Model was pre-pulled on the login node (compute nodes have no internet access),
-# so only pull here if it's somehow missing from OLLAMA_MODELS.
+# Models were pre-pulled on the login node (compute nodes have no internet access),
+# so only pull here if one is somehow missing from OLLAMA_MODELS.
 if ollama list | grep -q "qwen3:8b"; then
     echo "qwen3:8b already present in OLLAMA_MODELS, skipping pull."
 else
     echo "Pulling the Qwen model..."
     ollama pull qwen3:8b
+fi
+
+if ollama list | grep -q "nomic-embed-text"; then
+    echo "nomic-embed-text already present in OLLAMA_MODELS, skipping pull."
+else
+    echo "Pulling the embedding model..."
+    ollama pull nomic-embed-text
 fi
 
 echo "Starting local Neo4j server on compute node..."
@@ -77,6 +84,18 @@ echo "Loading the OncologyKG graph into Neo4j..."
 cd OncologyKG
 python kg.py load
 cd ..
+
+# Entity-matching embeddings (see generate_entity_embeddings.py) only need to be
+# regenerated when the graph's node set actually changed since the last run —
+# compare against nodes.json's mtime rather than recomputing on every job.
+EMBEDDINGS_FILE="OncologyKG/kg_export/entity_embeddings.json"
+NODES_FILE="OncologyKG/kg_export/nodes.json"
+if [ -f "$EMBEDDINGS_FILE" ] && [ "$EMBEDDINGS_FILE" -nt "$NODES_FILE" ]; then
+    echo "Entity embeddings already up to date with nodes.json, skipping regeneration."
+else
+    echo "Generating entity embeddings (nodes.json changed or embeddings missing)..."
+    python generate_entity_embeddings.py
+fi
 
 echo "Launching OncologyKGMM.py..."
 python3 OncologyKGMM.py

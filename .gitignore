@@ -14,8 +14,16 @@ venv/
 # Output CSVs from running the scripts — regenerable, not source
 *.csv
 
+# SLURM job logs and the Ollama server log — transient run output, not source
+*.out
+ollama_server.log
+
 # Environment / secrets
 .env
 
 # NOTE: OncologyKG/kg_export/ is intentionally NOT excluded — that's the
-# portable graph export meant to be committed.
+# portable graph export meant to be committed. entity_embeddings.json is the
+# one exception: ~48MB, right at GitHub's size-warning threshold, and
+# run_alliance.bash already auto-regenerates it whenever nodes.json changes —
+# same "too large, regenerable" reasoning as OncologyKG/data/ above.
+OncologyKG/kg_export/entity_embeddings.json
