@@ -9872,7 +9872,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "UGT1A1*28 is associated with increased severity of neutropenia when treated with irinotecan. This variant reduces the enzyme's ability to glucuronidate SN-38, the active metabolite of irinotecan, leading to higher levels of this toxic compound. Elevated SN-38 concentrations may enhance DNA damage and reactive oxygen species production in bone marrow, exacerbating apoptosis and impairing hematopoietic stem cell function, which contributes to neutropenia."
     }
   },
   {
@@ -9951,7 +9952,8 @@
       "description": "UGT1A1 *1/*1 (assigned as normal metabolizer phenotype) is associated with increased severity of Elevated liver enzymes when treated with eltrombopag in people with Aplastic Anemia as compared to UGT1A1 *1/*6 + *1/*28 + *6/*28 + *28/*28 (assigned as intermediate metabolizer and poor metabolizer phen",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "UGT1A1*28 variant (allele *28) is associated with increased severity of elevated liver enzymes when treated with eltrombopag in people with aplastic anemia. The UGT1A1 gene encodes an enzyme involved in glucuronidation of drugs and toxins, but there is no established pharmacological pathway linking this enzyme’s function to eltrombopag or hepatotoxicity as described in the evidence available. The mechanism connecting UGT1A1*28 to this adverse drug reaction is not established."
     }
   },
   {
@@ -9966,7 +9968,8 @@
       "description": "UGT1A1 *28/*28 is associated with increased severity of Neutropenia when treated with irinotecan in people with Pancreatic Neoplasms.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "UGT1A1*28 is associated with increased severity of neutropenia when treated with irinotecan. This variant reduces the enzyme's ability to glucuronidate SN-38, the active metabolite of irinotecan, leading to higher levels of this toxic compound. Elevated SN-38 concentrations may enhance DNA damage and reactive oxygen species production in bone marrow, exacerbating apoptosis and impairing hematopoietic stem cell function, which contributes to neutropenia."
     }
   },
   {
@@ -9996,7 +9999,8 @@
       "description": "UGT1A1 *1/*28 is associated with increased severity of Myelosuppression when treated with FOLFIRI in people with Neoplasm Metastasis and Colorectal Neoplasms as compared to UGT1A1 *1/*1.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "UGT1A1*28 is associated with increased severity of myelosuppression when treated with FOLFIRI. The UGT1A1 gene encodes an enzyme critical for glucuronidating drugs like irinotecan’s active metabolite SN-38, which is known to contribute to myelosuppression. The UGT1A1*28 variant likely reduces enzyme activity, leading to less metabolism of SN-38 and higher systemic exposure, which intensifies DNA damage and oxidative stress in bone marrow cells, worsening myelosuppression."
     }
   },
   {
@@ -10027,7 +10031,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP2D6*1/*1 and *1/*10 (normal metabolizer phenotype) is associated with increased likelihood of liver diseases when treated with tamoxifen in women with breast neoplasms. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing fatty acids, steroids, retinoids, and certain drugs like antiarrhythmics and antidepressants, but its role in tamoxifen metabolism or hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -10043,7 +10048,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP2D6*1/*4 is associated with increased cardiotoxicity, edema, nausea, and vomiting when treated with venlafaxine in men with Alcohol-Related Disorders. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing drugs like antiarrhythmics and tricyclic antidepressants, but its role in venlafaxine metabolism or cardiotoxicity pathways—such as chemotherapy-induced oxidative stress—has no established pharmacological connection in the evidence available. The mechanism connecting this variant to the observed adverse reaction is not established."
     }
   },
   {
@@ -10058,7 +10064,8 @@
       "description": "CYP2D6 *1/*1 + *1/*10 (assigned as normal metabolizer phenotype) is associated with increased likelihood of Leiomyoma, Liver Diseases or Ovarian Cysts when treated with tamoxifen in women with Breast Neoplasms.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2D6*1/*1 and *1/*10 (normal metabolizer phenotype) is associated with increased likelihood of liver diseases when treated with tamoxifen in women with breast neoplasms. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing fatty acids, steroids, retinoids, and certain drugs like antiarrhythmics and antidepressants, but its role in tamoxifen metabolism or hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -10073,7 +10080,8 @@
       "description": "CYP2D6 *1/*4 is associated with increased cardiotoxicity, Edema, Nausea and Vomiting when treated with venlafaxine in men with Alcohol-Related Disorders.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2D6*1/*4 is associated with increased cardiotoxicity, edema, nausea, and vomiting when treated with venlafaxine in men with Alcohol-Related Disorders. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing drugs like antiarrhythmics and tricyclic antidepressants, but its role in venlafaxine metabolism or cardiotoxicity pathways—such as chemotherapy-induced oxidative stress—has no established pharmacological connection in the evidence available. The mechanism connecting this variant to the observed adverse reaction is not established."
     }
   },
   {
@@ -10089,7 +10097,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP2D6*4 variant is associated with increased cardiotoxicity, edema, nausea, and vomiting when treated with venlafaxine in men with Alcohol-Related Disorders, according to the knowledge graph. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing drugs like antiarrhythmics, adrenoceptor antagonists, and tricyclic antidepressants, but there is no established textbook pharmacological pathway linking its function to venlafaxine-induced cardiotoxicity. The biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -10104,7 +10113,8 @@
       "description": "CYP2D6 *1/*4 is associated with increased cardiotoxicity, Edema, Nausea and Vomiting when treated with venlafaxine in men with Alcohol-Related Disorders.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2D6*4 variant is associated with increased cardiotoxicity, edema, nausea, and vomiting when treated with venlafaxine in men with Alcohol-Related Disorders, according to the knowledge graph. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing drugs like antiarrhythmics, adrenoceptor antagonists, and tricyclic antidepressants, but there is no established textbook pharmacological pathway linking its function to venlafaxine-induced cardiotoxicity. The biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -10371,7 +10381,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*1/*3C variant is associated with increased neutropenia risk when treated with mercaptopurine. This variant likely reduces TPMT enzyme activity, impairing the metabolism of mercaptopurine, which leads to higher drug levels. Mercaptopurine's metabolites can cause DNA damage and reactive oxygen species, disrupting bone marrow function and reducing neutrophil production, resulting in neutropenia."
     }
   },
   {
@@ -10384,7 +10395,8 @@
       "source_term": "Ototoxicity",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "evidence_level": "3",
+      "mechanism_narrative": "TPMT*1 variant (allele C), the knowledge graph records an association with increased ototoxicity risk when treated with cisplatin. TPMT's established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy — the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -10397,7 +10409,8 @@
       "source_term": "Thrombocytopenia",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "evidence_level": "3",
+      "mechanism_narrative": "TPMT*1 variant (allele C), the knowledge graph records an association with increased thrombocytopenia risk when treated with chemotherapy drugs. TPMT's established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to chemotherapy-induced thrombocytopenia — the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -10413,7 +10426,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*1/*3C is associated with leukopenia when treated with azathioprine in children with Crohn disease. The TPMT gene's protein catalyzes the S-methylation of thiopurine drugs like azathioprine, which modulates their cytotoxic effects. Reduced TPMT activity due to this variant likely impairs the metabolism of azathioprine, leading to accumulation of toxic metabolites that disrupt bone marrow function and cause myelosuppression."
     }
   },
   {
@@ -10505,7 +10519,8 @@
       "description": "TPMT *1/*3A is associated with hepatic toxicity when treated with azathioprine, mercaptopurine or purine analogues in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "TPMT*1/*3A is associated with hepatic toxicity when treated with azathioprine, mercaptopurine, or purine analogues in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma. The TPMT gene's established function is catalyzing the S-methylation of thiopurine drugs like azathioprine and mercaptopurine, which has no known connection to the general hepatotoxicity pathway involving reactive oxygen species and oxidative stress — the biological mechanism linking TPMT*1/*3A to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -10520,7 +10535,8 @@
       "description": "TPMT *1/*3C is associated with increased risk of neutropenia and infections when treated with mercaptopurine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*1/*3C variant is associated with increased neutropenia risk when treated with mercaptopurine. This variant likely reduces TPMT enzyme activity, impairing the metabolism of mercaptopurine, which leads to higher drug levels. Mercaptopurine's metabolites can cause DNA damage and reactive oxygen species, disrupting bone marrow function and reducing neutrophil production, resulting in neutropenia."
     }
   },
   {
@@ -10535,7 +10551,8 @@
       "description": "TPMT *1/*3C is associated with Leukopenia when treated with azathioprine in children with Crohn Disease.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "TPMT*1/*3C is associated with leukopenia when treated with azathioprine in children with Crohn disease. The TPMT gene's protein catalyzes the S-methylation of thiopurine drugs like azathioprine, which modulates their cytotoxic effects. Reduced TPMT activity due to this variant likely impairs the metabolism of azathioprine, leading to accumulation of toxic metabolites that disrupt bone marrow function and cause myelosuppression."
     }
   },
   {
@@ -10551,7 +10568,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*2 variant genotype is associated with increased risk of Neutropenia when treated with mercaptopurine or thioguanine. This variant likely reduces TPMT enzyme activity, which normally catalyzes the S-methylation of thiopurine drugs, leading to their inactivation. Reduced enzyme function results in less metabolism of these drugs, allowing higher levels of active metabolites to accumulate, which can enhance their cytotoxic effects on hematopoietic stem cells in the bone marrow, impairing neutrophil production and causing Neutropenia."
     }
   },
   {
@@ -10567,7 +10585,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*2 variant genotype reduces TPMT enzyme activity, impairing the metabolism of mercaptopurine and thioguanine. This leads to accumulation of unmetabolized drugs and their toxic metabolites, which induce DNA damage and reactive oxygen species in hematopoietic cells. The resulting apoptosis in bone marrow megakaryocytes disrupts thrombopoiesis, causing thrombocytopenia."
     }
   },
   {
@@ -10583,7 +10602,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*2 variant is associated with increased myelosuppression risk when treated with azathioprine. The TPMT gene's protein normally catalyzes the metabolism of thiopurine drugs like azathioprine, converting them into less toxic metabolites. The TPMT*2 variant likely reduces enzyme activity, leading to impaired metabolism of azathioprine and accumulation of its toxic metabolites, which disrupt DNA repair and replication in bone marrow cells, causing myelosuppression."
     }
   },
   {
@@ -10694,7 +10714,8 @@
       "description": "TPMT *1/*2 + *1/*3A + *1/*3C + *1/*9 + *1/*21 + *1/*33 + *1/*34 are associated with increased risk of Neutropenia and Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*2 variant genotype is associated with increased risk of Neutropenia when treated with mercaptopurine or thioguanine. This variant likely reduces TPMT enzyme activity, which normally catalyzes the S-methylation of thiopurine drugs, leading to their inactivation. Reduced enzyme function results in less metabolism of these drugs, allowing higher levels of active metabolites to accumulate, which can enhance their cytotoxic effects on hematopoietic stem cells in the bone marrow, impairing neutrophil production and causing Neutropenia."
     }
   },
   {
@@ -10709,7 +10730,8 @@
       "description": "TPMT *1/*2 + *1/*3A + *1/*3C + *1/*9 + *1/*21 + *1/*33 + *1/*34 are associated with increased risk of Neutropenia and Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*2 variant genotype reduces TPMT enzyme activity, impairing the metabolism of mercaptopurine and thioguanine. This leads to accumulation of unmetabolized drugs and their toxic metabolites, which induce DNA damage and reactive oxygen species in hematopoietic cells. The resulting apoptosis in bone marrow megakaryocytes disrupts thrombopoiesis, causing thrombocytopenia."
     }
   },
   {
@@ -10724,7 +10746,8 @@
       "description": "TPMT *1/*3C + *1/*3B + *1/*2 + *2/*3C is associated with increased likelihood of Myelosuppression when treated with azathioprine in people with Bullous Pemphigoid, Dermatitis, Lupus erythematosus or Leprosy as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*2 variant is associated with increased myelosuppression risk when treated with azathioprine. The TPMT gene's protein normally catalyzes the metabolism of thiopurine drugs like azathioprine, converting them into less toxic metabolites. The TPMT*2 variant likely reduces enzyme activity, leading to impaired metabolism of azathioprine and accumulation of its toxic metabolites, which disrupt DNA repair and replication in bone marrow cells, causing myelosuppression."
     }
   },
   {
@@ -10740,7 +10763,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*3A is a variant associated with increased risk of neutropenia when treated with mercaptopurine or thioguanine. This variant likely reduces TPMT enzyme activity, which normally catalyzes the methylation of thiopurine drugs. Lower TPMT activity leads to reduced metabolism of these drugs, resulting in higher systemic exposure and enhanced DNA damage from reactive oxygen species, which impairs bone marrow function and reduces neutrophil production."
     }
   },
   {
@@ -10753,7 +10777,8 @@
       "source_term": "Ototoxicity",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "evidence_level": "3",
+      "mechanism_narrative": "TPMT*3A variant (allele A) is associated with increased ototoxicity risk when treated with cisplatin, according to the knowledge graph. TPMT's established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy—the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -10769,7 +10794,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*3A is a variant that reduces the enzyme's ability to methylate thiopurine drugs like mercaptopurine. This leads to lower metabolism of these drugs, allowing toxic metabolites to accumulate. These metabolites induce DNA damage and reactive oxygen species in hematopoietic cells, triggering apoptosis in bone marrow megakaryocytes and reducing platelet production, which causes thrombocytopenia."
     }
   },
   {
@@ -10785,7 +10811,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*3A is associated with increased likelihood of myelosuppression when treated with azathioprine or mercaptopurine. This variant reduces TPMT enzyme activity, which normally helps metabolize these drugs. Lower TPMT function leads to reduced drug metabolism, causing higher drug levels and enhanced cytotoxic effects on rapidly dividing bone marrow cells, which disrupts blood cell production and causes myelosuppression."
     }
   },
   {
@@ -10893,7 +10920,8 @@
       "description": "TPMT *1/*3A + *1/*3C is associated with increased likelihood of veno-occlusive disease of the liver when treated with purine analogues or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3A is a variant associated with increased risk of hepatotoxicity when treated with purine analogues or thioguanine. The TPMT enzyme normally methylates thiopurine drugs like thioguanine, reducing their cytotoxicity. The TPMT*3A variant likely impairs this metabolic function, leading to reduced drug breakdown and accumulation of toxic metabolites, which generate reactive oxygen species and oxidative stress in liver cells, ultimately causing hepatotoxicity."
     }
   },
   {
@@ -10908,7 +10936,8 @@
       "description": "TPMT *1/*2 + *1/*3A + *1/*3C + *1/*9 + *1/*21 + *1/*33 + *1/*34 are associated with increased risk of Neutropenia and Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3A is a variant associated with increased risk of neutropenia when treated with mercaptopurine or thioguanine. This variant likely reduces TPMT enzyme activity, which normally catalyzes the methylation of thiopurine drugs. Lower TPMT activity leads to reduced metabolism of these drugs, resulting in higher systemic exposure and enhanced DNA damage from reactive oxygen species, which impairs bone marrow function and reduces neutrophil production."
     }
   },
   {
@@ -10923,7 +10952,8 @@
       "description": "TPMT *1/*2 + *1/*3A + *1/*3C + *1/*9 + *1/*21 + *1/*33 + *1/*34 are associated with increased risk of Neutropenia and Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3A is a variant that reduces the enzyme's ability to methylate thiopurine drugs like mercaptopurine. This leads to lower metabolism of these drugs, allowing toxic metabolites to accumulate. These metabolites induce DNA damage and reactive oxygen species in hematopoietic cells, triggering apoptosis in bone marrow megakaryocytes and reducing platelet production, which causes thrombocytopenia."
     }
   },
   {
@@ -10938,7 +10968,8 @@
       "description": "TPMT *3A + *3B + *3C is associated with increased likelihood of Leukopenia when treated with azathioprine or mercaptopurine in people with Inflammatory Bowel Diseases as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3A is associated with increased likelihood of myelosuppression when treated with azathioprine or mercaptopurine. This variant reduces TPMT enzyme activity, which normally helps metabolize these drugs. Lower TPMT function leads to reduced drug metabolism, causing higher drug levels and enhanced cytotoxic effects on rapidly dividing bone marrow cells, which disrupts blood cell production and causes myelosuppression."
     }
   },
   {
@@ -10953,7 +10984,8 @@
       "description": "TPMT *1/*3A is associated with increased likelihood of Drug Toxicity, Infection and Stomatitis when treated with mercaptopurine and methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3A is a variant that reduces the enzyme's ability to methylate thiopurine drugs like mercaptopurine. This leads to higher levels of the drug in the body, increasing its cytotoxic effects. Since mucositis is caused by chemotherapy-induced oxidative stress and DNA damage in rapidly dividing cells, the elevated drug levels from TPMT*3A may exacerbate this damage, leading to increased mucositis risk."
     }
   },
   {
@@ -10985,7 +11017,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*3C is a variant associated with thrombocytopenia in children with precursor cell lymphoblastic leukemia-lymphoma treated with mercaptopurine or thioguanine. The TPMT enzyme normally methylates these thiopurine drugs, reducing their cytotoxicity. The TPMT*3C variant likely impairs this metabolic function, leading to reduced drug metabolism and potentially increased drug exposure. This could exacerbate chemotherapy-induced DNA damage and reactive oxygen species production in bone marrow cells, disrupting thrombopoiesis and causing thrombocytopenia."
     }
   },
   {
@@ -11001,7 +11034,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "Looking at the TPMT*3C variant, which is associated with reduced TPMT enzyme activity. This leads to impaired metabolism of thiopurine drugs like azathioprine and mercaptopurine, causing their accumulation. The resulting toxic metabolites induce DNA damage and reactive oxygen species, disrupting bone marrow cell function and leading to myelosuppression."
     }
   },
   {
@@ -11112,7 +11146,8 @@
       "description": "TPMT *1/*3A + *1/*3C is associated with increased likelihood of veno-occlusive disease of the liver when treated with purine analogues or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3C variant is associated with increased likelihood of hepatotoxicity when treated with purine analogues or thioguanine in specific pediatric leukemia cases. TPMT's established function is methylating thiopurine drugs like thioguanine, and reduced enzyme activity due to this variant may impair metabolism of these drugs, leading to their accumulation and subsequent liver injury. The biological mechanism connecting TPMT*3C to hepatotoxicity in this context is not established in the evidence available."
     }
   },
   {
@@ -11142,7 +11177,8 @@
       "description": "TPMT *3B + *3C is associated with increased risk of Ototoxicity when treated with cisplatin in children with Neoplasms as compared to TPMT *1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3C variant is associated with increased risk of ototoxicity when treated with cisplatin, as recorded in the knowledge graph. The TPMT gene's established function is catalyzing the methylation of thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy—the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -11157,7 +11193,8 @@
       "description": "TPMT *1/*3C is associated with Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "TPMT*3C is a variant associated with thrombocytopenia in children with precursor cell lymphoblastic leukemia-lymphoma treated with mercaptopurine or thioguanine. The TPMT enzyme normally methylates these thiopurine drugs, reducing their cytotoxicity. The TPMT*3C variant likely impairs this metabolic function, leading to reduced drug metabolism and potentially increased drug exposure. This could exacerbate chemotherapy-induced DNA damage and reactive oxygen species production in bone marrow cells, disrupting thrombopoiesis and causing thrombocytopenia."
     }
   },
   {
@@ -11172,7 +11209,8 @@
       "description": "TPMT *3A + *3B + *3C is associated with increased likelihood of Leukopenia when treated with azathioprine or mercaptopurine in people with Inflammatory Bowel Diseases as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "Looking at the TPMT*3C variant, which is associated with reduced TPMT enzyme activity. This leads to impaired metabolism of thiopurine drugs like azathioprine and mercaptopurine, causing their accumulation. The resulting toxic metabolites induce DNA damage and reactive oxygen species, disrupting bone marrow cell function and leading to myelosuppression."
     }
   },
   {
@@ -11329,7 +11367,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*3B variant is associated with increased likelihood of myelosuppression when treated with azathioprine or mercaptopurine. The TPMT gene’s protein normally catalyzes the methylation of thiopurine drugs like mercaptopurine, which helps break them down. A variant like *3B may reduce this metabolic activity, leading to higher levels of the drug in the body. Since these drugs are known to cause myelosuppression by damaging bone marrow cells, the reduced metabolism could amplify their toxic effect on hematopoietic stem cells."
     }
   },
   {
@@ -11405,7 +11444,8 @@
       "description": "TPMT *1/*3A + *1/*3B + *1/*3C + *1/*2 (assigned as intermediate metabolizer phenotype) is associated with increased likelihood of febrile neutropenia when treated with mercaptopurine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3B variant genotype is associated with increased likelihood of febrile neutropenia when treated with mercaptopurine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma. This variant likely reduces TPMT enzyme activity, impairing the metabolism of mercaptopurine, a chemotherapy drug. Reduced TPMT function leads to accumulation of the drug’s active metabolites, which enhance DNA damage and reactive oxygen species production in bone marrow cells, disrupting hematopoiesis and causing neutrophil deficiency."
     }
   },
   {
@@ -11420,7 +11460,8 @@
       "description": "TPMT *3B + *3C is associated with increased risk of Ototoxicity when treated with cisplatin in children with Neoplasms as compared to TPMT *1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3B is associated with increased risk of ototoxicity when treated with cisplatin in children with Neoplasms, according to the knowledge graph. The TPMT gene’s established function is catalyzing the methylation of thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy—the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -11435,7 +11476,8 @@
       "description": "TPMT *3A + *3B + *3C is associated with increased likelihood of Leukopenia when treated with azathioprine or mercaptopurine in people with Inflammatory Bowel Diseases as compared to TPMT *1/*1.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*3B variant is associated with increased likelihood of myelosuppression when treated with azathioprine or mercaptopurine. The TPMT gene’s protein normally catalyzes the methylation of thiopurine drugs like mercaptopurine, which helps break them down. A variant like *3B may reduce this metabolic activity, leading to higher levels of the drug in the body. Since these drugs are known to cause myelosuppression by damaging bone marrow cells, the reduced metabolism could amplify their toxic effect on hematopoietic stem cells."
     }
   },
   {
@@ -11515,7 +11557,8 @@
       "description": "TPMT *1/*2 + *1/*3A +*1/*3C +*1/*8 +*1/*9 +*1/*12 +*1/*24 +*2/*3A +*3A/*3A +*3C/*3C (assigned as poor metabolizers and intermediate metabolizers phenotype) are associated with increased risk of discontinuation and Myelosuppression when treated with azathioprine in people with Inflammation as compare",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*12 is a variant associated with reduced TPMT enzyme activity, which normally catalyzes the metabolism of thiopurine drugs like azathioprine. Lower TPMT function impairs the conversion of azathioprine into its active metabolites, leading to accumulation of toxic metabolites that interfere with DNA synthesis and repair in bone marrow cells. This disrupts hematopoietic stem cell function, causing myelosuppression as described."
     }
   },
   {
@@ -11998,7 +12041,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "2A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP3A5*3 is associated with increased severity of drug-induced liver injury when treated with isavuconazole in men with pneumonia, fungal infectious disease, and elderly adults. The gene's protein is a cytochrome P450 enzyme involved in metabolizing steroid hormones, vitamins, and xenobiotics like nifedipine and cyclosporine, but its role in isavuconazole metabolism or hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -12014,7 +12058,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP3A5*3 (intermediate/poor metabolizer phenotype) is associated with increased severity of neutropenia when treated with lurbinectedin, according to the knowledge graph. The CYP3A5 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing steroid hormones, vitamins, and certain drugs like nifedipine and cyclosporine. The biological mechanism connecting CYP3A5*3 to neutropenia risk with lurbinectedin is not established in the evidence available."
     }
   },
   {
@@ -12027,7 +12072,8 @@
       "source_term": "Leukopenia",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "evidence_level": "3",
+      "mechanism_narrative": "CYP3A5*3 variant (allele *3) is associated with increased risk of myelosuppression in the knowledge graph. The CYP3A5 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing steroid hormones, vitamins, and certain xenobiotics like nifedipine and cyclosporine. However, the biological mechanism connecting CYP3A5 function to myelosuppression risk, particularly in the context of chemotherapy-induced DNA damage and reactive oxygen species, is not established in the evidence available."
     }
   },
   {
@@ -12043,7 +12089,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP3A5*3/*3 is associated with increased likelihood of nephrotoxicity when treated with tacrolimus in kidney transplant recipients, according to the knowledge graph. The CYP3A5 gene encodes a cytochrome P450 enzyme involved in metabolizing steroid hormones, vitamins, and certain drugs like nifedipine and cyclosporine. However, the biological mechanism connecting this variant to tacrolimus-induced nephrotoxicity is not established in the evidence available."
     }
   },
   {
@@ -12100,7 +12147,8 @@
       "description": "CYP3A5 *3/*3 is associated with increased severity of Drug-induced liver injury when treated with isavuconazole in men with Pneumonia, Fungal infectious disease and Elderly Adult.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP3A5*3 is associated with increased severity of drug-induced liver injury when treated with isavuconazole in men with pneumonia, fungal infectious disease, and elderly adults. The gene's protein is a cytochrome P450 enzyme involved in metabolizing steroid hormones, vitamins, and xenobiotics like nifedipine and cyclosporine, but its role in isavuconazole metabolism or hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -12115,7 +12163,8 @@
       "description": "CYP3A5 *1/*3 + *3/*3 (assigned as intermediate metabolizer and poor metabolizer phenotype) is associated with increased severity of Neutropenia when treated with lurbinectedin in people with Neoplasms as compared to CYP3A5 *1/*1 (assigned as normal metabolizer phenotype) .",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP3A5*3 (intermediate/poor metabolizer phenotype) is associated with increased severity of neutropenia when treated with lurbinectedin, according to the knowledge graph. The CYP3A5 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing steroid hormones, vitamins, and certain drugs like nifedipine and cyclosporine. The biological mechanism connecting CYP3A5*3 to neutropenia risk with lurbinectedin is not established in the evidence available."
     }
   },
   {
@@ -12130,7 +12179,8 @@
       "description": "CYP3A5 *3/*3 + *3/*6 + *3/*7 is associated with increased likelihood of mucositis when treated with l-asparagine, prednisone and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to CYP3A5 *1/*1 + *1/*3.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP3A5*3 variant is associated with increased likelihood of mucositis when treated with l-asparagine, prednisone, and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma. The gene's established function involves metabolizing steroid hormones, vitamins, and certain drugs like nifedipine and cyclosporine, but there is no established pharmacological pathway connecting CYP3A5 to the drugs or biological processes involved in mucositis as described in the knowledge graph finding. The biological mechanism linking this variant to mucositis is not established in the evidence available."
     }
   },
   {
@@ -12145,7 +12195,8 @@
       "description": "CYP3A5 *3/*3 is associated with increased likelihood of nephrotoxicity, Tremor or Diabetes Mellitus when treated with tacrolimus in people with Kidney Transplantation as compared to CYP3A5 *1/*1 + *1/*3.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP3A5*3/*3 is associated with increased likelihood of nephrotoxicity when treated with tacrolimus in kidney transplant recipients, according to the knowledge graph. The CYP3A5 gene encodes a cytochrome P450 enzyme involved in metabolizing steroid hormones, vitamins, and certain drugs like nifedipine and cyclosporine. However, the biological mechanism connecting this variant to tacrolimus-induced nephrotoxicity is not established in the evidence available."
     }
   },
   {
@@ -12158,7 +12209,8 @@
       "source_term": "Liver transplantation",
       "confidence": "high",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
+      "evidence_level": "1A",
+      "mechanism_narrative": "CYP3A5*6 variant (allele *6) is associated with increased hepatotoxicity risk, though the biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available. The CYP3A5 gene encodes a cytochrome P450 enzyme involved in metabolizing steroid hormones, vitamins, and xenobiotics like nifedipine and cyclosporine, but there is no textbook pharmacological pathway linking its function to the specific drugs or metabolic processes involved in chemotherapy-induced hepatotoxicity."
     }
   },
   {
@@ -12173,7 +12225,8 @@
       "description": "CYP3A5 *3/*3 + *3/*6 + *3/*7 is associated with increased likelihood of mucositis when treated with l-asparagine, prednisone and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to CYP3A5 *1/*1 + *1/*3.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP3A5*6 variant is associated with increased likelihood of mucositis when treated with l-asparagine, prednisone, and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma. The gene's established function involves metabolizing steroid hormones, vitamins, and xenobiotics like nifedipine and cyclosporine, but there is no textbook pharmacological link between CYP3A5 and the drugs or the mucositis pathway described— the biological mechanism connecting them is not established in the evidence available."
     }
   },
   {
@@ -12186,7 +12239,8 @@
       "source_term": "Liver transplantation",
       "confidence": "high",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "1A"
+      "evidence_level": "1A",
+      "mechanism_narrative": "CYP3A5*7 variant (genotype) is associated with increased hepatotoxicity risk, though the biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available. The CYP3A5 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing steroid hormones, vitamins, and certain drugs like nifedipine and cyclosporine, but its role in metabolizing chemotherapy agents or directly contributing to hepatotoxicity pathways involving reactive oxygen species is not described in the provided function data."
     }
   },
   {
@@ -12201,7 +12255,8 @@
       "description": "CYP3A5 *3/*3 + *3/*6 + *3/*7 is associated with increased likelihood of mucositis when treated with l-asparagine, prednisone and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to CYP3A5 *1/*1 + *1/*3.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP3A5*7 variant is associated with increased likelihood of mucositis when treated with l-asparagine, prednisone, and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma, according to the knowledge graph. The CYP3A5 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing steroid hormones, vitamins, and certain xenobiotics like nifedipine and cyclosporine. The biological mechanism connecting this variant to mucositis risk is not established in the evidence available."
     }
   },
   {
@@ -12217,7 +12272,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "1A",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP2D6*1xN is associated with increased risk of severe cardiotoxicity (refractory cardiac arrest) when treated with tramadol, according to the knowledge graph. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing drugs like antiarrhythmics and tricyclic antidepressants, but its role in tramadol metabolism and its connection to cardiotoxicity via oxidative stress pathways are not established in the evidence available."
     }
   },
   {
@@ -12232,7 +12288,8 @@
       "description": "CYP2D6 *1xN is associated with extrapyramidal symptoms, Weight gain and Toxic liver disease when exposed to haloperidol, levomepromazine and risperidone in children with Schizophrenia as compared to CYP2D6 *1.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "CYP2D6*1xN is associated with toxic liver disease when exposed to haloperidol, levomepromazine, and risperidone in children with schizophrenia, according to the knowledge graph. The real biological function of CYP2D6 involves metabolizing drugs like antiarrhythmics and antidepressants, but there is no established textbook pharmacological pathway connecting this gene's activity to hepatotoxicity from chemotherapy drugs, which typically induce liver injury through reactive oxygen species and oxidative stress. The biological mechanism linking CYP2D6*1xN to hepatotoxicity in this context is not established in the evidence available."
     }
   },
   {
@@ -12247,7 +12304,8 @@
       "description": "CYP2D6 *1/*1xN is associated with increased risk of severe cardiotoxicity (refractory cardiac arrest) when treated with tramadol as compared to CYP2D6 *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2D6*1xN is associated with increased risk of severe cardiotoxicity (refractory cardiac arrest) when treated with tramadol, according to the knowledge graph. The CYP2D6 gene encodes a cytochrome P450 enzyme involved in metabolizing drugs like antiarrhythmics and tricyclic antidepressants, but its role in tramadol metabolism and its connection to cardiotoxicity via oxidative stress pathways are not established in the evidence available."
     }
   },
   {
@@ -13478,7 +13536,8 @@
       "description": "Genotype TT is associated with increased likelihood of Drug Toxicity, Myelosuppression, Toxic liver disease or Gastrointestinal toxicity when treated with methotrexate in children with Acute lymphoblastic leukemia as compared to genotypes CC + CT.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1051266 (genotype TT) is associated with increased likelihood of hepatotoxicity when treated with methotrexate. SLC19A1 encodes an antiporter that mediates the import of methotrexate, a drug used in chemotherapy. Reduced function of this transporter due to the variant may impair methotrexate uptake or alter its intracellular metabolism, potentially leading to drug accumulation or metabolic byproducts that contribute to liver injury. The biological mechanism connecting this genetic variant to hepatotoxicity in this context is not established in the evidence available."
     }
   },
   {
@@ -13493,7 +13552,8 @@
       "description": "Genotype TT is associated with increased likelihood of mucositis, Neutropenia, Pancreatitis or Vomiting when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotypes CC + CT.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1051266 (genotype TT) is associated with increased likelihood of neutropenia when treated with methotrexate in children with precursor cell lymphoblastic leukemia-lymphoma. The SLC19A1 gene encodes an antiporter that mediates the import of methotrexate, a drug used in chemotherapy. While the gene's function is directly related to methotrexate transport, the biological mechanism connecting this variant to neutropenia risk is not established in the evidence available."
     }
   },
   {
@@ -13508,7 +13568,8 @@
       "description": "Genotype TT is associated with increased likelihood of Anemia, Neutropenia, Pancytopenia or Thrombocytopenia when treated with mercaptopurine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotype CC.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1051266 (genotype TT) is associated with increased likelihood of thrombocytopenia when treated with mercaptopurine in children with precursor cell lymphoblastic leukemia-lymphoma. The SLC19A1 gene encodes an antiporter involved in transporting reduced folates and antifolate drugs like methotrexate, but there is no established textbook pharmacological pathway linking SLC19A1 function to mercaptopurine-induced thrombocytopenia. The mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -13523,7 +13584,8 @@
       "description": "Genotype TT is associated with increased likelihood of Drug Toxicity, Myelosuppression, Toxic liver disease or Gastrointestinal toxicity when treated with methotrexate in children with Acute lymphoblastic leukemia as compared to genotypes CC + CT.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1051266 (genotype TT) is associated with increased likelihood of myelosuppression when treated with methotrexate. The SLC19A1 protein normally mediates the import of antifolate drugs like methotrexate, and this variant may alter its function, potentially affecting drug uptake or intracellular retention. This could lead to higher methotrexate concentrations, exacerbating DNA damage and reactive oxygen species generation in bone marrow cells, which disrupts hematopoietic stem cell function and causes myelosuppression."
     }
   },
   {
@@ -13538,7 +13600,8 @@
       "description": "Genotypes CC + CT are not associated with risk of mucositis when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotype TT.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1051266 (genotypes CC + CT"
     }
   },
   {
@@ -13553,7 +13616,8 @@
       "description": "Allele C is not associated with risk of nephrotoxicity when treated with methotrexate in children with Leukemia as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1051266 (allele C) is not associated with risk of nephrotoxicity when treated with methotrexate in children with leukemia. SLC19A1 encodes an antiporter that mediates the import of antifolate drugs like methotrexate, but the biological mechanism connecting this gene variant to nephrotoxicity is not established in the evidence available."
     }
   },
   {
@@ -14021,7 +14085,8 @@
       "source_term": "Liver transplantation",
       "confidence": "medium",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "2A"
+      "evidence_level": "2A",
+      "mechanism_narrative": "CYP3A4*1 variant (genotype) is associated with increased risk of hepatotoxicity in the knowledge graph. The gene's established function is metabolizing sterols, steroid hormones, retinoids, fatty acids, and drugs via cytochrome P450 reactions, but there is no established pharmacological pathway connecting this function to hepatotoxicity or the specific drug involved in the association. The mechanism linking CYP3A4*1 to hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -14034,7 +14099,8 @@
       "source_term": "Heart Failure",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "3"
+      "evidence_level": "3",
+      "mechanism_narrative": "CYP3A4*1 variant (allele CYP3A4*1) is associated with increased cardiotoxicity risk when treated with chemotherapy drugs. The gene's established function is metabolizing steroids, fatty acids, and various drugs, but there is no textbook pharmacological pathway linking CYP3A4 to the specific mechanisms of chemotherapy-induced cardiotoxicity, such as reactive oxygen species or mitochondrial dysfunction. The biological mechanism connecting this variant to cardiotoxicity is not established in the evidence available."
     }
   },
   {
@@ -14120,7 +14186,8 @@
       "source_term": "Liver transplantation",
       "confidence": "medium",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "2A"
+      "evidence_level": "2A",
+      "mechanism_narrative": "CYP3A4*20 variant (allele *20) is associated with increased hepatotoxicity risk when treated with drugs metabolized by CYP3A4. The gene's protein is a cytochrome P450 enzyme involved in metabolizing steroids, fatty acids, and many drugs, but the biological mechanism connecting this variant to hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -14551,7 +14618,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1045642 (genotype AA) is associated with increased risk of toxic liver disease when treated with methotrexate in certain cancers. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway linking ABCB1 function to methotrexate-induced hepatotoxicity. The biological mechanism connecting"
     }
   },
   {
@@ -14567,7 +14635,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1045642 (genotype AA) is associated with increased likelihood of neutropenia when treated with methotrexate in children with precursor cell lymphoblastic leukemia-lymphoma, according to the knowledge graph. The ABCB1 gene encodes a protein that functions as an energy-dependent efflux pump, transporting drugs and phospholipids across cell membranes. However, the biological mechanism connecting"
     }
   },
   {
@@ -14583,7 +14652,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1045642 (allele A) is associated with increased likelihood of mucositis when treated with everolimus in women with Breast Neoplasms. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway connecting this function to the oxidative stress and DNA damage mechanisms underlying mucositis caused by everolimus or other chemotherapy agents. The biological mechanism linking ABCB1 variants to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -14752,7 +14822,8 @@
       "description": "Genotype AA is associated with increased risk of Toxic liver disease when treated with methotrexate in people with Burkitt Lymphoma, Lymphoma, T-Cell and Acute lymphoblastic leukemia as compared to genotype GG.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1045642 (genotype AA) is associated with increased risk of toxic liver disease when treated with methotrexate in certain cancers. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway linking ABCB1 function to methotrexate-induced hepatotoxicity. The biological mechanism connecting"
     }
   },
   {
@@ -14767,7 +14838,8 @@
       "description": "Genotypes AG + GG are associated with increased risk of Depression, Gastritis or Hypersensitivity when treated with oseltamivir in people with acute respiratory diseases and suspected influenza A/H1N1 infection as compared to genotype AA.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1045642 (AG/GG genotypes) are associated with increased risk of hypersensitivity when treated with oseltamivir, as recorded in the knowledge graph. The ABCB1 gene encodes a transporter protein involved in moving drugs"
     }
   },
   {
@@ -14782,7 +14854,8 @@
       "description": "Genotype AA is associated with increased likelihood of Leukopenia, Neutropenia or mucositis when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotypes AG + GG.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1045642 (genotype AA) is associated with increased likelihood of neutropenia when treated with methotrexate in children with precursor cell lymphoblastic leukemia-lymphoma, according to the knowledge graph. The ABCB1 gene encodes a protein that functions as an energy-dependent efflux pump, transporting drugs and phospholipids across cell membranes. However, the biological mechanism connecting"
     }
   },
   {
@@ -14797,7 +14870,8 @@
       "description": "Allele A is not associated with risk of major adverse cardiac events (mace) when treated with clopidogrel in people with Coronary Artery Disease as compared to allele G.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1045642 (allele A) is not associated with risk of major adverse cardiac events (MACE) when treated with clopidogrel in people with Coronary Artery Disease compared to"
     }
   },
   {
@@ -14812,7 +14886,8 @@
       "description": "Genotype AA is associated with increased risk of Anemia and Thrombocytopenia when treated with doxorubicin, methotrexate, prednisolone and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotypes AG + GG.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1045642 (genotype AA) is associated with increased risk of thrombocytopenia when treated with doxorubicin, methotrexate, prednisolone, and vincristine. The ABCB1 gene encodes a transporter protein that normally pumps drugs out of cells, reducing their intracellular concentration. Variants like rs1045642 may impair this efflux function, leading to higher drug accumulation in hematopoietic cells. This increased exposure to chemotherapy agents enhances DNA damage and reactive oxygen species production in bone marrow megakaryocytes, accelerating apoptosis and reducing platelet production, which causes thrombocytopenia."
     }
   },
   {
@@ -14827,7 +14902,8 @@
       "description": "Allele A is not associated with risk of Leukopenia due to bleomycin, cisplatin and etoposide in men with Testicular Neoplasms as compared to allele G.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1045642 (allele A) is associated with reduced risk of leukopenia (a form of myelosuppression) in men with testicular neoplasms treated with bleomycin, cisplatin, and etoposide. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, acting as an efflux pump to reduce drug accumulation in cells. The biological mechanism connecting this variant to myelosuppression risk is not established in the evidence available."
     }
   },
   {
@@ -14842,7 +14918,8 @@
       "description": "Allele A is associated with increased likelihood of mucositis when treated with everolimus in women with Breast Neoplasms as compared to allele G.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1045642 (allele A) is associated with increased likelihood of mucositis when treated with everolimus in women with Breast Neoplasms. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway connecting this function to the oxidative stress and DNA damage mechanisms underlying mucositis caused by everolimus or other chemotherapy agents. The biological mechanism linking ABCB1 variants to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -14857,7 +14934,8 @@
       "description": "Allele A is not associated with severity of nephrotoxicity due to tenofovir disoproxil fumarate in people with HIV Infections as compared to allele G.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1045642 (allele A) is associated with reduced severity of nephrotoxicity caused by tenofovir disoproxil fumarate in people with HIV infections, according to the knowledge graph. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, acting as an energy-dependent efflux pump. However, the biological mechanism connecting this genetic variant to nephrotoxicity risk for tenofovir is not established in the evidence available."
     }
   },
   {
@@ -14872,7 +14950,8 @@
       "description": "Genotype AA is not associated with increased risk of sensoric neuropathy or neutropenia when treated with carboplatin and paclitaxel in people with Ovarian Neoplasms as compared to genotypes AG + GG.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1045642 variant (genotype AA) is associated with increased risk of sensoric neuropathy when treated with carboplatin and paclitaxel, according to the knowledge graph. ABCB1 encodes a transporter protein involved in drug efflux and phospholipid translocation across membranes, but the biological mechanism connecting this gene variant to Peripheral Neuropathy in this context is not established in the evidence available."
     }
   },
   {
@@ -15769,7 +15848,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs2032582 (allele C) is associated with increased risk of drug-induced liver injury when treated with atorvastatin. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway linking its function to atorvastatin metabolism or hepatotoxicity mechanisms involving reactive oxygen species and oxidative stress. The biological mechanism connecting this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -15785,7 +15865,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs2032582 (genotype AA) is associated with increased risk of neutropenia when treated with paclitaxel in people with neoplasms. The ABCB1 gene encodes a protein that translocates drugs and phospholipids across membranes, functioning as an energy-dependent efflux pump. While ABCB1 is known to transport certain chemotherapy drugs, the biological mechanism linking this variant to paclitaxel-induced neutropenia is not established in the evidence available."
     }
   },
   {
@@ -15925,7 +16006,8 @@
       "description": "Allele C is associated with increased risk of drug-induced liver injury when treated with atorvastatin as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs2032582 (allele C) is associated with increased risk of drug-induced liver injury when treated with atorvastatin. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway linking its function to atorvastatin metabolism or hepatotoxicity mechanisms involving reactive oxygen species and oxidative stress. The biological mechanism connecting this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -15940,7 +16022,8 @@
       "description": "Genotype AT is not associated with Depression, Gastritis or Hypersensitivity when treated with oseltamivir in people with acute respiratory diseases and suspected influenza A/H1N1 infection as compared to genotype AA.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs2032582 variant (genotype AT) is associated with hypersensitivity when treated with oseltamivir, as recorded in the knowledge graph. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, acting as an efflux pump to reduce drug accumulation. However, the biological mechanism connecting this gene variant to hypersensitivity risk with oseltamivir is not established in the evidence available."
     }
   },
   {
@@ -15955,7 +16038,8 @@
       "description": "Genotype AA is associated with increased risk of Neutropenia when treated with paclitaxel in people with Neoplasms as compared to genotypes AC + CC.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs2032582 (genotype AA) is associated with increased risk of neutropenia when treated with paclitaxel in people with neoplasms. The ABCB1 gene encodes a protein that translocates drugs and phospholipids across membranes, functioning as an energy-dependent efflux pump. While ABCB1 is known to transport certain chemotherapy drugs, the biological mechanism linking this variant to paclitaxel-induced neutropenia is not established in the evidence available."
     }
   },
   {
@@ -15970,7 +16054,8 @@
       "description": "Genotype AA is associated with increased likelihood of Death, Sudden, Cardiac when treated with digoxin as compared to genotypes AC + CC.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs2032582 in ABCB1 is associated with increased risk of sudden cardiac death when treated with digoxin. ABCB1 encodes an energy-dependent efflux pump that transports drugs like digoxin out of cells, reducing their intracellular concentration. The variant may impair this transport function, leading to higher digoxin levels in cardiac cells, which disrupts cellular ion balance and triggers arrhythmias, ultimately contributing to cardiotoxicity."
     }
   },
   {
@@ -15985,7 +16070,8 @@
       "description": "Allele C is not associated with risk of Anemia, Neutropenia or Thrombocytopenia when treated with dexamethasone and lenalidomide in people with Multiple Myeloma as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs2032582 (allele C) shows no association with thrombocytopenia when treated with dexamethasone and lenalidomide in multiple myeloma, compared to allele T. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, but its function is not directly linked to the biological pathways causing thrombocytopenia from chemotherapy-induced DNA damage or reactive oxygen species. The mechanism connecting ABCB1 variants to this adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -16000,7 +16086,8 @@
       "description": "Allele A is associated with decreased likelihood of Leukopenia when treated with docetaxel or paclitaxel in people with Breast Neoplasms as compared to allele C.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "rs2032582 (allele A) is associated with decreased likelihood of myelosuppression when treated with docetaxel or paclitaxel. The ABCB1 protein normally functions as an energy-dependent efflux pump, transporting drugs like docetaxel and paclitaxel out of cells. If the variant reduces the pump’s activity (or alters its function), it may lead to higher drug accumulation in bone marrow cells, which could increase toxicity. However, the association with decreased myelosuppression suggests that this variant may alter drug retention in a way that reduces harm to rapidly dividing bone marrow cells, though the exact mechanism remains unexplained in the evidence available."
     }
   },
   {
@@ -16015,7 +16102,8 @@
       "description": "Allele A is not associated with risk of nephrotoxicity and Neurotoxicity Syndromes when treated with tacrolimus in people with liver transplantation as compared to allele C.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs2032582 variant (allele A) is not associated with nephrotoxicity risk when treated with tacrolimus in liver transplant recipients compared to allele C. The ABCB1 gene encodes a transporter protein that moves drugs like tacrolimus across cell membranes, and its function is well-established in drug efflux. However, the biological mechanism connecting this variant to nephrotoxicity is not established in the evidence available."
     }
   },
   {
@@ -16030,7 +16118,8 @@
       "description": "Genotype CC is not associated with increased risk of sensoric neuropathy or neutropenia when treated with carboplatin and paclitaxel in people with Ovarian Neoplasms as compared to genotypes CT + TT.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs2032582 (genotype CC) is associated with no increased risk of sensoric neuropathy or neutropenia when treated with carboplatin and paclitaxel in ovarian cancer patients, according to the knowledge graph. The ABCB1 gene encodes a transporter protein involved in drug efflux and phospholipid translocation across membranes. The biological mechanism connecting this variant to peripheral neuropathy is not established in the evidence available."
     }
   },
   {
@@ -16798,7 +16887,8 @@
       "description": "Allele T is not associated with risk of major adverse cardiac events when treated with clopidogrel in people with Coronary Artery Disease as compared to allele C.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs10509681 (allele T) shows an association with risk of major adverse cardiac events when treated with clopidogrel in people with Coronary Artery Disease, as compared to allele C. The CYP2C8 gene encodes a cytochrome P450 enzyme involved in metabolizing various endogenous compounds and xenobiotics, including paclitaxel, but its role in metabolizing clopidogrel or directly influencing cardiotoxicity pathways is not established in the evidence available."
     }
   },
   {
@@ -18427,7 +18517,8 @@
       "description": "Genotype GG is associated with earlier onset of bortezomib-induced peripheral neuropathy when treated with bortezomib, melphalan and prednisone in people with Multiple Myeloma as compared to genotypes AA + AG.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs4553808 (genotype GG) is associated with earlier onset of bortezomib-induced peripheral neuropathy in Multiple Myeloma patients treated with bortezomib, melphalan, and prednisone. The CTLA4 gene's established function is as an inhibitory receptor regulating T-cell responses by binding B7 ligands, which has no known connection to chemotherapy drugs or peripheral neuropathy pathways involving oxidative stress and mitochondrial dysfunction—the biological mechanism linking this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -19664,7 +19755,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "GSTM1 non-null is not associated with increased risk of Ototoxicity when treated with cisplatin in children with Neoplasms. The gene's protein is involved in conjugating glutathione to hydrophobic electrophiles, including prostaglandins, but there is no established pharmacological pathway linking this function to cisplatin or its ototoxicity mechanism involving reactive oxygen species and cochlear damage—the biological mechanism connecting GSTM1 to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -19747,7 +19839,8 @@
       "description": "GSTM1 non-null is not associated with increased risk of Ototoxicity when treated with cisplatin in children with Neoplasms.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTM1 non-null is not associated with increased risk of Ototoxicity when treated with cisplatin in children with Neoplasms. The gene's protein is involved in conjugating glutathione to hydrophobic electrophiles, including prostaglandins, but there is no established pharmacological pathway linking this function to cisplatin or its ototoxicity mechanism involving reactive oxygen species and cochlear damage—the biological mechanism connecting GSTM1 to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -19763,7 +19856,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "GSTM1 null genotype indicates a deletion of the GSTM1 gene, leading to reduced or absent production of the GSTM1 enzyme. The enzyme's established role is conjugating glutathione to hydrophobic electrophiles, but there is no known textbook pharmacological link between GSTM1 function and cisplatin or its toxic metabolites. The knowledge graph records an association between GSTM1 null and decreased likelihood of ototoxicity with cisplatin in head and neck cancers, but the biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -19970,7 +20064,8 @@
       "description": "GSTM1 null is associated with increased likelihood of Drug-induced liver injury when treated with Drugs For Treatment Of Tuberculosis as compared to GSTM1 non-null.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTM1 null is associated with increased likelihood of Drug-induced liver injury when treated with Drugs For Treatment Of Tuberculosis. The gene's established function involves conjugating glutathione to hydrophobic electrophiles, a process critical for detoxifying reactive compounds, but the biological mechanism connecting this function to tuberculosis drugs and hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -19985,7 +20080,8 @@
       "description": "GSTM1 null is not associated with increased severity of Neutropenia, Anemia, Thrombocytopenia, Leukopenia or gastrointestinal toxicity when treated with carboplatin or cisplatin in people with Lung Neoplasms as compared to GSTM1 non-null.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTM1 null variant genotype is associated with no increased severity of Neutropenia when treated with carboplatin or cisplatin in lung cancer patients, according to the knowledge graph. The GSTM1 protein's established function is conjugating glutathione to"
     }
   },
   {
@@ -20000,7 +20096,8 @@
       "description": "GSTM1 null is associated with increased likelihood of Cardiomyopathies when treated with anthracyclines and related substances in children with Neoplasms as compared to GSTM1 non-null.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTM1 null genotype indicates a deletion of the gene, leading to reduced or absent production of the GSTM1 enzyme. This enzyme is involved in conjugating glutathione to hydrophobic electrophiles, including reactive metabolites from chemotherapy drugs. However, the biological mechanism connecting GSTM1 function to anthracycline-induced cardiotoxicity is not established in the evidence available."
     }
   },
   {
@@ -20015,7 +20112,8 @@
       "description": "GSTM1 null is associated with decreased likelihood of Ototoxicity when treated with cisplatin in people with Head and Neck Neoplasms as compared to GSTM1 non-null.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "GSTM1 null genotype indicates a deletion of the GSTM1 gene, leading to reduced or absent production of the GSTM1 enzyme. The enzyme's established role is conjugating glutathione to hydrophobic electrophiles, but there is no known textbook pharmacological link between GSTM1 function and cisplatin or its toxic metabolites. The knowledge graph records an association between GSTM1 null and decreased likelihood of ototoxicity with cisplatin in head and neck cancers, but the biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -20030,7 +20128,8 @@
       "description": "GSTM1 null is not associated with increased severity of Neutropenia, Anemia, Thrombocytopenia, Leukopenia or gastrointestinal toxicity when treated with carboplatin or cisplatin in people with Lung Neoplasms as compared to GSTM1 non-null.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTM1 null genotype, where the gene is deleted, is associated with increased risk of thrombocytopenia when treated with carboplatin or cisplatin, according to the knowledge graph. The real biological function of GSTM1 is conjugating glutathione to electrophiles, aiding in detoxification, but there is no established pharmacological pathway linking this function to the chemotherapy-induced thrombocytopenia mechanism described. The biological mechanism connecting GSTM1 null to this adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -20045,7 +20144,8 @@
       "description": "GSTM1 null is not associated with increased severity of Neutropenia, Anemia, Thrombocytopenia, Leukopenia or gastrointestinal toxicity when treated with carboplatin or cisplatin in people with Lung Neoplasms as compared to GSTM1 non-null.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTM1 null variant genotype is associated with increased risk of myelosuppression when treated with carboplatin or cisplatin in lung cancer patients, according to the knowledge graph. The GSTM1 protein's established function is conjugating glutathione to hydrophobic electrophiles, including prostaglandins, but no textbook pharmacological pathway links this function to the mechanism of myelosuppression from platinum-based chemotherapy. The biological mechanism connecting GSTM1 null to this adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -21602,7 +21702,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1142345 (allele C) is associated with increased risk of ototoxicity when treated with cisplatin in children with neoplasms, according to the knowledge graph. TPMT's established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy—the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -21707,7 +21808,8 @@
       "description": "Allele C is associated with decreased likelihood of elevated liver enzymes when treated with cyclophosphamide, cytarabine, daunorubicin, doxorubicin, mercaptopurine, methotrexate, pegaspargase, thioguanine and vincristine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "rs1142345 (allele C) is associated with decreased likelihood of elevated liver enzymes when treated with cyclophosphamide, daunorubicin, and other chemotherapy agents linked to hepatotoxicity. The TPMT gene's established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to the chemotherapy drugs or the hepatotoxicity pathway involving reactive oxygen species and oxidative stress — the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -21722,7 +21824,8 @@
       "description": "Allele C is associated with increased risk of Ototoxicity when treated with cisplatin in children with Neoplasms as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1142345 (allele C) is associated with increased risk of ototoxicity when treated with cisplatin in children with neoplasms, according to the knowledge graph. TPMT's established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy—the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -21737,7 +21840,8 @@
       "description": "Genotype CT is not associated with increased likelihood of Leukopenia when treated with azathioprine in people with Autoimmune Diseases, Lupus Erythematosus, Systemic and Sjogren's Syndrome as compared to genotype TT.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "Looking at the TPMT rs1142345 variant (allele C), the knowledge graph records an association with increased risk of myelosuppression when treated with thiopurine drugs like azathioprine. TPMT's established function is methylating thiopurine drugs, which modulates their cytotoxic effects. Reduced TPMT activity due to this variant leads to impaired metabolism of these drugs, causing their accumulation and increased toxicity, which disrupts DNA repair and replication in bone marrow cells, leading to myelosuppression."
     }
   },
   {
@@ -23257,7 +23361,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "GSTT1 non-null is associated with increased risk of Hearing Loss when treated with cisplatin in children with Neoplasms, as compared to GSTT1 null. The GSTT1 protein's established function is conjugating glutathione to hydrophobic electrophiles, which helps neutralize harmful compounds, but there is no established textbook pathway linking this function to"
     }
   },
   {
@@ -23340,7 +23445,8 @@
       "description": "GSTT1 non-null is associated with increased risk of Hearing Loss when treated with cisplatin in children with Neoplasms as compared to GSTT1 null.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTT1 non-null is associated with increased risk of Hearing Loss when treated with cisplatin in children with Neoplasms, as compared to GSTT1 null. The GSTT1 protein's established function is conjugating glutathione to hydrophobic electrophiles, which helps neutralize harmful compounds, but there is no established textbook pathway linking this function to"
     }
   },
   {
@@ -23356,7 +23462,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "Looking at the GSTT1 null genotype, where the gene is deleted, this leads to reduced production of the GSTT1 enzyme, which normally helps conjugate glutathione to electrophilic compounds like those generated by cisplatin. With less enzyme activity, harmful reactive metabolites from cisplatin persist longer, increasing oxidative stress and damaging cochlear hair cells, which underlies the higher risk of ototoxicity."
     }
   },
   {
@@ -23528,7 +23635,8 @@
       "description": "GSTT1 null is not associated with increased likelihood of Drug-induced liver injury when treated with Drugs For Treatment Of Tuberculosis as compared to GSTT1 non-null.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTT1 null genotype, where the gene is deleted, is associated with increased likelihood of hepatotoxicity when treated with Drugs For Treatment Of Tuberculosis. The gene's protein normally conjugates glutathione to hydrophobic electrophiles and exhibits glutathione peroxidase activity, functions that are not directly linked to the metabolism or toxicity of tuberculosis drugs. The biological mechanism connecting GSTT1 null to hepatotoxicity in this context is not established in the evidence available."
     }
   },
   {
@@ -23543,7 +23651,8 @@
       "description": "GSTT1 null is not associated with increased severity of Neutropenia, Anemia, Thrombocytopenia, Leukopenia or gastrointestinal toxicity when treated with carboplatin or cisplatin in people with Lung Neoplasms as compared to GSTT1 non-null.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTT1 null genotype, where the gene is deleted, is associated with no increased severity of neutropenia when treated with carboplatin or cisplatin in lung cancer patients, according to the knowledge graph. The GSTT1 protein’s established function is conjugating glutathione to hydrophobic electrophiles and displaying glutathione peroxidase activity, which has no known connection to carboplatin or cisplatin toxicity mechanisms—specifically, the"
     }
   },
   {
@@ -23558,7 +23667,8 @@
       "description": "GSTT1 null is associated with increased likelihood of Ototoxicity when treated with cisplatin in children with Neuroblastoma, Retinoblastoma or Osteosarcoma as compared to GSTT1 non-null.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "Looking at the GSTT1 null genotype, where the gene is deleted, this leads to reduced production of the GSTT1 enzyme, which normally helps conjugate glutathione to electrophilic compounds like those generated by cisplatin. With less enzyme activity, harmful reactive metabolites from cisplatin persist longer, increasing oxidative stress and damaging cochlear hair cells, which underlies the higher risk of ototoxicity."
     }
   },
   {
@@ -23573,7 +23683,8 @@
       "description": "GSTT1 null is not associated with increased severity of Neutropenia, Anemia, Thrombocytopenia, Leukopenia or gastrointestinal toxicity when treated with carboplatin or cisplatin in people with Lung Neoplasms as compared to GSTT1 non-null.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTT1 null genotype, where the gene is deleted, is associated with increased risk of thrombocytopenia when treated with carboplatin or cisplatin, according to the knowledge graph. The GSTT1 protein’s established function is conjugating glutathione to hydrophobic electrophiles and displaying glutathione peroxidase activity, but there is no established biological mechanism connecting this function to the chemotherapy-induced thrombocytopenia pathway described. The mechanism is not established."
     }
   },
   {
@@ -23588,7 +23699,8 @@
       "description": "GSTT1 null is not associated with increased severity of Neutropenia, Anemia, Thrombocytopenia, Leukopenia or gastrointestinal toxicity when treated with carboplatin or cisplatin in people with Lung Neoplasms as compared to GSTT1 non-null.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "GSTT1 null genotype, associated with increased risk of myelosuppression when treated with carboplatin or cisplatin, lacks a established biological mechanism linking the gene's function in conjugating glutathione to hydrophobic electrophiles to the chemotherapy-induced DNA damage and reactive oxygen species pathways driving myelosuppression. The mechanism connecting GST"
     }
   },
   {
@@ -24153,7 +24265,8 @@
       "description": "Allele A is associated with increased risk of sensory peripheral neuropathy when treated with paclitaxel in women Breast Neoplasms as compared to allele G.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10771973 (allele A) is associated with increased risk of sensory peripheral neuropathy when treated with paclitaxel in women with breast neoplasms. The gene FGD4's established function is activating CDC42 to regulate the actin cytoskeleton and cell shape, but there is no established biological mechanism connecting this function to paclitaxel-induced peripheral neuropathy or its underlying pathways involving oxidative stress and mitochondrial dysfunction."
     }
   },
   {
@@ -25338,7 +25451,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1128503 (AG/GG genotypes) shows no association with mucositis risk in children treated with methotrexate for precursor cell lymphoblastic leukemia-lymphoma. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, acting as an efflux pump to reduce drug accumulation. The biological mechanism connecting ABCB1 to mucositis risk with methotrexate is not established in the evidence available."
     }
   },
   {
@@ -25494,7 +25608,8 @@
       "description": "Genotypes AG + GG is associated with increased likelihood of Drug-induced liver injury when treated with methotrexate in people with Precursor T-Cell Lymphoblastic Leukemia-Lymphoma, Osteosarcoma or Non-Hodgkin Lymphoma as compared to genotype AA.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1128503 variant (genotypes AG + GG) is associated with increased likelihood of drug-induced liver injury when treated with methotrexate in specific cancers. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway connecting ABCB1 function to methotrexate metabolism or hepatotoxicity — the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -25509,7 +25624,8 @@
       "description": "Genotypes AG + GG are not associated with Depression, Gastritis or Hypersensitivity when treated with oseltamivir in people with acute respiratory diseases and suspected influenza A/H1N1 infection as compared to genotype AA.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1128503 variant (genotypes AG + GG) is associated with hypersensitivity when treated with oseltamivir, as recorded in the knowledge graph. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, primarily functioning as an energy-dependent efflux pump. The biological mechanism connecting this variant to hypersensitivity risk with oseltamivir is not"
     }
   },
   {
@@ -25524,7 +25640,8 @@
       "description": "Genotype AA is associated with decreased risk of Neutropenia when treated with sunitinib in people with Carcinoma, Renal Cell as compared to genotypes AG + GG.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "rs1128503 (genotype AA) is associated with decreased risk of neutropenia when treated with sunitinib in people with Carcinoma, Renal Cell. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but there is no established pharmacological pathway linking ABCB1 function to sunitinib or neutropenia risk— the biological mechanism connecting them is not established in the evidence available."
     }
   },
   {
@@ -25539,7 +25656,8 @@
       "description": "Genotype GG is associated with increased likelihood of cardiotoxicity when treated with cytarabine and daunorubicin in children with Leukemia, Myeloid, Acute as compared to genotypes AA + AG.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1128503 variant (genotype GG) is associated with increased cardiotoxicity"
     }
   },
   {
@@ -25554,7 +25672,8 @@
       "description": "Allele A is not associated with risk of Anemia, Neutropenia or Thrombocytopenia when treated with dexamethasone and lenalidomide in people with Multiple Myeloma as compared to allele G.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1128503 (allele A) is not associated with risk of Thrombocytopenia when treated with dexamethasone and lenalidomide in Multiple Myeloma, compared to allele G. The ABCB1 gene encodes a transporter protein involved in moving drugs and phospholipids across cell membranes, but its function is not directly connected to the cellular pathways causing thrombocytopenia from chemotherapy-induced DNA damage or reactive oxygen species. The biological mechanism linking this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -25569,7 +25688,8 @@
       "description": "Allele A is not associated with increased risk of Leukopenia when treated with mycophenolate mofetil in people with Kidney Transplantation as compared to allele G.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1128503 variant (allele A) is associated with increased risk of myelosuppression when treated with mycophenolate mofetil. The ABCB1 gene encodes a protein that translocates drugs and phospholipids across membranes, acting as an energy-dependent efflux pump. However, the biological mechanism connecting this variant to myelosuppression is not established in the evidence available."
     }
   },
   {
@@ -25584,7 +25704,8 @@
       "description": "Genotypes AG + GG are not associated with risk of mucositis when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotype AA.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1128503 (AG/GG genotypes) shows no association with mucositis risk in children treated with methotrexate for precursor cell lymphoblastic leukemia-lymphoma. The ABCB1 gene encodes a transporter protein that moves drugs and phospholipids across cell membranes, acting as an efflux pump to reduce drug accumulation. The biological mechanism connecting ABCB1 to mucositis risk with methotrexate is not established in the evidence available."
     }
   },
   {
@@ -25599,7 +25720,8 @@
       "description": "Genotype AA is associated with increased risk of nephrotoxicity when treated with cyclosporine in people with Kidney Transplantation as compared to genotypes AG + GG.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1128503 variant (genotype AA) is associated with increased nephrotoxicity risk when treated with cyclospor"
     }
   },
   {
@@ -25614,7 +25736,8 @@
       "description": "Genotype GG is not associated with increased risk of sensoric neuropathy or neutropenia when treated with carboplatin and paclitaxel in people with Ovarian Neoplasms as compared to genotypes AA + AG.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1128503 variant (genotype GG) is associated with increased risk of Peripheral Neuropathy when treated with carboplatin and paclitaxel, according to the knowledge graph. The ABCB1 gene encodes an energy-dependent efflux pump that transports drugs and phospholipids across membranes, including substrates like paclitaxel. However, the biological mechanism connecting this variant to Peripheral Neuropathy is not established in the evidence available."
     }
   },
   {
@@ -27272,7 +27395,8 @@
       "description": "Genotype AG is associated with increased severity of Alopecia, Drug Toxicity, hand-foot syndrome and mucositis when treated with sorafenib in women with Thyroid Neoplasms.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10934498 (AG genotype) is associated with increased severity of mucositis when treated with sorafenib in women with Thyroid Neoplasms. The NR1I2 gene encodes a nuclear receptor involved in regulating metabolism and excretion of xenobiotics, drugs, and endogenous compounds, but the biological mechanism connecting this variant to mucositis risk is not established in the evidence available."
     }
   },
   {
@@ -28153,7 +28277,8 @@
       "description": "Allele T is not associated with risk of Ototoxicity due to cisplatin in children with Neoplasms as compared to allele A.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs12201199 (allele T) shows a statistical association with reduced risk of ototoxicity from cisplatin in children with neoplasms compared to allele A. The TPMT gene’s established function is methylating thiopurine drugs like 6-mercaptopurine, which has no known connection to cisplatin or platinum-based chemotherapy—the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -30416,7 +30541,8 @@
       "description": "Genotypes GG + GT are associated with increased severity of Ototoxicity when treated with cisplatin in people with Carcinoma, Non-Small-Cell Lung as compared to genotype TT.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10981694 variant (genotypes GG + GT) is associated with increased severity of ototoxicity when treated with cisplatin in people with Carcinoma, Non-Small-Cell Lung. The SLC31A1 gene encodes a copper transporter that mediates the uptake of platinum-containing chemotherapeutic agents, and the variant may alter this transport function, affecting how cisplatin is taken up by cells. This could influence intracellular drug concentrations, potentially exacerbating oxidative stress and the subsequent damage to cochlear hair cells that underlies ototoxicity."
     }
   },
   {
@@ -35371,7 +35497,8 @@
       "description": "Genotype CC is associated with increased severity of Neutropenia when treated with cisplatin and cyclophosphamide in people with Ovarian Neoplasms as compared to genotypes CT + TT.",
       "side_effect_type": "severity of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs25487 (genotype CC) is associated with increased severity of Neutropenia when treated with cisplatin and cyclophosphamide in people with Ovarian Neoplasms, compared to genotypes CT + TT. The XR"
     }
   },
   {
@@ -35386,7 +35513,8 @@
       "description": "Allele T is not associated with risk of Neutropenia or Leukopenia when treated with fluorouracil and leucovorin in people with Stomach Neoplasms as compared to allele C.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs25487 (allele T) shows no association with risk of Neutropenia or Leukopenia when treated with fluorouracil and leucovorin in people with Stomach Neoplasms, as compared to allele C. The XRCC1 gene encodes a scaffold protein involved in DNA single-strand break repair and regulation of PARP1 activity during base-excision repair. The biological mechanism connecting this variant to myelosuppression is not established in the evidence available."
     }
   },
   {
@@ -35401,7 +35529,8 @@
       "description": "Genotype CC is associated with later onset of sensory neuropathy when treated with fluorouracil, leucovorin and oxaliplatin in people with Colonic Neoplasms as compared to genotypes CT + TT.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "Looking at the XRCC1 rs25487 variant (genotype CC), the knowledge graph records an association with later onset of sensory neuropathy when treated with fluorouracil, leucovorin, and oxaliplatin in people with Colonic Neoplasms compared to genotypes CT + TT. XRCC1's established function is mediating DNA break repair complexes and regulating PARP1 activity during base-excision repair, which has no known connection to fluorouracil, leucovorin, oxaliplatin, or the oxidative stress/mitochondrial dysfunction pathway leading to peripheral neuropathy — the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -38616,7 +38745,8 @@
       "description": "Allele C is not associated with risk of Ototoxicity due to cisplatin in children with Neoplasms as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs2291767 (allele C) shows no association with Ototoxicity risk from cisplatin in children with Neoplasms compared to allele T. The OTOS gene's protein is essential for the survival of the neurosensory epithelium in the inner ear, but there is no established pharmacological pathway connecting this function to cisplatin or its mechanism of ototoxicity, which involves reactive oxygen species and cochlear hair cell damage. The biological mechanism linking OTOS to this specific drug toxicity is not established in the evidence available."
     }
   },
   {
@@ -38632,7 +38762,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1051640 (allele G) shows no association with ototoxicity risk from cisplatin in children with neoplasms compared to allele A. The ABCC3 gene encodes an ATP-binding cassette transporter involved in moving drugs, toxins, and metabolites across cell membranes, including bile salts and glucuronide conjugates. The biological mechanism connecting ABCC3 to cisplatin-induced ototoxicity is not established in the evidence available."
     }
   },
   {
@@ -38660,7 +38791,8 @@
       "description": "Allele G is not associated with risk of Ototoxicity due to cisplatin in children with Neoplasms as compared to allele A.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs1051640 (allele G) shows no association with ototoxicity risk from cisplatin in children with neoplasms compared to allele A. The ABCC3 gene encodes an ATP-binding cassette transporter involved in moving drugs, toxins, and metabolites across cell membranes, including bile salts and glucuronide conjugates. The biological mechanism connecting ABCC3 to cisplatin-induced ototoxicity is not established in the evidence available."
     }
   },
   {
@@ -39374,7 +39506,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "rs1056892 (allele A) is associated with increased cardiotoxicity risk when treated with doxorubicin, paclitaxel, and trastuzumab in breast cancer patients. The gene CBR3's established function is catalyzing the NADPH-dependent reduction of carbonyl compounds and orthoquinones, but there is no known pharmacological pathway connecting this enzymatic activity to the oxidative stress and mitochondrial dysfunction pathways involved in chemotherapy-induced cardiotoxicity—the biological mechanism linking the variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -39389,7 +39522,8 @@
       "description": "Allele A is associated with increased risk of cardiotoxicity when treated with doxorubicin, paclitaxel and trastuzumab in women with Breast Neoplasms as compared to allele G.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1056892 (allele A) is associated with increased cardiotoxicity risk when treated with doxorubicin, paclitaxel, and trastuzumab in breast cancer patients. The gene CBR3's established function is catalyzing the NADPH-dependent reduction of carbonyl compounds and orthoquinones, but there is no known pharmacological pathway connecting this enzymatic activity to the oxidative stress and mitochondrial dysfunction pathways involved in chemotherapy-induced cardiotoxicity—the biological mechanism linking the variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -40461,7 +40595,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "HLA-DQB1*02:01 is associated with increased likelihood of toxic liver disease when treated with Drugs For Treatment Of Tuberculosis. The gene's protein is involved in antigen presentation by binding peptides derived from exogenous antigens for recognition by CD4 T-cells, a process unrelated to the metabolic pathways or oxidative stress mechanisms known to drive chemotherapy-induced hepatotoxicity. The biological mechanism connecting HLA-DQB1 variation to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -40476,7 +40611,8 @@
       "description": "HLA-DQB1 *02:01 is associated with increased likelihood of Toxic liver disease when treated with Drugs For Treatment Of Tuberculosis in people with Tuberculosis.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "HLA-DQB1*02:01 is associated with increased likelihood of toxic liver disease when treated with Drugs For Treatment Of Tuberculosis. The gene's protein is involved in antigen presentation by binding peptides derived from exogenous antigens for recognition by CD4 T-cells, a process unrelated to the metabolic pathways or oxidative stress mechanisms known to drive chemotherapy-induced hepatotoxicity. The biological mechanism connecting HLA-DQB1 variation to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -40491,7 +40627,8 @@
       "description": "HLA-DQB1 *02:01 is associated with decreased risk of Drug Hypersensitivity when treated with nevirapine in people with HIV Infections.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "HLA-DQB1*02:01 is associated with decreased risk of Drug Hypersensitivity when treated with nevirapine in people with HIV infections. The HLA-DQB1 gene encodes a protein involved in antigen presentation to CD4 T-cells, a process central to immune recognition of pathogens. The biological mechanism connecting this genetic variant to hypersensitivity to nevirapine is not established in the evidence available."
     }
   },
   {
@@ -40506,7 +40643,8 @@
       "description": "HLA-DQB1 *02:01 is associated with increased likelihood of Pain, Postoperative and neuropathic pain when treated with cyclophosphamide, docetaxel, epirubicin, fluorouracil, radiotherapy, tamoxifen or trastuzumab in women with Breast Neoplasms and Surgical procedure.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "HLA-DQB1*02:01 is associated with increased likelihood of Peripheral Neuropathy when treated with cyclophosphamide, docetaxel, epirubicin, fluorouracil, radiotherapy, tamoxifen, or trastuzumab. The HLA-DQB1 gene encodes a protein involved in antigen presentation to CD4 T-cells via MHC class II molecules, a process unrelated to the metabolic or oxidative pathways implicated in chemotherapy-induced Peripheral Neuropathy. The biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -40553,7 +40691,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "HLA-DRB1*03:01 is associated with increased risk of drug-induced liver injury due to infliximab, according to the knowledge graph. The HLA-DRB1 gene encodes a beta chain of the MHC class II molecule, which presents antigenic peptides to CD4-positive T cells to guide immune responses. The biological mechanism connecting this genetic variant to hepatotoxicity from infliximab is not established in the evidence available."
     }
   },
   {
@@ -40568,7 +40707,8 @@
       "description": "HLA-DRB1 *03:01 is associated with increased risk of drug-induced liver injury due to infliximab.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "HLA-DRB1*03:01 is associated with increased risk of drug-induced liver injury due to infliximab, according to the knowledge graph. The HLA-DRB1 gene encodes a beta chain of the MHC class II molecule, which presents antigenic peptides to CD4-positive T cells to guide immune responses. The biological mechanism connecting this genetic variant to hepatotoxicity from infliximab is not established in the evidence available."
     }
   },
   {
@@ -40583,7 +40723,8 @@
       "description": "HLA-DRB1 *03:01 is associated with increased likelihood of Pain, Postoperative and neuropathic pain when treated with cyclophosphamide, docetaxel, epirubicin, fluorouracil, radiotherapy, tamoxifen or trastuzumab in women with Breast Neoplasms and Surgical procedure.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "HLA-DRB1*03:01 is associated with increased likelihood of Peripheral Neuropathy when treated with cyclophosphamide, docetaxel, epirubicin, fluorouracil, radiotherapy, tamoxifen, or trastuzumab. The gene’s established function is presenting antigenic peptides to CD4-positive T cells to guide immune responses, which has no known connection to the biochemical pathways causing Peripheral Neuropathy from chemotherapy drugs—the biological mechanism linking this variant to the adverse reaction is not established in the evidence available."
     }
   },
   {
@@ -42540,7 +42681,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*21 is associated with increased risk of neutropenia when treated with mercaptopurine or thioguanine. This variant likely reduces TPMT enzyme activity, which normally catalyzes the methylation of thiopurine drugs. Lower TPMT function leads to reduced metabolism of these drugs, allowing higher concentrations to accumulate and potentially cause bone marrow suppression, impairing neutrophil production."
     }
   },
   {
@@ -42556,7 +42698,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "3",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "TPMT*21 is a variant that reduces the enzyme's ability to methylate thiopurine drugs like mercaptopurine. This leads to impaired metabolism of the drug, allowing it to accumulate in the body. The unmetabolized drug or its toxic metabolites can cause damage to bone marrow cells, disrupting thrombopoiesis and leading to thrombocytopenia."
     }
   },
   {
@@ -42635,7 +42778,8 @@
       "description": "TPMT *1/*2 + *1/*3A + *1/*3C + *1/*9 + *1/*21 + *1/*33 + *1/*34 are associated with increased risk of Neutropenia and Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*21 is associated with increased risk of neutropenia when treated with mercaptopurine or thioguanine. This variant likely reduces TPMT enzyme activity, which normally catalyzes the methylation of thiopurine drugs. Lower TPMT function leads to reduced metabolism of these drugs, allowing higher concentrations to accumulate and potentially cause bone marrow suppression, impairing neutrophil production."
     }
   },
   {
@@ -42650,7 +42794,8 @@
       "description": "TPMT *1/*2 + *1/*3A + *1/*3C + *1/*9 + *1/*21 + *1/*33 + *1/*34 are associated with increased risk of Neutropenia and Thrombocytopenia when treated with mercaptopurine or thioguanine in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to TPMT *1/*1.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "TPMT*21 is a variant that reduces the enzyme's ability to methylate thiopurine drugs like mercaptopurine. This leads to impaired metabolism of the drug, allowing it to accumulate in the body. The unmetabolized drug or its toxic metabolites can cause damage to bone marrow cells, disrupting thrombopoiesis and leading to thrombocytopenia."
     }
   },
   {
@@ -44317,7 +44462,8 @@
       "description": "Genotypes CT + TT are not associated with risk of mucositis when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotype CC.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs10841753 (genotypes CT + TT) shows no association with mucositis risk when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma, according to the knowledge graph. The SLCO1B1 gene encodes a transporter protein that facilitates the uptake of drugs like methotrexate, but the biological mechanism connecting this variant to mucositis risk or protection is not established in the evidence available."
     }
   },
   {
@@ -44695,7 +44841,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP2C8*1/*4 + *3/*4 is associated with increased likelihood of toxic liver disease when treated with diclofenac. The CYP2C8 gene encodes a cytochrome P450 enzyme involved in metabolizing endogenous substrates like fatty acids, hormones, and xenobiotics, but its role in diclofenac metabolism or hepatotoxicity is not established in the evidence available. The mechanism connecting this variant to the adverse drug reaction is not established."
     }
   },
   {
@@ -44708,7 +44855,8 @@
       "source_term": "Neutropenia",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "4"
+      "evidence_level": "4",
+      "mechanism_narrative": "CYP2C8*1 variant (genotype) is associated with increased risk of neutropenia, though the biological mechanism connecting this gene variant to the adverse drug reaction is not established in the evidence available. The CYP2C8 gene encodes a cytochrome P450 enzyme involved in metabolizing various endogenous compounds and xenobiotics, including the anti-cancer drug paclitaxel, but there is no textbook pharmacological pathway linking its function to the general pathway of chemotherapy-induced neutropenia described."
     }
   },
   {
@@ -44736,7 +44884,8 @@
       "description": "CYP2C8 *1/*4 + *3/*4 is associated with increased likelihood of Toxic liver disease when treated with diclofenac.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2C8*1/*4 + *3/*4 is associated with increased likelihood of toxic liver disease when treated with diclofenac. The CYP2C8 gene encodes a cytochrome P450 enzyme involved in metabolizing endogenous substrates like fatty acids, hormones, and xenobiotics, but its role in diclofenac metabolism or hepatotoxicity is not established in the evidence available. The mechanism connecting this variant to the adverse drug reaction is not established."
     }
   },
   {
@@ -44749,7 +44898,8 @@
       "source_term": "Toxic liver disease",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "4"
+      "evidence_level": "4",
+      "mechanism_narrative": "CYP2C8*2 variant (allele *2). The knowledge graph records an association with increased hepatotoxicity risk when treated with drugs metabolized by CYP2C8. CYP2C8's established function is catalyzing the oxidative metabolism of xenobiotics and endogenous substrates, including drugs like paclitaxel, through reactions involving reactive oxygen species. The biological mechanism connecting this variant to hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -44762,7 +44912,8 @@
       "source_term": "Neutropenia",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "4"
+      "evidence_level": "4",
+      "mechanism_narrative": "CYP2C8*2 variant (allele *2) is associated with increased risk of neutropenia, though the biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available. The CYP2C8 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing endogenous substrates like fatty acids, steroid hormones, and xenobiotics such as paclitaxel. While the enzyme's role in drug metabolism is well-documented, there is no textbook pharmacological pathway linking CYP2C8 function to the general pathway of chemotherapy-induced neutropenia, which involves DNA damage and reactive oxygen species in bone marrow."
     }
   },
   {
@@ -44804,7 +44955,8 @@
       "source_term": "Neutropenia",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "4"
+      "evidence_level": "4",
+      "mechanism_narrative": "CYP2C8*3 variant (allele *3) is associated with increased risk of neutropenia when treated with drugs metabolized by CYP2C8, such as paclitaxel. The gene's protein normally catalyzes the metabolism of various substrates, including xenobiotics and steroid hormones, but there is no established textbook pathway linking CYP2C8 function to the biological mechanisms of neutropenia induced by chemotherapy drugs. The biological mechanism connecting this variant to neutropenia is not established in the evidence available."
     }
   },
   {
@@ -44914,7 +45066,8 @@
       "source": "PharmGKB_clinicalVariants",
       "mechanism": "",
       "evidence_level": "4",
-      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations"
+      "mechanism_source": "cross-referenced from PharmGKB variantAnnotations",
+      "mechanism_narrative": "CYP2C8*4 variant genotype is associated with increased likelihood of toxic liver disease when treated with diclofenac, according to the knowledge graph. The CYP2C8 protein's established function is metabolizing endogenous substrates like fatty acids, steroid hormones, and xenobiotics, including paclitaxel, through oxidative reactions involving molecular oxygen and NADPH. The biological mechanism connecting this variant to diclofenac-induced hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -44927,7 +45080,8 @@
       "source_term": "Neutropenia",
       "confidence": "low",
       "source": "PharmGKB_clinicalVariants",
-      "evidence_level": "4"
+      "evidence_level": "4",
+      "mechanism_narrative": "CYP2C8*4 variant (allele *4) is associated with increased risk of neutropenia in the knowledge graph, though the biological mechanism connecting this genetic variant to the adverse drug reaction is not established in the evidence available. The CYP2C8 gene encodes a cytochrome P450 enzyme primarily involved in metabolizing endogenous substrates like fatty acids, steroid hormones, and xenobiotics such as paclitaxel, but its role in chemotherapy-induced neutropenia pathways—driven by DNA damage and reactive oxygen species—has not been demonstrated in textbook pharmacology."
     }
   },
   {
@@ -44974,7 +45128,8 @@
       "description": "CYP2C8 *1/*4 + *3/*4 is associated with increased likelihood of Toxic liver disease when treated with diclofenac.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2C8*4 variant genotype is associated with increased likelihood of toxic liver disease when treated with diclofenac, according to the knowledge graph. The CYP2C8 protein's established function is metabolizing endogenous substrates like fatty acids, steroid hormones, and xenobiotics, including paclitaxel, through oxidative reactions involving molecular oxygen and NADPH. The biological mechanism connecting this variant to diclofenac-induced hepatotoxicity is not established in the evidence available."
     }
   },
   {
@@ -45851,7 +46006,8 @@
       "description": "CYP2C19 poor metabolizer is associated with increased likelihood of discontinuation, elevated liver enzymes, Toxic liver disease, drug-induced liver injury, Jaundice, Agranulocytosis or Liver Failure when treated with omeprazole.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2"
     }
   },
   {
@@ -45866,7 +46022,8 @@
       "description": "CYP2C19 poor metabolizer is associated with increased risk of major adverse cardiac events (mace) when treated with aspirin and clopidogrel in people with high on-treatment platelet reactivity.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "CYP2C19 poor metabolizer is associated with increased risk of cardiotoxicity when treated with chemotherapy drugs, though the biological mechanism connecting this genetic variant to the observed adverse effect is not established in the evidence available. The gene's real function involves metabolizing polyunsaturated fatty acids and certain therapeutic agents, but there is no textbook pharmacological pathway linking CYP2C19 to the oxidative stress and mitochondrial dysfunction pathways typically associated with chemotherapy-induced cardiotoxicity."
     }
   },
   {
@@ -45881,7 +46038,8 @@
       "description": "CYP2C19 poor metabolizer is not associated with Leukopenia when treated with cyclophosphamide in people with Vasculitis and Wegener Granulomatosis.",
       "side_effect_type": "nan",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "CYP2C19 poor metabolizer is not associated with myelosuppression when treated with cycloph"
     }
   },
   {
@@ -49853,7 +50011,8 @@
       "description": "Allele C is associated with increased likelihood of Leukopenia and mucositis when treated with sunitinib in people with Carcinoma, Renal Cell or Gastrointestinal Stromal Tumors as compared to allele T.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1048943 (allele C) is associated with increased likelihood of myelosuppression when treated with sunitinib in people with Carcinoma, Renal Cell or Gastrointestinal Stromal Tumors. The CYP1A1 gene encodes a cytochrome P450 enzyme involved in metabolizing endogenous substrates like fatty acids, steroid hormones, and vitamins, but there is no established pharmacological pathway connecting this function to sunitinib or the mechanism of myelosuppression involving DNA damage and reactive oxygen species. The biological mechanism linking this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -49868,7 +50027,8 @@
       "description": "Allele C is associated with increased likelihood of Leukopenia and mucositis when treated with sunitinib in people with Carcinoma, Renal Cell or Gastrointestinal Stromal Tumors as compared to allele T.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1048943 (allele C) is associated with increased likelihood of mucositis when treated with sunitinib in people with Carcinoma, Renal Cell or Gastrointestinal Stromal Tumors. The real biological function of CYP1A1 is to metabolize endogenous substrates like fatty acids, steroid hormones, and vitamins via cytochrome P450 reactions, but there is no established pharmacological pathway connecting this function to sunitinib"
     }
   },
   {
@@ -51925,7 +52085,8 @@
       "description": "Allele C is not associated with risk of mucositis when treated with methotrexate in children with Lymphoma, Osteosarcoma or Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs10106 (allele C) shows an association with mucositis risk when treated with methotrexate in certain pediatric cancers, but the biological mechanism connecting FPGS function to this adverse reaction is not established in the evidence available. The FPGS gene encodes an enzyme that metabolizes methotrexate into polyglutamates, but there is no textbook link between this metabolic pathway and the oxidative stress or DNA damage mechanisms driving mucositis."
     }
   },
   {
@@ -61342,7 +61503,8 @@
       "description": "Allele C is not associated with increased risk of Heart Failure when treated with anthracyclines and related substances in people with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1001179 (allele C) is associated with increased risk of cardiotoxicity when treated with anthracyclines in people with precursor cell lymphoblastic leukemia-lymphoma, according to the knowledge graph. The CAT gene's protein catalyzes the breakdown of hydrogen peroxide, a byproduct of oxidative stress, which is a key pathway in chemotherapy-induced cardiotoxicity. However, the biological mechanism connecting this genetic variant to the observed association is not established in the evidence available."
     }
   },
   {
@@ -61357,7 +61519,8 @@
       "description": "Genotypes CG + GG is associated with increased likelihood of neuropathic pain when treated with acetaminophen / tramadol in people with Pain, Postoperative as compared to genotype CC.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1011784 (genotypes CG + GG) is associated with increased likelihood of neuropathic pain when treated with acetaminophen/tramadol in postoperative settings, according to the knowledge graph. The AOPEP gene encodes an aminopeptidase involved in peptide hydrolysis, but there is no established pharmacological pathway connecting this enzyme to chemotherapy-induced Peripheral Neuropathy or the drugs typically associated with it. The biological mechanism linking AOPEP variants to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -61387,7 +61550,8 @@
       "description": "Allele A is associated with increased likelihood of cardiotoxicity when treated with daunorubicin or doxorubicin in children with Neoplasms as compared to allele G.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10144771 (allele A) is associated with increased cardiotoxicity risk when treated with daunorubicin or doxorubicin in children with Neoplasms, as compared to allele G. The SERPINA6 gene encodes a major transport protein for glucocorticoids and progestins in the blood, but there is no established pharmacological pathway connecting this function to the mechanism of cardiotoxicity induced by anthracycline chemotherapy drugs. The biological mechanism linking the variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -61432,7 +61596,8 @@
       "description": "Allele A is not associated with likelihood of cardiotoxicity when exposed to daunorubicin and doxorubicin in children with Neoplasms as compared to allele C.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs10426377 (allele A) is not associated with likelihood of cardiotoxicity when exposed to daunorubicin and doxorubicin in children with Neoplasms compared to allele C. The SULT2B1 gene encodes a sulfotransferase enzyme involved in sulfate conjugation of steroids like pregnenolone and DHEA, with no established pharmacological connection to daunorubicin or doxorubicin—the biological mechanism linking this variant to cardiotoxicity is not established in the evidence available."
     }
   },
   {
@@ -61447,7 +61612,8 @@
       "description": "Allele A is associated with increased likelihood of cardiotoxicity when treated with daunorubicin or doxorubicin in children with Neoplasms as compared to allele G.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10426628 (allele A) is associated with increased likelihood of cardiotoxicity when treated with daunorubicin or doxorubicin in children with neoplasms, compared to allele G. The SULT2B1 gene encodes a sulfotransferase enzyme involved in sulfate conjugation of steroids like pregnenolone and DHEA, with no established pharmacological connection to anthracycline chemotherapy drugs or their toxic pathways. The biological mechanism linking this variant to cardiotoxicity is not established in the evidence available."
     }
   },
   {
@@ -61492,7 +61658,8 @@
       "description": "Genotype GG is associated with increased risk of Death, Sudden, Cardiac when exposed to digoxin as compared to genotypes GT + TT.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10494366 (genotype GG) is associated with increased risk of sudden cardiac death when exposed to digoxin, according to the knowledge graph. The NOS1AP gene encodes an adapter protein involved in neuronal nitric-oxide synthesis regulation and interactions with NOS1, but there is no established pharmacological pathway connecting this function to digoxin or cardiotoxicity— the biological mechanism behind this association is not established in the evidence available."
     }
   },
   {
@@ -61507,7 +61674,8 @@
       "description": "Allele C is associated with increased likelihood of cardiotoxicity when treated with daunorubicin or doxorubicin in children with Neoplasms as compared to allele T.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs10497346 (allele C) is associated with increased likelihood of cardiotoxicity when treated with daunorubicin or doxorubicin in children with Neoplasms, as compared to allele T. The ABCB11 gene encodes a transporter involved in bile acid and certain drug excretion, but there is no established pharmacological pathway linking its function to the mechanism of cardiotoxicity caused by anthracycline chemotherapy agents. The biological mechanism connecting this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -61522,7 +61690,8 @@
       "description": "Genotype CC is not associated with risk of mucositis when treated with methotrexate in children with Precursor Cell Lymphoblastic Leukemia-Lymphoma as compared to genotypes CT + TT.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs10505168 (genotype CC) shows no association with mucositis risk in children treated with methotrexate for Precursor Cell Lymphoblastic Leukemia-Lymphoma, according to the knowledge graph. The CSMD3 gene's protein is involved in dendrite development, a process unrelated to the oxidative stress and DNA damage pathways that drive mucositis from chemotherapy agents. The biological mechanism connecting this variant to mucositis is not established in the evidence available."
     }
   },
   {
@@ -61672,7 +61841,8 @@
       "description": "Genotype TT is associated with decreased likelihood of Mucositis when treated with methotrexate in children with Acute lymphoblastic leukemia or Lymphoma as compared to genotypes CC + CT.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "rs1056806 (genotype TT) is associated with decreased likelihood of mucositis when treated with methotrexate in children with Acute lymphoblastic leukemia or Lymphoma. The GSTM1 gene encodes an enzyme involved in conjugating glutathione to hydrophobic electrophiles, but there is no established pharmacological pathway linking this function to methotrexate or the development of mucositis. The biological mechanism connecting GSTM1 variants to this adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -61792,7 +61962,8 @@
       "description": "Allele C is associated with decreased likelihood of Ototoxicity when treated with cisplatin in children with Neoplasms as compared to allele T.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "rs10759932 (allele C) is associated with decreased likelihood of ototoxicity when treated with cisplatin in children with neoplasms, compared to allele T. The TLR4 gene encodes a transmembrane receptor involved in innate immune responses to pathogens and damage signals, triggering inflammation via pathways like NF-kappa-B and TIRAP. The biological mechanism connecting TLR4 to cisplatin-induced ototoxicity is not established in the evidence available."
     }
   },
   {
@@ -62062,7 +62233,8 @@
       "description": "Allele G is not associated with risk of Ototoxicity when treated with cisplatin in people with Neoplasms as compared to allele T.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "nan"
+      "direction": "nan",
+      "mechanism_narrative": "rs10950831 (allele G) is not associated with ototoxicity risk when treated with cisplatin in people with Neoplasms compared to allele T. The ABCB5 gene encodes an energy-dependent efflux transporter involved in multidrug resistance and corneal development, but there is no established pharmacological pathway connecting its function to cisplatin-induced ototoxicity, which arises from oxidative stress damaging cochlear hair cells. The biological mechanism linking ABCB5 to this specific adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -63112,7 +63284,8 @@
       "description": "Allele T is associated with increased likelihood of Ototoxicity when treated with cisplatin in children with Neoplasms as compared to allele C.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs13022792 (allele T) is associated with increased likelihood of ototoxicity when treated with cisplatin in children with neoplasms, as compared to allele C. The CERS6 gene encodes a ceramide synthase enzyme involved in lipid metabolism and mitochondrial function, but its biological role does not include direct interaction with cisplatin or pathways related to oxidative stress or cochlear cell damage—the biological mechanism connecting this variant to ototoxicity is not established in the evidence available."
     }
   },
   {
@@ -63847,7 +64020,8 @@
       "description": "Genotypes CC + CT is associated with increased likelihood of Thrombocytopenia when treated with cisplatin, docetaxel and fluorouracil in people with Carcinoma, Squamous Cell, Adenocarcinoma, Carcinoma, Adenosquamous or Esophageal Neoplasms as compared to genotype TT.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1799964 (CC/CT genotypes) is associated with increased likelihood of thrombocytopenia when treated with cisplatin, docetaxel, and fluorouracil in specific cancers. The LTA gene encodes a cytokine involved in immune signaling via TNF receptors, but there is no established pharmacological pathway connecting this function to the chemotherapy-induced DNA damage and reactive oxygen species that drive thrombocytopenia. The biological mechanism linking LTA variants to this adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -63862,7 +64036,8 @@
       "description": "Allele C is associated with increased likelihood of neuropathy when treated with stavudine in people with HIV Infections as compared to allele T.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs1799964 (allele C) is associated with increased likelihood of peripheral neuropathy when treated with stavudine in people with HIV infections, compared to allele T. The LTA gene encodes a cytokine involved in immune signaling via TNF receptor interactions, with no established pharmacological connection to stavudine or the oxidative stress/mitochondrial dysfunction pathway underlying peripheral neuropathy. The biological mechanism connecting this variant to the adverse drug reaction is not established in the evidence available."
     }
   },
   {
@@ -64402,7 +64577,8 @@
       "description": "Allele T is associated with increased risk of peripheral neuropathy when treated with vincristine in people with Neoplasms as compared to allele C.",
       "side_effect_type": "risk of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs2076549 (allele T) is associated with increased risk of peripheral neuropathy when treated with vincristine in people with Neoplasms, compared to allele C. The SULF2 gene's established function involves sulfate removal from glucosamine in heparin, but there is no established biological mechanism connecting this activity to vincristine or the pathway of chemotherapy-induced peripheral neuropathy."
     }
   },
   {
@@ -65692,7 +65868,8 @@
       "description": "Genotype AA is associated with increased likelihood of Peripheral Nervous System Diseases, Pain and neuropathic pain when treated with bortezomib in people with Multiple Myeloma as compared to genotypes AG + GG.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "increased"
+      "direction": "increased",
+      "mechanism_narrative": "rs2839629 (genotype AA) is associated with increased likelihood of Peripheral Neuropathy when treated with bortezomib in Multiple Myeloma. The PKNOX1 gene's established function is activating transcription in the presence of PBX1A and HOXA1, but the biological mechanism connecting this function to bortezomib-induced Peripheral Neuropathy is not established in the evidence available."
     }
   },
   {
@@ -68482,7 +68659,8 @@
       "description": "Genotypes CT + TT is associated with decreased likelihood of neuropathic pain when treated with acetaminophen / tramadol in people with Pain, Postoperative as compared to genotype CC.",
       "side_effect_type": "likelihood of",
       "source": "PharmGKB_variantAnnotations",
-      "direction": "decreased"
+      "direction": "decreased",
+      "mechanism_narrative": "rs677830 (genotypes CT + TT) is associated with decreased likelihood of neuropathic pain when treated with acetaminophen/tramadol in people with pain, postoperative. The OPRM1 gene encodes the mu-opioid receptor, which binds endogenous and exogenous opioids to modulate pain and reward pathways. The biological mechanism connecting this variant to Peripheral Neuropathy is not established in the evidence available."
     }
   },
   {

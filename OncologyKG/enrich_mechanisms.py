@@ -23,9 +23,9 @@ After `apply`, run `python kg.py load` to push the enriched edges.json into
 Neo4j.
 
 Every step is cache-backed under kg_export/ (gene_function_cache.json,
-adr_pathway_cache.json, mechanism_narrative_cache.json) and safe to
-interrupt/rerun — already-cached entries are skipped, and progress is
-flushed to disk periodically, not just at the end.
+gene_biotype_cache.json, adr_pathway_cache.json, mechanism_narrative_cache.json)
+and safe to interrupt/rerun — already-cached entries are skipped, and progress
+is flushed to disk periodically, not just at the end.
 
 Scope: only the ADR-linked edge types (LINKED_TO_ADR, ASSOCIATED_WITH_ADR,
 CLINVAR_ASSOCIATED_ADR) get a narrative — that's the "this variant causes
@@ -53,20 +53,23 @@ EXPORT_DIR = os.path.join(SCRIPT_DIR, "kg_export")
 NODES_PATH = os.path.join(EXPORT_DIR, "nodes.json")
 EDGES_PATH = os.path.join(EXPORT_DIR, "edges.json")
 
+# Four separate on-disk caches, one per pipeline stage
 GENE_FUNCTION_CACHE = os.path.join(EXPORT_DIR, "gene_function_cache.json")
+GENE_BIOTYPE_CACHE = os.path.join(EXPORT_DIR, "gene_biotype_cache.json")
 ADR_PATHWAY_CACHE = os.path.join(EXPORT_DIR, "adr_pathway_cache.json")
 NARRATIVE_CACHE = os.path.join(EXPORT_DIR, "mechanism_narrative_cache.json")
 QA_SAMPLE_PATH = os.path.join(EXPORT_DIR, "mechanism_narrative_qa_sample.md")
 
+# Only these three edge types get a narrative — drug-response/efficacy edges
 ADR_LINKED_RELATIONS = {"LINKED_TO_ADR", "ASSOCIATED_WITH_ADR", "CLINVAR_ASSOCIATED_ADR"}
+# the 10 ADR names, sourced from kg.py
 CANONICAL_ADRS = list(CTCAE_MAP.keys())
 
 BASE_URL = os.environ.get("LLM_BASE_URL", "http://127.0.0.1:11434/v1")
 MODEL = os.environ.get("LLM_MODEL", "qwen3:8b")
 
-QA_HIGHLIGHT_GENES = {"GSTT1", "TPMT", "CYP2D6", "GSTM1"}
-
 UNIPROT_URL = "https://rest.uniprot.org/uniprotkb/search"
+NCBI_EUTILS_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 
 
 # ── Shared JSON cache helpers ──────────────────────────────────
@@ -108,7 +111,21 @@ import re
 _RSID_RE = re.compile(r"^rs\d+$", re.IGNORECASE)
 
 
-def _variant_to_gene(nodes):
+def _clinical_variant_genes(edges):
+    """{variant_name: {gene, ...}} from Gene-[HAS_CLINICAL_VARIANT]->Variant
+    edges (PharmGKB's clinicalVariants table) — a per-variant signal that's
+    more specific than the gene_symbols property, which just lists every
+    gene whose genomic span overlaps the variant's coordinate."""
+    genes_by_variant = defaultdict(set)
+    for e in edges:
+        if (e["relation"] == "HAS_CLINICAL_VARIANT"
+                and e["head_label"] == "Gene" and e["tail_label"] == "Variant"):
+            genes_by_variant[e["tail"]].add(e["head"])
+    return genes_by_variant
+
+
+def _variant_to_gene(nodes, edges):
+    clinical_genes = _clinical_variant_genes(edges)
     mapping = {}
     for n in nodes:
         if n["label"] != "Variant":
@@ -119,7 +136,24 @@ def _variant_to_gene(nodes):
         # pandas' NaN gets stringified to the literal text "nan" by kg.py's
         # str(row.get(...)) pattern — that's a missing value, not a gene symbol.
         if gene_symbols and gene_symbols.strip().lower() != "nan":
-            mapping[name] = gene_symbols.split(",")[0].strip()
+            genes = [g.strip() for g in gene_symbols.split(",") if g.strip()]
+            candidates = clinical_genes.get(name, set())
+            if len(candidates) == 1:
+                # Disambiguates multi-gene variants correctly: confirmed
+                # across all 157 multi-gene variants in the graph, whenever
+                # exactly one gene has a HAS_CLINICAL_VARIANT edge it's
+                # always the sole candidate (never tied with another), and
+                # it disagrees with genes[0] in 33/67 (49%) of those cases —
+                # e.g. rs10981694 correctly resolves to SLC31A1 here, not
+                # FKBP15, because only SLC31A1 has a HAS_CLINICAL_VARIANT
+                # edge to it (FKBP15's is a HAS_VARIANT-only, genomic-
+                # overlap annotation with no clinical evidence behind it).
+                mapping[name] = next(iter(candidates))
+            else:
+                # No HAS_CLINICAL_VARIANT signal for this variant (the
+                # common case: 90/157) — nothing better than the first-
+                # listed gene is available.
+                mapping[name] = genes[0]
         elif "*" in name:
             mapping[name] = name.split("*")[0].strip()
         elif not _RSID_RE.match(name):
@@ -128,6 +162,31 @@ def _variant_to_gene(nodes):
             # than treating the rsID itself as if it were a gene symbol.
             mapping[name] = name.split(" ")[0].strip()
     return mapping
+
+
+_REFERENCE_ALLELE_RE = re.compile(r"\*1$")
+
+
+def _qa_risk_reasons(name, gene_symbols):
+    """Structural signals that a narrative is worth manual review, generalized
+    across whatever genes/drugs/ADRs get tested rather than tied to a
+    hand-picked gene list:
+
+    - multi-gene gene_symbols: _variant_to_gene silently takes the first
+      listed gene (split(",")[0]) — exactly the bug that mapped rs10981694
+      to FKBP15 instead of the biologically relevant SLC31A1.
+    - a "*1"-suffixed name: the PharmGKB/CPIC convention for the reference/
+      wild-type star allele (TPMT*1, CYP2D6*1, UGT1A1*1, ...) — nothing in
+      the graph marks it as different in kind from other alleles, which is
+      exactly how the TPMT*1 wild-type mislabeling slipped through.
+    """
+    reasons = []
+    genes = [g.strip() for g in gene_symbols.split(",") if g.strip()] if gene_symbols else []
+    if len(genes) > 1:
+        reasons.append(f"multi-gene: {', '.join(genes)}")
+    if _REFERENCE_ALLELE_RE.search(name):
+        reasons.append("reference/wild-type-style allele (*1)")
+    return reasons
 
 
 def _edge_direction(props):
@@ -160,7 +219,7 @@ def collect_adr_tuples(nodes, edges):
     really a single finding. See _representative_direction_and_description,
     which picks one direction/description across all edges in the group.
     """
-    variant_gene = _variant_to_gene(nodes)
+    variant_gene = _variant_to_gene(nodes, edges)
     tuples_to_edges = defaultdict(list)
     for idx, e in enumerate(edges):
         if e["relation"] not in ADR_LINKED_RELATIONS:
@@ -192,6 +251,47 @@ def _representative_direction_and_description(edges, idxs):
 
 # ── Step 1: UniProt gene function fetch (login node, needs internet) ───
 
+_ENTREZGENE_TYPE_RE = re.compile(r'Entrezgene_type value="([^"]*)"')
+
+
+def fetch_gene_biotype(gene_symbol, timeout=15):
+    """NCBI Gene's own biotype classification (protein-coding, rRNA, tRNA,
+    pseudo, ncRNA, ...) for a human gene symbol — generic across any gene
+    symbol, not a hardcoded list of known-problematic genes.
+
+    UniProt's protein search below (fetch_gene_function) is only a valid
+    source of "real biological function" for protein-coding genes. For
+    anything else, it can silently return an unrelated protein's annotation
+    that happens to share the gene symbol — confirmed on this graph's own
+    data: MT-RNR1 (a 12S rRNA gene, biotype "rRNA") returns MOTS-c's
+    function, a micropeptide encoded within the same mitochondrial locus but
+    biologically unrelated to what the KG's MT-RNR1 gene node represents.
+    """
+    params = urllib.parse.urlencode({
+        "db": "gene",
+        "term": f"{gene_symbol}[sym] AND Homo sapiens[orgn]",
+        "retmode": "json",
+    })
+    req = urllib.request.Request(
+        f"{NCBI_EUTILS_URL}/esearch.fcgi?{params}",
+        headers={"User-Agent": "OncologyKG-enrichment/1.0"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        data = json.load(resp)
+    ids = data.get("esearchresult", {}).get("idlist", [])
+    if not ids:
+        return None
+    time.sleep(0.34)  # ~3 req/s — polite to a shared public API, same as UniProt below
+    req = urllib.request.Request(
+        f"{NCBI_EUTILS_URL}/efetch.fcgi?db=gene&id={ids[0]}&retmode=xml",
+        headers={"User-Agent": "OncologyKG-enrichment/1.0"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        xml = resp.read().decode("utf-8", errors="replace")
+    match = _ENTREZGENE_TYPE_RE.search(xml)
+    return match.group(1) if match else None
+
+
 def fetch_gene_function(gene_symbol, timeout=15):
     query = f"gene:{gene_symbol} AND organism_id:9606 AND reviewed:true"
     params = urllib.parse.urlencode({
@@ -222,32 +322,60 @@ def cmd_fetch_gene_functions():
           f"(from {len(tuples_to_edges):,} unique variant/ADR/direction tuples)")
 
     cache = _load_json(GENE_FUNCTION_CACHE, default={})
-    fetched = no_hit = failed = skipped = 0
+    biotype_cache = _load_json(GENE_BIOTYPE_CACHE, default={})
+    fetched = no_hit = failed = skipped = non_coding_skipped = 0
     for i, gene in enumerate(genes_needed):
         if gene in cache:
             skipped += 1
             continue
-        try:
-            fn = fetch_gene_function(gene)
-        except (urllib.error.URLError, TimeoutError, ValueError) as e:
-            print(f"  [{i + 1}/{len(genes_needed)}] {gene}: ERROR {e}")
-            failed += 1
-            continue
-        if fn:
-            cache[gene] = fn
-            fetched += 1
-            print(f"  [{i + 1}/{len(genes_needed)}] {gene}: OK ({len(fn)} chars)")
+
+        if gene not in biotype_cache:
+            try:
+                biotype_cache[gene] = fetch_gene_biotype(gene)
+            except (urllib.error.URLError, TimeoutError, ValueError) as e:
+                # Fail open: an NCBI hiccup shouldn't block UniProt grounding
+                # for what's very likely still a normal protein-coding gene.
+                print(f"  [{i + 1}/{len(genes_needed)}] {gene}: biotype lookup ERROR {e} "
+                      f"— proceeding to UniProt anyway (fail open)")
+                biotype_cache[gene] = None
+            time.sleep(0.34)
+        biotype = biotype_cache[gene]
+
+        if biotype and biotype != "protein-coding":
+            # A protein-database search is structurally the wrong source for
+            # a non-protein-coding gene — see fetch_gene_biotype's docstring.
+            # Cache None (same "no grounding available" marker used below)
+            # rather than trusting whatever UniProt happens to return.
+            cache[gene] = None
+            non_coding_skipped += 1
+            print(f"  [{i + 1}/{len(genes_needed)}] {gene}: SKIPPED UniProt — NCBI reports "
+                  f"non-protein-coding ({biotype}); needs manual/alternative grounding if "
+                  f"a narrative is wanted for it.")
         else:
-            cache[gene] = None  # explicit "checked, no reviewed hit" marker — don't refetch forever
-            no_hit += 1
-            print(f"  [{i + 1}/{len(genes_needed)}] {gene}: no reviewed UniProt entry")
+            try:
+                fn = fetch_gene_function(gene)
+            except (urllib.error.URLError, TimeoutError, ValueError) as e:
+                print(f"  [{i + 1}/{len(genes_needed)}] {gene}: ERROR {e}")
+                failed += 1
+                continue
+            if fn:
+                cache[gene] = fn
+                fetched += 1
+                print(f"  [{i + 1}/{len(genes_needed)}] {gene}: OK ({len(fn)} chars)")
+            else:
+                cache[gene] = None  # explicit "checked, no reviewed hit" marker — don't refetch forever
+                no_hit += 1
+                print(f"  [{i + 1}/{len(genes_needed)}] {gene}: no reviewed UniProt entry")
+            time.sleep(0.34)  # ~3 req/s — polite to a shared public API
+
         if (i + 1) % 20 == 0:
             _save_json(GENE_FUNCTION_CACHE, cache)
-        time.sleep(0.34)  # ~3 req/s — polite to a shared public API
+            _save_json(GENE_BIOTYPE_CACHE, biotype_cache)
 
     _save_json(GENE_FUNCTION_CACHE, cache)
-    print(f"\nDone. fetched={fetched} no_hit={no_hit} failed={failed} "
-          f"already_cached={skipped} (cache now has {len(cache)} entries)")
+    _save_json(GENE_BIOTYPE_CACHE, biotype_cache)
+    print(f"\nDone. fetched={fetched} no_hit={no_hit} non_coding_skipped={non_coding_skipped} "
+          f"failed={failed} already_cached={skipped} (cache now has {len(cache)} entries)")
     if failed:
         print("Rerun this command to retry failed lookups — cached entries are skipped.")
 
@@ -309,10 +437,13 @@ biological mechanism behind this association is not established in the evidence 
 available." """
 
 
-# These narratives are meant to be short (1-4 sentences), so 500 tokens is
-# generous headroom — set explicitly rather than trusting Ollama's default,
-# since a real narrative was observed truncated mid-word ("...displaying
-# glutath,") in testing. If it still gets cut off, retry once before giving up
+# These narratives are meant to be short (1-4 sentences), but 500 tokens
+# turned out to be far too tight in practice — logged truncation-and-retry on
+# a large fraction of calls in testing. qwen3 supports a "thinking" mode that
+# can consume a substantial token budget on its reasoning trace before ever
+# writing the actual answer, which is the likely cause: 500 tokens may not
+# even cover the thinking, let alone the paragraph after it. 1500 gives real
+# headroom for both. If it still gets cut off, retry once before giving up
 # rather than caching/returning a broken sentence.
 def _generate_narrative(client, prompt, model=None):
     model = model or MODEL
@@ -321,7 +452,7 @@ def _generate_narrative(client, prompt, model=None):
             model=model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2,
-            max_tokens=500,
+            max_tokens=1500,
         )
         choice = resp.choices[0]
         text = choice.message.content.strip()
@@ -472,22 +603,35 @@ def cmd_qa_sample():
     tuples_to_edges = collect_adr_tuples(nodes, edges)
     narrative_cache = _load_json(NARRATIVE_CACHE, default={})
 
-    highlight, rest = [], []
+    variant_gene_symbols = {
+        n["properties"]["name"]: n["properties"].get("gene_symbols", "")
+        for n in nodes if n["label"] == "Variant"
+    }
+
+    highlight, rest, risk_reasons = [], [], {}
     for t in tuples_to_edges:
         variant, gene, adr = t
         if _cache_key(variant, adr) not in narrative_cache:
             continue
-        (highlight if gene in QA_HIGHLIGHT_GENES else rest).append(t)
+        reasons = _qa_risk_reasons(variant, variant_gene_symbols.get(variant, ""))
+        if reasons:
+            highlight.append(t)
+            risk_reasons[t] = reasons
+        else:
+            rest.append(t)
 
     random.seed(42)
     sample = highlight + random.sample(rest, min(30, len(rest)))
 
     lines = ["# Mechanism narrative QA sample",
              "",
-             f"{len(highlight)} presentation-gene entries (GSTT1/TPMT/CYP2D6/GSTM1) "
-             f"+ {len(sample) - len(highlight)} random entries.", ""]
+             f"{len(highlight)} structurally-risky entries (multi-gene variant or "
+             f"*1/reference-style allele — see enrich_mechanisms.py's "
+             f"_qa_risk_reasons) + {len(sample) - len(highlight)} random entries.", ""]
     for variant, gene, adr in sample:
-        lines.append(f"## {variant} ({gene}) / {adr}")
+        reasons = risk_reasons.get((variant, gene, adr))
+        tag = f" [{'; '.join(reasons)}]" if reasons else ""
+        lines.append(f"## {variant} ({gene}) / {adr}{tag}")
         lines.append("")
         lines.append(narrative_cache[_cache_key(variant, adr)])
         lines.append("")

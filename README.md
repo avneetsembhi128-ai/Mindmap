@@ -9,19 +9,36 @@ original chatdoctor5k dataset.
 ## How it fits together
 
 ```
-OncologyKG/            builds and hosts the knowledge graph (Neo4j)
-  kg.py                  build / load / export / audit — see OncologyKG/README.md
-  kg_export/              committed graph snapshot (nodes.json, edges.json)
+OncologyKG/                     builds and hosts the knowledge graph (Neo4j)
+  kg.py                           build / load / export / audit — see OncologyKG/README.md
+  enrich_mechanisms.py            (optional) pre-generates "why" mechanism narratives —
+                                   see OncologyKG/README.md
+  kg_export/                      committed graph snapshot (nodes.json, edges.json) plus
+                                   generated caches (entity_embeddings.json and
+                                   enrich_mechanisms.py's caches)
 
-OncologyKGMM.py         MindMap's graph-of-thoughts pipeline, adapted to query
-                         OncologyKG instead of chatdoctor5k
+generate_entity_embeddings.py   precomputes an embedding per Gene/Drug/Variant/ADR name,
+                                 used for entity-resolution matching below
+
+OncologyKGMM.py                 MindMap's graph-of-thoughts pipeline, adapted to query
+                                 OncologyKG instead of chatdoctor5k
 ```
 
 `OncologyKGMM.py` extracts entities from a clinical question with a local LLM,
-looks them up in the Gene/Drug/Variant/ADR/Phenotype graph, finds paths and
-neighbor evidence between matched entities, and asks the LLM to synthesize a
-grounded answer — the same reasoning flow as the original MindMap, just pointed
-at this graph.
+looks them up in the Gene/Drug/Variant/ADR/Phenotype graph (via cosine-similarity
+matching against `generate_entity_embeddings.py`'s precomputed vectors), finds
+paths and neighbor evidence between matched entities, and asks the LLM to
+synthesize a grounded answer — the same reasoning flow as the original MindMap,
+just pointed at this graph. If a matched Variant/ADR pair has no pre-generated
+mechanism narrative (see `enrich_mechanisms.py` in
+[OncologyKG/README.md](OncologyKG/README.md)), it synthesizes one on the spot
+and caches it, so pre-running that pipeline is optional but avoids repeated
+on-demand LLM calls at query time.
+
+On the Digital Research Alliance of Canada cluster this project was developed
+on, `run_alliance.bash` runs the whole thing end to end as one SLURM job
+(Ollama + local Neo4j + `kg.py load` + entity embeddings if stale + `OncologyKGMM.py`)
+— `sbatch run_alliance.bash`. The steps below are the general, portable path.
 
 ## Run it
 
@@ -35,10 +52,12 @@ at this graph.
    pip install -r requirements.txt
    ```
 
-3. **Have an LLM endpoint available.** By default `OncologyKGMM.py` talks to a
-   local Ollama server serving `qwen3:8b`. Pull the model first
-   (`ollama pull qwen3:8b`), or point at a different OpenAI-compatible endpoint
-   via env vars (see below) instead of editing the script.
+3. **Have an LLM endpoint available.** By default both `OncologyKGMM.py` and
+   `generate_entity_embeddings.py` talk to a local Ollama server — the former
+   using the chat model `qwen3:8b`, the latter using the embedding model
+   `nomic-embed-text`. Pull both first (`ollama pull qwen3:8b`,
+   `ollama pull nomic-embed-text`), or point at different OpenAI-compatible
+   endpoints via env vars (see below) instead of editing either script.
 
 4. **Set environment variables** (same convention as `OncologyKG/kg.py` — nothing
    is hardcoded, so this reproduces on another machine without touching source):
@@ -48,8 +67,9 @@ at this graph.
    | `NEO4J_PASSWORD` | *(required, no default)* | Must match whatever password you used for `kg.py load`/`build` in step 1 |
    | `NEO4J_URI` | `neo4j://127.0.0.1:7687` | Neo4j connection URI |
    | `NEO4J_USER` | `neo4j` | Neo4j username |
-   | `LLM_BASE_URL` | `http://127.0.0.1:11434/v1` | OpenAI-compatible chat completions endpoint |
-   | `LLM_MODEL` | `qwen3:8b` | Model name passed to that endpoint |
+   | `LLM_BASE_URL` | `http://127.0.0.1:11434/v1` | OpenAI-compatible endpoint — chat completions for `OncologyKGMM.py`/`enrich_mechanisms.py`, embeddings for `generate_entity_embeddings.py` |
+   | `LLM_MODEL` | `qwen3:8b` | Chat model name, used by `OncologyKGMM.py` and `enrich_mechanisms.py` |
+   | `EMBED_MODEL` | `nomic-embed-text` | Embedding model name, used by `generate_entity_embeddings.py` |
 
    ```bash
    # PowerShell
@@ -62,7 +82,17 @@ at this graph.
    mismatch with the graph's actual password (rather than a missing var) will
    instead surface as a Neo4j auth error at connection time.
 
-5. **Run it:**
+5. **Generate entity embeddings** (required before the first run — `OncologyKGMM.py`
+   loads `OncologyKG/kg_export/entity_embeddings.json` unconditionally and will
+   error out if it doesn't exist yet):
+   ```bash
+   python generate_entity_embeddings.py
+   ```
+   Only needs rerunning when `OncologyKG/kg_export/nodes.json` changes (e.g.
+   after a graph rebuild) — `run_alliance.bash` handles this automatically by
+   comparing file mtimes.
+
+6. **Run it:**
    ```bash
    python OncologyKGMM.py
    ```
