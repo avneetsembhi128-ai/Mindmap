@@ -66,6 +66,10 @@ into the path shown, relative to `OncologyKG/data/`.
 |---|---|---|
 | `genes.tsv`, `drugs.tsv`, `variants.tsv`, `clinicalVariants.tsv` | [PharmGKB downloads](https://www.pharmgkb.org/downloads) (now ClinPGx) | `data/clinpgx/genes/genes.tsv`, `data/clinpgx/drugs/drugs.tsv`, `data/clinpgx/variants/variants.tsv`, `data/clinpgx/clinicalVariants/clinicalVariants.tsv` |
 | `var_drug_ann.tsv`, `var_pheno_ann.tsv`, `var_fa_ann.tsv`, `study_parameters.tsv` | PharmGKB/ClinPGx downloads → "Variant Annotations" zip | `data/clinpgx/variantAnnotations/` |
+| `summary_annotations.tsv`, `summary_ann_evidence.tsv` | PharmGKB/ClinPGx downloads → "Clinical Annotations" zip — real 1A-4 evidence grade per finding | `data/clinpgx/summaryAnnotations/` |
+| `pediatric_variant_annotations.tsv` | ClinPGx's pediatric dashboard export — curator-assessed pediatric-population flag | `data/clinpgx/pediatric/pediatric_variant_annotations.tsv` |
+| Pathway TSVs (Platinum, Doxorubicin, Methotrexate, Vinka Alkaloid, Taxane) | ClinPGx pathway diagrams → "Pathways" bulk download, TSV variant — drug-specific PK/PD grounding for mechanism narratives | `data/clinpgx/pathways/pathways-tsv/` |
+| `pharmgkb-gene-drug-pairs.tsv` | [PharmGKB downloads](https://www.pharmgkb.org/downloads) — curated CPIC/DPWG/FDA gene-drug actionability table, used only by `OncologyKGMM.py` (not ingested into Neo4j) | `data/clinpgx/pairs/pharmgkb-gene-drug-pairs.tsv` |
 | `SIDER_side_effects.tsv.gz`, `SIDER_drug_names.tsv` | [SIDER 4.1](http://sideeffects.embl.de/) — `meddra_all_se.tsv.gz` (rename) and `drug_names.tsv` | `data/sider/SIDER_side_effects.tsv.gz`, `data/sider/SIDER_drug_names.tsv` |
 | `clinvar_variant_summary.txt.gz` | [NCBI ClinVar FTP](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz) | `data/clinvar/clinvar_variant_summary.txt.gz` |
 
@@ -112,6 +116,9 @@ OncologyKG/
   data/                          raw source data (gitignored, see Data sources above)
     README.md                      why data/ is organized by source, not file type
     clinpgx/                       PharmGKB/CPIC/PharmCAT — one merged platform
+      pediatric/                     pediatric dashboard export (curator-assessed flag)
+      pathways/pathways-tsv/         per-drug PK/PD pathway diagrams
+      pairs/                         curated CPIC/DPWG/FDA gene-drug actionability table
     sider/
     clinvar/
   kg_export/

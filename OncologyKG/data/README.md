@@ -4,7 +4,8 @@ This folder is organized by **source**, not by file type:
 
 ```
 data/
-  clinpgx/    genes/, drugs/, variants/, clinicalVariants/, variantAnnotations/
+  clinpgx/    genes/, drugs/, variants/, clinicalVariants/, variantAnnotations/,
+              summaryAnnotations/, pediatric/, pathways/, pairs/
   sider/      SIDER_side_effects.tsv.gz, SIDER_drug_names.tsv
   clinvar/    clinvar_variant_summary.txt.gz
 ```

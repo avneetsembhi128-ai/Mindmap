@@ -44,9 +44,10 @@ import urllib.parse
 import urllib.request
 from collections import defaultdict
 
+import pandas as pd
 from openai import OpenAI
 
-from kg import CTCAE_MAP  # reuse the single source of truth for canonical ADR names
+from kg import CTCAE_MAP, TARGET_DRUGS  # reuse the single source of truth for canonical ADR names
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 EXPORT_DIR = os.path.join(SCRIPT_DIR, "kg_export")
@@ -235,6 +236,37 @@ def collect_adr_tuples(nodes, edges):
             continue
         tuples_to_edges[(variant, gene, adr)].append(idx)
     return tuples_to_edges
+
+
+def collect_functional_evidence(edges):
+    """Returns {variant: (direction, description)} from HAS_FUNCTIONAL_EVIDENCE
+    edges (Variant -> Drug, added in Task 1's var_fa_ann.tsv parsing) — the
+    variant/genotype's own measured effect on the gene's enzyme/protein
+    activity, e.g. "increased catalytic activity of CBR1".
+
+    This is a DIFFERENT fact from an ADR-linked edge's direction (which
+    describes the effect on the ADR OUTCOME — "increased risk of
+    Cardiotoxicity" — not on the gene's own activity), and conflating the
+    two is exactly what produced a reproduced backwards-logic bug: with only
+    the ADR-outcome direction available, build_narrative_prompt had no
+    signal on which way the variant actually pushes the gene's activity, so
+    the LLM defaulted to assuming loss-of-function and got the causal chain
+    backwards for rs9024/CBR1 (real data: GG genotype INCREASES CBR1
+    activity, confirmed directly against the graph — not decreases).
+    """
+    result = {}
+    for e in edges:
+        if e["relation"] != "HAS_FUNCTIONAL_EVIDENCE" or e["head_label"] != "Variant":
+            continue
+        variant = e["head"]
+        if variant in result:
+            continue  # first one wins — same representative-pick pattern as ADR tuples
+        props = e["properties"]
+        direction = props.get("direction") or ""
+        description = props.get("description") or ""
+        if direction or description:
+            result[variant] = (direction, description)
+    return result
 
 
 def _representative_direction_and_description(edges, idxs):
@@ -465,14 +497,219 @@ def _generate_narrative(client, prompt, model=None):
 def _direction_clause(direction, variant_names, description):
     parts = [f"Variant/genotype name(s) in the knowledge graph: {', '.join(variant_names)}."]
     if direction:
-        parts.append(f"Direction of effect recorded in the knowledge graph: {direction} risk/likelihood/severity.")
+        parts.append(f"Direction of effect on the ADR OUTCOME recorded in the knowledge graph: "
+                      f"{direction} risk/likelihood/severity of the ADR itself — this is NOT the "
+                      f"same thing as which way the variant pushes the gene's own activity; see the "
+                      f"functional-assay evidence below (if given) for that.")
     if description:
         parts.append(f'Specific finding recorded in the knowledge graph: "{description}"')
     return " ".join(parts)
 
 
-def build_narrative_prompt(gene, function_text, adr, adr_pathway, direction, variant_names, description):
+def _functional_evidence_clause(functional_evidence):
+    """functional_evidence: (direction, description) tuple from
+    collect_functional_evidence, or None/falsy when no functional-assay
+    edge exists for this variant — most variants won't have one (var_fa_ann.tsv
+    covers far fewer variants than var_drug_ann/var_pheno_ann), and that
+    absence is an honest gap, not something to fabricate a value for."""
+    if not functional_evidence:
+        return ""
+    direction, description = functional_evidence
+    bits = []
+    if direction:
+        bits.append(f"this variant/genotype's effect on the gene's OWN measured "
+                     f"enzyme/protein activity is: {direction}")
+    if description:
+        bits.append(f'specific functional finding: "{description}"')
+    if not bits:
+        return ""
+    return (
+        "\nFunctional-assay evidence (source: ClinPGx functional-assay annotation — this is "
+        "the variant's DIRECT biochemical effect on the gene's own activity, a different fact "
+        "from the ADR-outcome direction above; do NOT assume the variant reduces/impairs the "
+        "gene's function just because a risk-INCREASING ADR association exists elsewhere, or "
+        "vice versa — a variant can increase a gene's activity and ALSO increase ADR risk, if "
+        "that gene's product is itself what causes the harm, exactly like this evidence "
+        "indicates): " + "; ".join(bits) + "\n"
+    )
+
+
+# ── Task 4: pathway grounding ──────────────────────────────────────
+#
+# Without this, narrative synthesis grounds a variant's mechanism in a
+# generic, drug-agnostic UniProt gene-function description — nothing tells
+# the LLM the actual causal chain for THIS drug. Confirmed as the direct
+# cause of a reproduced bug (3x): a narrative sets up a variant as reducing
+# production of a toxic metabolite, then still concludes toxicity increases
+# — backwards from its own logic, because nothing in the grounding data laid
+# out the real chain. The rs9024/CBR1 case is exactly this: CBR1 converts
+# doxorubicin -> doxorubicinol (the ClinPGx doxorubicin/Cardiomyocyte
+# pathway's own row 3), and doxorubicinol — not doxorubicin itself — is what
+# goes on to inhibit RYR2/ATP2A2/ACO1 and drive mitochondrial dysfunction
+# (same pathway file, rows 11/13/14/27). Less CBR1 activity -> less
+# doxorubicinol produced -> LESS cardiotoxicity, the opposite of what the
+# buggy narrative concluded. No new Neo4j node/edge type — this is parsed
+# straight from the downloaded TSVs into prompt text, same treatment as
+# adr_pathway above.
+
+PATHWAYS_DIR = os.path.join(SCRIPT_DIR, "data", "clinpgx", "pathways", "pathways-tsv")
+
+# canonical_drug -> ordered list of (adr_hint, filename). adr_hint is a
+# CANONICAL_ADRS name this specific file is most relevant to; None marks a
+# general/PK fallback file. First entry whose adr_hint matches the ADR being
+# explained wins; otherwise the first None-hinted entry is used. Verified
+# directly against the downloaded bulk archive (data/clinpgx/pathways/) —
+# not all 28 TARGET_DRUGS are covered, only what ClinPGx actually curated;
+# an uncovered drug just gets no pathway grounding (get_drug_pathway_text
+# returns ""), same graceful-absence handling as adr_pathway already has.
+DRUG_PATHWAY_FILES = {
+    "cisplatin": [
+        (None, "PA150642262-Platinum_Pathway_Pharmacokinetics_Pharmacodynamics.tsv"),
+    ],
+    "doxorubicin": [
+        ("Cardiotoxicity", "PA165292164-Doxorubicin_Pathway_Cardiomyocyte_Cell_Pharmacodynamics.tsv"),
+        (None, "PA165292177-Doxorubicin_Pathway_Pharmacokinetics.tsv"),
+        (None, "PA165292163-Doxorubicin_Pathway_Cancer_Cell_Pharmacodynamics.tsv"),
+    ],
+    "methotrexate": [
+        (None, "PA165816349-Methotrexate_Pathway_Pharmacokinetics.tsv"),
+        (None, "PA2039-Methotrexate_Pathway_Cancer_Cell_Pharmacodynamics_and_Pharmacokinetics.tsv"),
+        (None, "PA165816270-Methotrexate_Pathway_Brain_Cell_Pharmacokinetics.tsv"),
+    ],
+    "vincristine": [
+        (None, "PA150981002-Vinka_Alkaloid_Pathway_Pharmacokinetics.tsv"),
+    ],
+    "paclitaxel": [
+        (None, "PA154426155-Taxane_Pathway_Pharmacokinetics.tsv"),
+    ],
+}
+
+_REACTION_VERBS = {
+    "Biochemical Reaction": "is converted to",
+    "Transport": "is transported as",
+    "Activation": "activates",
+    "Inhibition": "inhibits",
+    "Leads To": "leads to",
+    "Catalysis": "catalyzes",
+    "Control": "controls",
+}
+
+_pathway_file_cache = {}  # filename -> parsed step-text list, avoids re-reading TSVs
+
+
+def _format_pathway_step(row):
+    """Prefers ClinPGx's own Summary column (plain English, already
+    well-formed) — only some pathway files have one (confirmed: Platinum,
+    Taxane, and Vinka Alkaloid files have no Summary column at all, just
+    structured fields). Falls back to a synthesized sentence from
+    From/To/Reaction Type/Controller for those. Returns None for the
+    occasional empty stub row (confirmed present in the Platinum file:
+    rows with a Reaction Type but no From/To/Genes at all) so callers can
+    filter them out rather than emit a blank line."""
+    summary = row.get("Summary")
+    if isinstance(summary, str) and summary.strip():
+        return summary.strip()
+
+    frm = str(row.get("From") or "").strip()
+    to = str(row.get("To") or "").strip()
+    controller = str(row.get("Controller") or "").strip()
+    genes = str(row.get("Genes") or "").strip()
+    rtype = str(row.get("Reaction Type") or "").strip()
+
+    if not frm and not to and not genes and not controller:
+        return None  # empty stub row — nothing to say
+
+    verb = _REACTION_VERBS.get(rtype, rtype.lower() if rtype else "relates to")
+    if frm and to:
+        sentence = f"{frm} {verb} {to}"
+    elif frm:
+        sentence = f"{frm} ({rtype or 'involved'})"
+    elif to:
+        sentence = f"{to} ({rtype or 'involved'})"
+    else:
+        sentence = None
+
+    if sentence and controller:
+        sentence += f" (catalyzed by {controller})"
+    return sentence
+
+
+def parse_pathway_tsv(path):
+    """Returns an ordered list of plain-text pathway-step strings, or []
+    if the file doesn't exist or has no usable rows."""
+    try:
+        df = pd.read_csv(path, sep="\t", low_memory=False)
+    except FileNotFoundError:
+        return []
+    steps = []
+    for _, row in df.iterrows():
+        step = _format_pathway_step(row)
+        if step:
+            steps.append(step)
+    return steps
+
+
+def get_drug_pathway_text(drug, adr):
+    """drug: a canonical TARGET_DRUGS name (lowercase). Returns a compact
+    grounding text block for this (drug, adr) pair's most relevant ClinPGx
+    pathway, or "" if this drug isn't covered by the downloaded archive at
+    all — an honest absence, not a fabricated pathway."""
+    entries = DRUG_PATHWAY_FILES.get(drug)
+    if not entries:
+        return ""
+
+    filename = next((f for hint, f in entries if hint == adr), None)
+    if filename is None:
+        filename = next((f for hint, f in entries if hint is None), entries[0][1])
+
+    if filename not in _pathway_file_cache:
+        _pathway_file_cache[filename] = parse_pathway_tsv(
+            os.path.join(PATHWAYS_DIR, filename))
+    steps = _pathway_file_cache[filename]
+    if not steps:
+        return ""
+    return "\n".join(f"- {s}" for s in steps)
+
+
+_TARGET_DRUG_NAMES = sorted(TARGET_DRUGS.keys(), key=len, reverse=True)  # longest first, avoids
+                                                                          # a short name matching
+                                                                          # inside a longer one
+
+
+def extract_drug_from_text(text):
+    """Best-effort drug identification from a KG finding's free-text
+    description (e.g. "...when treated with cisplatin...") — used because
+    the (variant, gene, ADR) tuples this pipeline is keyed on carry no
+    structured drug field of their own (ADR edges connect Variant->ADR
+    directly, never through a Drug node). Returns a canonical TARGET_DRUGS
+    name or None."""
+    if not text:
+        return None
+    lowered = text.lower()
+    for drug in _TARGET_DRUG_NAMES:
+        if drug in lowered:
+            return drug
+    return None
+
+
+def build_narrative_prompt(gene, function_text, adr, adr_pathway, direction, variant_names, description,
+                            drug_pathway=None, functional_evidence=None):
     clause = _direction_clause(direction, variant_names, description)
+    functional_clause = _functional_evidence_clause(functional_evidence)
+    drug_pathway_block = ""
+    if drug_pathway:
+        drug_pathway_block = f"""
+Drug-specific PK/PD pathway steps (source: ClinPGx pathway diagram — this is REAL, \
+curated pharmacology for this exact drug, not general background; it takes priority \
+over the gene function text above for tracing the causal chain, since it shows the \
+actual intermediate steps — e.g. a gene may act on a METABOLITE of the drug, not the \
+drug itself, and the metabolite (not the parent drug) may be what's directly \
+responsible for the ADR. Trace the chain through these steps if this gene appears in \
+them, rather than assuming the gene acts directly on the drug or that "more of the \
+gene's normal activity" always means "less toxicity" — check which direction the \
+specific step actually points):
+{drug_pathway}
+"""
     return f"""You are a clinical pharmacogenomicist explaining, in plain language for a \
 parent or clinician (not a specialist audience), WHY a genetic variant changes the \
 risk of a drug side effect.
@@ -486,18 +723,28 @@ Real biological function of this gene's protein (source: UniProt): {function_tex
 
 Adverse drug reaction: {adr}
 General injury pathway for this ADR: {adr_pathway}
-
+{drug_pathway_block}
 {clause}
+{functional_clause}
 
 Before writing: check whether the gene's real function (given above) actually connects to \
 the drug named in the knowledge-graph finding through an established, textbook \
 pharmacological pathway (e.g. the gene's protein is a known enzyme/transporter for \
-that drug or a close relative of it). Do NOT invent a novel biochemical bridge \
+that drug or a close relative of it) — or, if a drug-specific pathway is given above, \
+through the actual steps it lays out. Do NOT invent a novel biochemical bridge \
 connecting an unrelated function to this drug just to complete a causal chain — \
 e.g. a thiopurine-metabolizing enzyme showing a statistical association with an \
 unrelated drug's toxicity is NOT license to invent a pathway where that drug's \
 "metabolites" build up because of it; that link is not established by anything \
 above, and stating it as fact would be fabricating pharmacology.
+
+Also check: if functional-assay evidence is given above, does it say this variant \
+INCREASES or DECREASES the gene's own activity? Do not guess or default to assuming \
+loss-of-function — use whichever direction the functional-assay evidence actually \
+states. If no functional-assay evidence is given, do not assert a specific \
+increase/decrease in the gene's activity as fact; describe the effect in terms of \
+what the evidence actually supports (e.g. the association direction on the ADR \
+itself) rather than inventing which way the gene's own activity moved.
 
 - If the connection IS established: write a single flowing paragraph of 2-4 \
   sentences following the example's causal-chain structure: name the \
@@ -516,8 +763,9 @@ above, and stating it as fact would be fabricating pharmacology.
   of this branch. The paragraph ends at "the mechanism is not established"; \
   nothing about a possible pathway comes after that.
 
-Either way, base every biological claim ONLY on the gene function and ADR pathway text \
-given above and the knowledge-graph finding quoted above — do not invent \
+Either way, base every biological claim ONLY on the gene function, ADR pathway text, \
+drug-specific pathway steps, and functional-assay evidence (whichever of these are \
+given) above and the knowledge-graph finding quoted above — do not invent \
 additional biology, and do not name a different drug than the one in the KG \
 finding (or omit the drug entirely if none is given). Stay tightly focused on \
 explaining this specific {adr} finding — the gene function text above may mention \
@@ -531,6 +779,7 @@ itself — no headers, no preamble, no quotation marks around it."""
 def cmd_synthesize():
     nodes, edges = load_graph()
     tuples_to_edges = collect_adr_tuples(nodes, edges)
+    functional_evidence_map = collect_functional_evidence(edges)
     gene_functions = _load_json(GENE_FUNCTION_CACHE, default={})
     adr_pathways = _load_json(ADR_PATHWAY_CACHE, default={})
     if len(adr_pathways) < len(CANONICAL_ADRS):
@@ -553,9 +802,17 @@ def cmd_synthesize():
             edges, tuples_to_edges[(variant, gene, adr)]
         )
 
+        # (variant, gene, ADR) tuples carry no structured drug field (ADR
+        # edges connect Variant->ADR directly, never through a Drug node) —
+        # best-effort recovered from the finding's own description text.
+        drug = extract_drug_from_text(description)
+        drug_pathway = get_drug_pathway_text(drug, adr) if drug else ""
+        functional_evidence = functional_evidence_map.get(variant)
+
         prompt = build_narrative_prompt(
             gene, function_text, adr, adr_pathways[adr], direction,
-            [variant], description,
+            [variant], description, drug_pathway=drug_pathway,
+            functional_evidence=functional_evidence,
         )
         try:
             text = _generate_narrative(client, prompt)

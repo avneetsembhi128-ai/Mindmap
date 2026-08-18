@@ -38,7 +38,7 @@ import pandas as pd
 from neo4j import GraphDatabase
 
 # ─────────────────────────────────────────────────────────────
-# CONNECTION / PATHS — shared by every subcommand
+# CONNECTION AND PATHS 
 # ─────────────────────────────────────────────────────────────
 NEO4J_URI  = os.environ.get("NEO4J_URI", "neo4j://127.0.0.1:7687")
 NEO4J_USER = os.environ.get("NEO4J_USER", "neo4j")
@@ -49,7 +49,6 @@ EXPORT_DIR = os.path.join(SCRIPT_DIR, "kg_export")
 
 BATCH_SIZE = 500
 LABELS = ["Gene", "Drug", "Variant", "ADR", "Study"]
-
 
 def get_driver():
     password = os.environ.get("NEO4J_PASSWORD")
@@ -63,7 +62,7 @@ def get_driver():
 
 
 # ═════════════════════════════════════════════════════════════
-# BUILD — rebuild the graph from raw PharmGKB/SIDER/ClinVar source data
+# BUILD — rebuild the graph from raw ClinPGx/SIDER/ClinVar source data
 # ═════════════════════════════════════════════════════════════
 #
 # Focused on these 6 drug-ADR pairs:
@@ -73,24 +72,14 @@ def get_driver():
 #   methotrexate    -> mucositis
 #   methotrexate    -> hepatotoxicity
 #   paclitaxel      -> peripheral neuropathy
-#
-# ...expanded to standard pediatric-oncology (COG-protocol) chemotherapy
-# agents and a broader set of clinically significant ADR categories. Both
-# dicts below are the actual scope boundary: add/remove a drug or ADR keyword
-# group here and every parsing function below picks it up automatically,
-# since they all route through canonicalize_drug() / canonicalize_adr()
-# rather than checking a hardcoded list per-function.
 
 TARGET_DRUGS = {
-    # Original 6-pair drugs
     "cisplatin":     "Platinum compound",
     "doxorubicin":   "Anthracycline",
     "vincristine":   "Vinca alkaloid",
     "methotrexate":  "Antimetabolite",
     "paclitaxel":    "Taxane",
     # Broadened to other standard pediatric-oncology (COG-protocol)
-    # chemotherapy agents. Hand-curated, not derived from a PharmGKB
-    # indication/ATC field — easy to prune or extend as a plain dict.
     "carboplatin":   "Platinum compound",
     "daunorubicin":  "Anthracycline",
     "epirubicin":    "Anthracycline",
@@ -116,23 +105,30 @@ TARGET_DRUGS = {
     "rituximab":     "Monoclonal antibody",
 }
 
-# Aliases map to the CANONICAL drug name they should merge into. E.g.
-# "adriamycin" is a brand/alt name for doxorubicin — it should never become
-# its own node.
-DRUG_ALIASES = {
-    "adriamycin":    "doxorubicin",
-    "vp-16":         "etoposide",
-    "vp16":          "etoposide",
-    "ara-c":         "cytarabine",
-    "cytosar":       "cytarabine",
-    "6-mp":          "mercaptopurine",
-    "6-mercaptopurine": "mercaptopurine",
-    "6-tg":          "thioguanine",
-    "6-thioguanine": "thioguanine",
-    "ctx":           "cyclophosphamide",
-    "cytoxan":       "cyclophosphamide",
-    "cpt-11":        "irinotecan",
+# Real brand/generic synonyms are loaded from ClinPGx's own drugs.tsv (see
+# build_drug_synonym_map / load_drug_synonym_map below) instead of being
+# hand-maintained here. This residual dict holds ONLY synonyms confirmed
+# (by spot-check against the downloaded drugs.tsv) to be missing from
+# ClinPGx's own Generic Names / Trade Names columns — real clinical
+# shorthand ClinPGx itself doesn't catalog, not a stand-in for the full
+# alias list this used to be. Every other previously-hardcoded alias
+# (adriamycin, ara-c, cytosar, 6-mercaptopurine, 6-thioguanine, ctx,
+# cytoxan, cpt-11) is now captured by the real synonym data and was
+# dropped from here as redundant.
+RESIDUAL_DRUG_ALIASES = {
+    "vp-16":         "etoposide",         # not in drugs.tsv at all
+    "vp16":          "etoposide",         # not in drugs.tsv at all
+    "6-mp":          "mercaptopurine",    # drugs.tsv has "6 MP" (space, not hyphen)
+    "6-tg":          "thioguanine",       # drugs.tsv has no 6-TG/6 TG form, only "TG"
 }
+
+# Populated once by load_drug_synonym_map() at the start of cmd_build(),
+# from ClinPGx's own drugs.tsv Generic Names / Trade Names columns —
+# {lowercased synonym: canonical drug name}. Module-level (like TARGET_DRUGS
+# and CTCAE_MAP) rather than threaded as a parameter, since canonicalize_drug()
+# is called from many independent parser functions across this file.
+_DRUG_SYNONYM_MAP = dict(RESIDUAL_DRUG_ALIASES)
+_DRUG_SYNONYM_PATTERN = None
 
 # Canonical ADR categories, keyed by the keywords used to both filter rows
 # and decide the canonical NODE NAME. Order matters: first match wins, so
@@ -174,6 +170,21 @@ ADR_CANONICAL_MAP = {
 # does that).
 TARGET_ADR_KEYWORDS = list(ADR_CANONICAL_MAP.keys())
 
+# Confirmed against the real downloaded data (var_pheno_ann.tsv): plain
+# substring containment on "liver" matches inside "delivery"/"deliver" (e.g.
+# a digoxin PK phenotype — "...direct delivery to the surface of the
+# duodenum..." — was getting canonicalized as Hepatotoxicity, and pulled an
+# off-target-drug row through is_target_adr's relevance gate along with it).
+# Requiring a real word boundary BEFORE each keyword closes that without
+# affecting any of the deliberately partial-word stems here (e.g. "ototox"
+# matching "ototoxicity", "neuropath" matching "neuropathy") — those all
+# still start at a genuine word boundary in legitimate text; only a
+# boundary is required on entry, not on exit, so the stems still match
+# their longer real forms.
+_ADR_KEYWORD_PATTERNS = {
+    kw: re.compile(r"\b" + re.escape(kw)) for kw in ADR_CANONICAL_MAP
+}
+
 # CTCAE grades for the target ADRs — keys match ADR_CANONICAL_MAP values
 # exactly, so every canonical ADR node reliably gets its CTCAE metadata.
 # Also the single source of truth for the 10 canonical ADR category names
@@ -206,22 +217,30 @@ def make_triple(head, head_label, relation, tail, tail_label,
 
 
 def is_target_drug(name):
-    if not name:
-        return False
-    return any(d in name.lower() for d in list(TARGET_DRUGS.keys()) + list(DRUG_ALIASES.keys()))
+    return canonicalize_drug(name) is not None
 
 
 def canonicalize_drug(name):
     """Returns the canonical target drug name for any alias, or None if this
     text doesn't refer to one of our target drugs at all. Replaces raw drug
-    text as the node identity so "adriamycin" and "doxorubicin" merge.
+    text as the node identity so e.g. "Platinol" and "cisplatin" merge.
+
+    Checks _DRUG_SYNONYM_MAP (real ClinPGx brand/generic names, see
+    build_drug_synonym_map) via a whole-word match, not plain substring
+    containment — some real synonyms are short abbreviations (e.g. "CP",
+    "TG", "MP", "AD") that would otherwise false-positive-match inside
+    unrelated text. TARGET_DRUGS' own (long, specific) canonical names are
+    still matched by plain substring, unchanged from before — collision
+    risk there is negligible and this preserves existing matching behavior
+    for things like "cisplatin-based" or "cisplatin/etoposide".
     """
     if not name:
         return None
     n = name.lower()
-    for alias, canonical in DRUG_ALIASES.items():
-        if alias in n:
-            return canonical
+    if _DRUG_SYNONYM_PATTERN is not None:
+        m = _DRUG_SYNONYM_PATTERN.search(n)
+        if m:
+            return _DRUG_SYNONYM_MAP[m.group(0)]  # n is already lowercased above
     for drug in TARGET_DRUGS.keys():
         if drug in n:
             return drug
@@ -240,13 +259,22 @@ def split_multi_value_field(raw):
     and each value may carry a "Category:" prefix (Side Effect:, Toxicity:,
     Other:, Efficacy:, PD:, PK:, Dosage:, etc.). Splits on comma or semicolon
     and strips any leading "Category:" label, returning clean individual terms.
+
+    Also strips stray leading/trailing double-quote characters left over
+    from values like drugs.tsv's Trade Names column, where an individual
+    synonym that itself contains a comma is quote-wrapped (e.g. `"CP0",
+    "Camptosar", "IRINOTECAN, CPT-11"`) — splitting that raw text on comma
+    is still correct (both "IRINOTECAN" and "CPT-11" are legitimate,
+    independent synonyms), but without this the two straddling the
+    protected comma would keep a literal quote character stuck to them
+    and then never match anything real again.
     """
     if not raw or raw == "nan":
         return []
     parts = re.split(r"[;,]", raw)
     cleaned = []
     for p in parts:
-        p = p.strip()
+        p = p.strip().strip('"').strip()
         if not p:
             continue
         p = _CATEGORY_PREFIX_RE.sub("", p).strip()
@@ -265,7 +293,7 @@ def canonicalize_adr(text):
         return None
     t = text.lower()
     for keyword, canonical in ADR_CANONICAL_MAP.items():
-        if keyword in t:
+        if _ADR_KEYWORD_PATTERNS[keyword].search(t):
             return canonical
     return None
 
@@ -276,7 +304,8 @@ def is_target_adr(text):
     that may contain several comma-joined terms before it's split."""
     if not text:
         return False
-    return any(k in text.lower() for k in TARGET_ADR_KEYWORDS)
+    t = text.lower()
+    return any(p.search(t) for p in _ADR_KEYWORD_PATTERNS.values())
 
 
 def enrich_with_cross_referenced_mechanism(triples):
@@ -317,7 +346,7 @@ def enrich_with_cross_referenced_mechanism(triples):
     return triples
 
 
-# ── Source 1 — PharmGKB Genes ────────────────────────────────────
+# ── Source 1 — ClinPGx Genes ─────────────────────────────────────
 
 def parse_genes(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -336,7 +365,74 @@ def parse_genes(path):
     return nodes
 
 
-# ── Source 2 — PharmGKB Drugs ────────────────────────────────────
+# ── Source 2 — ClinPGx Drugs ──────────────────────────────────────
+
+def build_drug_synonym_map(path):
+    """Builds {lowercased synonym: canonical drug name} from ClinPGx's own
+    drugs.tsv Generic Names / Trade Names columns — replaces the old
+    hand-maintained DRUG_ALIASES dict (now RESIDUAL_DRUG_ALIASES, see
+    above) with real brand/generic synonym data, so newly-encountered
+    brand names (e.g. "Platinol" for cisplatin) resolve without needing to
+    be anticipated and hardcoded in advance.
+
+    Resolved per ROW, not per individual synonym string: each row's own
+    canonical drug is decided once from its primary Name column (via the
+    same substring check against TARGET_DRUGS canonicalize_drug() already
+    used), and every synonym in that row inherits that one answer. This is
+    deliberately NOT "re-run canonicalize_drug on each split-out synonym
+    independently" — confirmed against the real file that this matters:
+    thioguanine's own listed synonym "2-Amino-6-mercaptopurine" contains
+    "mercaptopurine" as a substring, so resolving it independently would
+    wrongly attribute it to the mercaptopurine row instead of the
+    thioguanine row it actually came from. Every TARGET_DRUGS entry was
+    confirmed to match exactly one drugs.tsv row (no combination-product
+    Name pollution), so this row-scoped resolution is unambiguous.
+    """
+    df = pd.read_csv(path, sep="\t", low_memory=False)
+    synonym_map = {}
+    conflicts = 0
+    for _, row in df.iterrows():
+        primary_name = _clean_str(row.get("Name"))
+        if not primary_name:
+            continue
+        n = primary_name.lower()
+        canonical = next((d for d in TARGET_DRUGS if d in n), None)
+        if not canonical:
+            continue
+        synonyms = [primary_name]
+        for col in ("Generic Names", "Trade Names"):
+            synonyms += split_multi_value_field(str(row.get(col, "")))
+        for syn in synonyms:
+            key = syn.strip().lower()
+            if not key:
+                continue
+            existing = synonym_map.get(key)
+            if existing and existing != canonical:
+                conflicts += 1
+                continue  # keep the first-seen canonical for this synonym
+            synonym_map[key] = canonical
+    n_drugs = len(set(synonym_map.values()))
+    print(f"  Drug synonym map: {len(synonym_map):,} synonyms resolved for "
+          f"{n_drugs}/{len(TARGET_DRUGS)} target drugs"
+          + (f" ({conflicts} conflicting synonym(s) skipped)" if conflicts else ""))
+    return synonym_map
+
+
+def load_drug_synonym_map(path):
+    """Populates the module-level _DRUG_SYNONYM_MAP / _DRUG_SYNONYM_PATTERN
+    that canonicalize_drug()/is_target_drug() read everywhere else in this
+    file. Must run once, early in cmd_build(), before any parser that
+    resolves drug names runs — including parse_drugs itself.
+    """
+    global _DRUG_SYNONYM_MAP, _DRUG_SYNONYM_PATTERN
+    _DRUG_SYNONYM_MAP = build_drug_synonym_map(path)
+    _DRUG_SYNONYM_MAP.update(RESIDUAL_DRUG_ALIASES)
+    # Longest-first isn't actually required for correctness (every synonym
+    # maps unambiguously to one canonical drug, checked above), but it
+    # keeps the pattern's alternation trying the more specific match first.
+    alternatives = sorted((re.escape(s) for s in _DRUG_SYNONYM_MAP), key=len, reverse=True)
+    _DRUG_SYNONYM_PATTERN = re.compile(r"\b(?:" + "|".join(alternatives) + r")\b") if alternatives else None
+
 
 def parse_drugs(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -352,19 +448,23 @@ def parse_drugs(path):
         if canonical in seen_names:
             continue
         seen_names.add(canonical)
+        synonyms = []
+        for col in ("Generic Names", "Trade Names"):
+            synonyms += split_multi_value_field(str(row.get(col, "")))
         nodes.append({
             "name":       canonical,
             "drug_class": get_drug_class(canonical),
             "drug_type":  str(row.get("Type", "")).strip(),
             "cpic_level": str(row.get("Top CPIC Pairs Level", "")).strip(),
             "source_terms": raw_name,
+            "synonyms":   ", ".join(synonyms),
             "label":      "Drug"
         })
     print(f"  Drugs: {len(nodes):,}")
     return nodes
 
 
-# ── Source 3 — PharmGKB Variants (rsID + gene symbol reference) ──
+# ── Source 3 — ClinPGx Variants (rsID + gene symbol reference) ───
 
 def parse_variants(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -385,7 +485,7 @@ def parse_variants(path):
     return nodes
 
 
-# ── Source 4 — PharmGKB Clinical Variants (variant -> drug links) ─
+# ── Source 4 — ClinPGx Clinical Variants (variant -> drug links) ─
 
 EVIDENCE_CONFIDENCE = {
     "1A": "high", "1B": "high",
@@ -539,7 +639,7 @@ def parse_clinical_variants(path):
     return nodes, triples
 
 
-# ── Source 5 — PharmGKB Summary Annotations (real 1A-4 evidence grade) ──
+# ── Source 5 — ClinPGx Summary Annotations (real 1A-4 evidence grade) ──
 
 def _level_rank(level):
     """Sort key where a lower tuple = stronger evidence. Same ordering as
@@ -564,7 +664,13 @@ def parse_summary_annotations(annotations_path, evidence_path):
     13,212 of 14,094 Evidence IDs match a real Variant Annotation ID in
     var_drug_ann.tsv/var_pheno_ann.tsv; the remainder are Guideline/Label
     Annotation rows or functional-assay evidence, different evidence types
-    entirely, not a data problem).
+    entirely, not a data problem). That 94% figure is global, across all of
+    ClinPGx — scoped down to just the 6 primary drug-ADR pairs this project
+    targets, only 29.3% (382/1,305) of in-scope annotations actually have a
+    Summary Annotation (24.2%-39.3% per pair), below ClinPGx's ~48%
+    database-wide coverage ceiling: pediatric oncology is a newer, less-
+    curated area of their Summary Annotation program, not a join problem
+    here either.
 
     Returns {variant_annotation_id: level_of_evidence}. When one Variant
     Annotation ID is cited as evidence by more than one Summary Annotation,
@@ -598,7 +704,7 @@ def parse_summary_annotations(annotations_path, evidence_path):
     return level_by_annotation_id
 
 
-# ── Source 6 — PharmGKB Variant Annotations ──────────────────────
+# ── Source 6 — ClinPGx Variant Annotations ────────────────────────
 
 def parse_variant_drug_annotations(path, evidence_level_map=None):
     df = pd.read_csv(path, sep="\t", low_memory=False)
@@ -876,7 +982,32 @@ def parse_variant_fa_annotations(path):
     return nodes, triples, annotation_map
 
 
-def parse_study_parameters(path, annotation_map):
+def parse_pediatric_tags(path):
+    """Task 5: real, curator-assessed pediatric-population flag from
+    ClinPGx's pediatric dashboard export — replaces the guesswork
+    age_range regex extraction in parse_study_parameters below with an
+    actual reviewed determination. Every row in this file IS pediatric-
+    tagged (it's the dashboard's own filtered "pediatric" result set, not
+    a table with an explicit yes/no per annotation) — confirmed directly:
+    2,912 of 2,926 IDs (99.5%) match a real Variant Annotation ID in
+    var_drug_ann.tsv/var_pheno_ann.tsv/var_fa_ann.tsv, and 2,887 (98.7%)
+    appear directly in study_parameters.tsv's own Variant Annotation ID
+    column — this joins cleanly.
+
+    Returns the set of pediatric-tagged Variant Annotation IDs. An ID's
+    absence from this set means "not in ClinPGx's curated pediatric
+    subset" — which could mean assessed-as-adult OR simply never
+    reviewed for pediatric relevance; those two are NOT distinguishable
+    from this file alone, so parse_study_parameters treats absence as
+    unknown (None), never as a fabricated False.
+    """
+    df = pd.read_csv(path, sep="\t", low_memory=False)
+    tagged_ids = {_clean_str(v) for v in df.get("ID", []) if _clean_str(v)}
+    print(f"  Pediatric tags: {len(tagged_ids):,} pediatric-tagged Variant Annotation IDs")
+    return tagged_ids
+
+
+def parse_study_parameters(path, annotation_map, pediatric_ids=None):
     """Study-level evidence metadata (effect size, CI, sample size, study
     design) from PharmGKB's study_parameters.tsv — the direct fix for
     "no way to judge strength/reliability of a finding." study_parameters.tsv
@@ -894,6 +1025,7 @@ def parse_study_parameters(path, annotation_map):
     PharmGKB Study Parameters ID.
     """
     df = pd.read_csv(path, sep="\t", low_memory=False)
+    pediatric_ids = pediatric_ids or set()
     nodes   = []
     triples = []
     linked_edges = 0
@@ -925,6 +1057,12 @@ def parse_study_parameters(path, annotation_map):
         age_match = age_pattern.search(characteristics) if characteristics else None
         age_range = f"{age_match.group(1)}-{age_match.group(2)} years" if age_match else None
         dosing_reported = True if (characteristics and dosing_pattern.search(characteristics)) else None
+        # Task 5: real curator-assessed flag, kept alongside (not replacing)
+        # the regex-guessed age_range above — the two aren't fully
+        # redundant (age_range gives an actual bracket when parseable;
+        # this gives a reliable yes/unknown regardless of whether the free
+        # text happened to contain a parseable range at all).
+        pediatric_tagged = True if annotation_id in pediatric_ids else None
 
         study_name = f"PharmGKB Study {study_id}"
         nodes.append({
@@ -940,6 +1078,7 @@ def parse_study_parameters(path, annotation_map):
             "ci_upper":         _num_or_none(row.get("Confidence Interval Stop")),
             "population":       _clean_str(row.get("Biogeographical Groups")),
             "age_range":        age_range,
+            "pediatric_tagged": pediatric_tagged,
             "dosing_reported":  dosing_reported,
             "variant_annotation_id": annotation_id,
             "label":            "Study"
@@ -950,6 +1089,20 @@ def parse_study_parameters(path, annotation_map):
         # specific evidence edge (relation + tail) this Study backs, since a
         # Variant can have many outgoing evidence edges and a flat
         # Variant->Study link alone wouldn't say which one this supports.
+        #
+        # IMPORTANT: for_tail is load-bearing, not just descriptive metadata.
+        # The same (variant, study) pair can legitimately produce MULTIPLE
+        # triples here with different for_tail values — e.g. one study cited
+        # as evidence for both a variant's Myelosuppression association AND
+        # its Hepatotoxicity association. load_into_neo4j() folds for_tail
+        # into the MERGE pattern for exactly this reason: without it, all
+        # triples sharing (variant, study) collapse into a single Neo4j edge
+        # and every for_tail but the last-written one is silently dropped.
+        # Confirmed directly: this was losing 716 of 5,818 parsed triples
+        # (97% of them genuinely different findings, not duplicate rows)
+        # before the MERGE key was widened. If you touch either this
+        # triple-building loop or load_into_neo4j's SUPPORTED_BY_STUDY
+        # handling, keep for_tail part of the relationship identity.
         for (variant_name, relation, tail_name, tail_label) in findings:
             triples.append(make_triple(
                 variant_name, "Variant", "SUPPORTED_BY_STUDY",
@@ -1193,6 +1346,28 @@ def load_into_neo4j(all_nodes, all_triples, driver):
 
         total_edges = 0
         for (hl, rel, tl), items in by_pattern.items():
+            # SUPPORTED_BY_STUDY triples (the only ones carrying a for_tail
+            # property — see parse_study_parameters) need for_tail folded
+            # into the MERGE pattern itself, not just SET afterward. MERGE
+            # on a relationship keys purely on (start node, type, end node)
+            # unless a property is written inside the pattern — a plain
+            # MERGE (a)-[r:SUPPORTED_BY_STUDY]->(b) treats "the same Study
+            # backing the same Variant" as ONE edge, even when that Study is
+            # legitimately cited as evidence for several DIFFERENT findings
+            # (different ADRs, or different drugs) about that variant.
+            # Confirmed directly against a real build: this silently
+            # collapsed 716 of 5,818 parsed SUPPORTED_BY_STUDY triples (479
+            # distinct (variant, study) pairs) down to whichever finding
+            # happened to be written last — and 97% of those (465/479) were
+            # genuinely different findings being dropped, not duplicate
+            # source rows (only 14/479 pairs were true redundancy). Detected
+            # generically (by presence of for_tail on every item in this
+            # relation-type's batch) rather than hardcoding the relation
+            # name, so any future relation type with the same "one edge per
+            # (endpoints, distinguishing property)" shape gets the same
+            # protection automatically.
+            has_for_tail = all("for_tail" in item for item in items)
+
             for i in range(0, len(items), BATCH_SIZE):
                 chunk = items[i : i + BATCH_SIZE]
                 extra_props = set()
@@ -1201,6 +1376,18 @@ def load_into_neo4j(all_nodes, all_triples, driver):
                         if k not in ("head", "head_label", "relation",
                                      "tail", "tail_label"):
                             extra_props.add(k)
+                if has_for_tail:
+                    # Already pinned inside the MERGE pattern below — leaving
+                    # it in extra_props too wouldn't be wrong (the SET value
+                    # would just re-write the same value MERGE already
+                    # matched on), but excluding it keeps the two clauses
+                    # from doing redundant, confusing double duty on the same
+                    # property.
+                    extra_props.discard("for_tail")
+                    merge_clause = f"MERGE (a)-[r:{rel} {{for_tail: item.for_tail}}]->(b) "
+                else:
+                    merge_clause = f"MERGE (a)-[r:{rel}]->(b) "
+
                 set_clause = ", ".join([f"r.{p} = item.{p}" for p in extra_props])
                 if set_clause:
                     set_clause = "SET " + set_clause
@@ -1209,7 +1396,7 @@ def load_into_neo4j(all_nodes, all_triples, driver):
                     f"UNWIND $items AS item "
                     f"MATCH (a:{hl} {{name: item.head}}) "
                     f"MATCH (b:{tl} {{name: item.tail}}) "
-                    f"MERGE (a)-[r:{rel}]->(b) "
+                    f"{merge_clause}"
                     f"{set_clause}",
                     items=chunk
                 )
@@ -1282,6 +1469,11 @@ def cmd_build():
     all_triples = []
 
     print("\n" + "="*50)
+    print("Loading real drug synonym map (ClinPGx drugs.tsv Generic/Trade Names)")
+    print("="*50)
+    load_drug_synonym_map(os.path.join(clinpgx, "drugs", "drugs.tsv"))
+
+    print("\n" + "="*50)
     print("SOURCE 1 — ClinPGx Genes")
     print("="*50)
     gene_ref_nodes = parse_genes(
@@ -1336,9 +1528,12 @@ def cmd_build():
         for k, v in m.items():
             annotation_map[k].extend(v)
 
+    pediatric_ids = parse_pediatric_tags(
+        os.path.join(clinpgx, "pediatric", "pediatric_variant_annotations.tsv"))
+
     st_nodes, st_triples = parse_study_parameters(
         os.path.join(clinpgx, "variantAnnotations", "study_parameters.tsv"),
-        annotation_map)
+        annotation_map, pediatric_ids)
     all_nodes   += st_nodes
     all_triples += st_triples
 
@@ -1797,6 +1992,41 @@ def cmd_audit():
                     f"{drug} -> {adr}: 0/{total} chain variants have COMPLETE study-level "
                     f"evidence ({incomplete} linked-but-incomplete, {no_link} unlinkable)"
                 )
+
+        _section("10. PEDIATRIC POPULATION COVERAGE (curator-assessed, not the age_range guess)")
+        print("  % of chain variants with at least one SUPPORTED_BY_STUDY link to a Study")
+        print("  ClinPGx's own pediatric dashboard flagged — informational, not a pass/fail")
+        print("  check: a low number here is a real, evidenced limitation to report honestly,")
+        print("  not a bug in this KG.")
+        for drug, adr in PRIMARY_PAIRS:
+            gv_rel = "|".join(GENE_TO_VARIANT_RELS)
+            vd_rel = "|".join(VARIANT_TO_DRUG_RELS)
+            va_rel = "|".join(VARIANT_TO_ADR_RELS)
+
+            result = session.run(
+                f"MATCH (g:Gene)-[:{gv_rel}]->(v:Variant)-[:{vd_rel}]->(d:Drug {{name:$drug}}) "
+                f"MATCH (v)-[:{va_rel}]->(a:ADR {{name:$adr}}) "
+                f"OPTIONAL MATCH (v)-[s:SUPPORTED_BY_STUDY]->(st:Study) "
+                f"WHERE st.pediatric_tagged = true AND s.for_tail IN [$drug, $adr] "
+                f"RETURN count(DISTINCT v) AS n",
+                drug=drug, adr=adr
+            )
+            pediatric_variants = result.single()["n"]
+
+            total_result = session.run(
+                f"MATCH (g:Gene)-[:{gv_rel}]->(v:Variant)-[:{vd_rel}]->(d:Drug {{name:$drug}}) "
+                f"MATCH (v)-[:{va_rel}]->(a:ADR {{name:$adr}}) "
+                f"RETURN count(DISTINCT v) AS n",
+                drug=drug, adr=adr
+            )
+            total = total_result.single()["n"]
+
+            if total == 0:
+                print(f"  [N/A]  {drug} -> {adr}: no reasoning-chain variants to check (see section 8)")
+                continue
+            pct = pediatric_variants / total * 100
+            print(f"  [INFO] {drug} -> {adr}: {pediatric_variants}/{total} variants ({pct:.1f}%) "
+                  f"have pediatric-tagged study evidence")
 
     _section("SUMMARY")
     if not issues:
