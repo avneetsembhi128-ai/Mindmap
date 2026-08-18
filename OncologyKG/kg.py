@@ -2,15 +2,16 @@
 kg.py — unified CLI for OncologyKG
 
 Builds and manages the Pediatric Oncology ADR Knowledge Graph (Gene -> Variant
--> Drug -> ADR) in Neo4j, sourced from PharmGKB, SIDER, and ClinVar.
+-> Drug -> ADR) in Neo4j, sourced from 3 independent resources: ClinPGx (merger 
+of PharmGKB, CPIC, and PharmCAT), SIDER, and ClinVar. data/ is organized by source 
+(clinpgx/,sider/, clinvar/).
 
 Subcommands:
     python kg.py load      Rebuild the graph from kg_export/ (committed to the
-                            repo — no raw source data needed). This is the
-                            fast path to reproduce the exact graph on a new
-                            machine.
+                            This is the fast path to reproduce the exact graph 
+                            on a new machine.
     python kg.py build     Rebuild the graph from scratch by parsing raw
-                            PharmGKB/SIDER/ClinVar files in data/ (see
+                            ClinPGx/SIDER/ClinVar files in data/ (see
                             README.md for where to download them — data/ is
                             gitignored, not committed).
     python kg.py export    Dump the live graph in Neo4j to kg_export/
@@ -47,7 +48,7 @@ DATA_DIR   = os.path.join(SCRIPT_DIR, "data")
 EXPORT_DIR = os.path.join(SCRIPT_DIR, "kg_export")
 
 BATCH_SIZE = 500
-LABELS = ["Gene", "Drug", "Variant", "ADR"]
+LABELS = ["Gene", "Drug", "Variant", "ADR", "Study"]
 
 
 def get_driver():
@@ -282,12 +283,15 @@ def enrich_with_cross_referenced_mechanism(triples):
     """LINKED_TO_ADR/AFFECTS_RESPONSE_TO edges (from clinicalVariants.tsv)
     carry PharmGKB's formal evidence_level grading but no mechanism/
     description text. ASSOCIATED_WITH_ADR/PHARMACOGENOMIC_ASSOCIATION edges
-    (from variantAnnotations) carry mechanism/description but no formal
-    grade. When the SAME variant connects to the SAME drug/ADR through both
-    source tables, this copies the mechanism text across to the graded edge,
-    tagging its origin (mechanism_source) so it's traceable back to the
-    annotation source rather than looking like it came from the graded edge
-    itself.
+    (from variantAnnotations) carry mechanism/description, and — since
+    Task 2's parse_summary_annotations() — a real evidence_level too,
+    whenever a matching Summary Annotation exists (still absent otherwise).
+    That grade is independent of what this function does: it only backfills
+    LINKED_TO_ADR/AFFECTS_RESPONSE_TO's missing mechanism/description text
+    when the SAME variant connects to the SAME drug/ADR through both source
+    tables, tagging its origin (mechanism_source) so it's traceable back to
+    the annotation source rather than looking like it came from the graded
+    edge itself.
     """
     mechanism_lookup = {}
     for t in triples:
@@ -434,6 +438,30 @@ def _normalize_for_match(s):
     return re.sub(r"\s+", "", s).lower()
 
 
+def _clean_str(val):
+    """PharmGKB TSV cells come through pandas as float NaN for blanks. Returns
+    a stripped string, or None (never the literal string 'nan') so downstream
+    `SET x += n` in load_into_neo4j drops the property entirely instead of
+    writing 'nan' as a real value."""
+    if pd.isna(val):
+        return None
+    s = str(val).strip()
+    return s if s and s.lower() != "nan" else None
+
+
+def _num_or_none(val):
+    """Same NaN problem as _clean_str, but for numeric columns (Study Cases,
+    Ratio Stat, Confidence Interval Start/Stop, ...) — float('nan') parses
+    successfully as a float, so pd.isna() must be checked first or every
+    missing numeric cell would silently become NaN instead of absent."""
+    if pd.isna(val):
+        return None
+    try:
+        return float(val)
+    except (TypeError, ValueError):
+        return None
+
+
 def parse_clinical_variants(path):
     df = pd.read_csv(path, sep="\t", low_memory=False)
     nodes   = []
@@ -511,14 +539,78 @@ def parse_clinical_variants(path):
     return nodes, triples
 
 
-# ── Source 5 — PharmGKB Variant Annotations ──────────────────────
+# ── Source 5 — PharmGKB Summary Annotations (real 1A-4 evidence grade) ──
 
-def parse_variant_drug_annotations(path):
+def _level_rank(level):
+    """Sort key where a lower tuple = stronger evidence. Same ordering as
+    OncologyKGMM.py's _evidence_score, duplicated here (not imported) since
+    kg.py has no dependency on that file and shouldn't gain one for one
+    helper. PharmGKB/ClinPGx levels run 1A (strongest) through 4 (weakest)."""
+    m = re.match(r"(\d+)([A-Za-z]?)", level)
+    return (int(m.group(1)), m.group(2) or "A") if m else (9, "Z")
+
+
+def parse_summary_annotations(annotations_path, evidence_path):
+    """Task 2: PharmGKB/ClinPGx's curated 1A-4 evidence GRADE for a
+    variant-drug/ADR finding — distinct from clinicalVariants.tsv's own
+    (older, thinner) per-variant evidence level, and distinct from the flat
+    "medium" confidence PHARMACOGENOMIC_ASSOCIATION/ASSOCIATED_WITH_ADR
+    edges carried until now regardless of how strong the underlying evidence
+    actually was.
+
+    Neither summary_annotations.tsv row references a Variant Annotation ID
+    directly — the join runs through summary_ann_evidence.tsv, whose
+    "Evidence ID" column IS the Variant Annotation ID (confirmed directly:
+    13,212 of 14,094 Evidence IDs match a real Variant Annotation ID in
+    var_drug_ann.tsv/var_pheno_ann.tsv; the remainder are Guideline/Label
+    Annotation rows or functional-assay evidence, different evidence types
+    entirely, not a data problem).
+
+    Returns {variant_annotation_id: level_of_evidence}. When one Variant
+    Annotation ID is cited as evidence by more than one Summary Annotation,
+    keeps the strongest (lowest-numbered) level rather than an arbitrary one.
+    """
+    summaries = pd.read_csv(annotations_path, sep="\t", low_memory=False)
+    evidence  = pd.read_csv(evidence_path, sep="\t", low_memory=False)
+
+    level_by_summary_id = {}
+    for _, row in summaries.iterrows():
+        sid = _clean_str(row.get("Summary Annotation ID"))
+        level = _clean_str(row.get("Level of Evidence"))
+        if sid and level:
+            level_by_summary_id[sid] = level
+
+    level_by_annotation_id = {}
+    for _, row in evidence.iterrows():
+        annotation_id = _clean_str(row.get("Evidence ID"))
+        sid = _clean_str(row.get("Summary Annotation ID"))
+        if not annotation_id or not sid:
+            continue
+        level = level_by_summary_id.get(sid)
+        if not level:
+            continue
+        existing = level_by_annotation_id.get(annotation_id)
+        if existing is None or _level_rank(level) < _level_rank(existing):
+            level_by_annotation_id[annotation_id] = level
+
+    print(f"  Summary annotations: {len(level_by_summary_id):,} summaries, "
+          f"{len(level_by_annotation_id):,} Variant Annotation IDs with a real evidence grade")
+    return level_by_annotation_id
+
+
+# ── Source 6 — PharmGKB Variant Annotations ──────────────────────
+
+def parse_variant_drug_annotations(path, evidence_level_map=None):
     df = pd.read_csv(path, sep="\t", low_memory=False)
     nodes   = []
     triples = []
+    # variant_annotation_id -> [(variant, relation, tail, tail_label), ...],
+    # consumed by parse_study_parameters() to attach Study nodes.
+    annotation_map = defaultdict(list)
+    evidence_level_map = evidence_level_map or {}
 
     for _, row in df.iterrows():
+        annotation_id = _clean_str(row.get("Variant Annotation ID"))
         variant_raw = str(row.get("Variant/Haplotypes", "")).strip()
         gene     = str(row.get("Gene",     "")).strip()
         drug     = str(row.get("Drug(s)",  "")).strip()
@@ -533,6 +625,15 @@ def parse_variant_drug_annotations(path):
             continue
         if not is_target_drug(drug):
             continue
+
+        # Task 2: real PharmGKB/ClinPGx 1A-4 evidence grade where a Summary
+        # Annotation covers this Variant Annotation ID, replacing the flat
+        # "medium" this edge type used to carry unconditionally. Left None
+        # (not defaulted to "medium" or anything else) when no Summary
+        # Annotation exists — an honest "we don't have a real grade for
+        # this one" rather than a fabricated one.
+        evidence_level = evidence_level_map.get(annotation_id) if annotation_id else None
+        confidence = EVIDENCE_CONFIDENCE.get(evidence_level) if evidence_level else None
 
         mechanism = "unknown"
         if pdpk and pdpk != "nan":
@@ -572,13 +673,19 @@ def parse_variant_drug_annotations(path):
                     triples.append(make_triple(
                         variant, "Variant", "PHARMACOGENOMIC_ASSOCIATION",
                         canonical_drug, "Drug",
-                        "PharmGKB_variantAnnotations", "medium",
+                        "PharmGKB_variantAnnotations", confidence,
                         mechanism=mechanism,
                         phenotype_category=pheno_cat,
                         direction=direction,
                         description=sentence[:300] if sentence else "",
-                        source_term=d
+                        source_term=d,
+                        variant_annotation_id=annotation_id,
+                        evidence_level=evidence_level
                     ))
+                    if annotation_id:
+                        annotation_map[annotation_id].append(
+                            (variant, "PHARMACOGENOMIC_ASSOCIATION",
+                             canonical_drug, "Drug"))
 
             # Gene -> HAS_VARIANT -> Variant
             if gene and gene != "nan":
@@ -591,15 +698,18 @@ def parse_variant_drug_annotations(path):
                     ))
 
     print(f"  Variant-drug annotations: {len(triples):,} edges (filtered to oncology drugs)")
-    return nodes, triples
+    return nodes, triples, annotation_map
 
 
-def parse_variant_pheno_annotations(path):
+def parse_variant_pheno_annotations(path, evidence_level_map=None):
     df = pd.read_csv(path, sep="\t", low_memory=False)
     nodes   = []
     triples = []
+    annotation_map = defaultdict(list)
+    evidence_level_map = evidence_level_map or {}
 
     for _, row in df.iterrows():
+        annotation_id = _clean_str(row.get("Variant Annotation ID"))
         variant_raw = str(row.get("Variant/Haplotypes", "")).strip()
         drug     = str(row.get("Drug(s)",   "")).strip()
         phenotype= str(row.get("Phenotype", "")).strip()
@@ -612,6 +722,10 @@ def parse_variant_pheno_annotations(path):
 
         if not is_target_drug(drug) and not is_target_adr(phenotype):
             continue
+
+        # Task 2 — see the matching comment in parse_variant_drug_annotations.
+        evidence_level = evidence_level_map.get(annotation_id) if annotation_id else None
+        confidence = EVIDENCE_CONFIDENCE.get(evidence_level) if evidence_level else None
 
         # FIX: extract the baseline clause once per row, before looping
         # over the split variants below.
@@ -626,6 +740,25 @@ def parse_variant_pheno_annotations(path):
             if baseline_text and _normalize_for_match(variant) in _normalize_for_match(baseline_text):
                 continue
 
+            # FIX: this parser previously never created a node for `variant`
+            # itself — only for the ADR it's associated with. Any variant
+            # name not also present in var_drug_ann.tsv, var_fa_ann.tsv,
+            # clinicalVariants.tsv, or the variants.tsv reference dump (true
+            # for ~8% of rows here, mostly HLA alleles and named metabolizer
+            # phenotypes like "DPYD deficiency") never got a Variant node
+            # anywhere, so load_into_neo4j's `MATCH (a:Variant {name:...})`
+            # silently failed and the ASSOCIATED_WITH_ADR edge never loaded.
+            nodes.append({
+                "name":      variant,
+                "hgvs":      variant if variant.startswith("c.") or
+                                        variant.startswith("p.") or
+                                        variant.startswith("g.") else "",
+                "star_allele": variant if "*" in variant else "",
+                "rsid":      variant if variant.startswith("rs") else "",
+                "source_terms": variant_raw if variant_raw != variant else "",
+                "label":     "Variant"
+            })
+
             if phenotype and phenotype != "nan":
                 for phen in split_multi_value_field(phenotype):
                     canonical_adr = canonicalize_adr(phen)
@@ -638,18 +771,203 @@ def parse_variant_pheno_annotations(path):
                         triples.append(make_triple(
                             variant, "Variant", "ASSOCIATED_WITH_ADR",
                             canonical_adr, "ADR",
-                            "PharmGKB_variantAnnotations", "medium",
+                            "PharmGKB_variantAnnotations", confidence,
                             side_effect_type=side_eff,
                             direction=direction,
                             description=sentence[:300] if sentence else "",
-                            source_term=phen
+                            source_term=phen,
+                            variant_annotation_id=annotation_id,
+                            evidence_level=evidence_level
                         ))
+                        if annotation_id:
+                            annotation_map[annotation_id].append(
+                                (variant, "ASSOCIATED_WITH_ADR",
+                                 canonical_adr, "ADR"))
 
     print(f"  Variant-phenotype annotations: {len(triples):,} edges (filtered to oncology ADRs)")
+    return nodes, triples, annotation_map
+
+
+def parse_variant_fa_annotations(path):
+    """Functional-assay evidence — in vitro / mechanistic findings (enzyme
+    activity, cell assays, recombinant protein expression) from PharmGKB's
+    var_fa_ann.tsv. Distinct in kind from var_drug_ann (clinical dosing/PK/PD)
+    and var_pheno_ann (clinical phenotype/ADR) above: this file carries
+    Assay type / Cell type columns those don't, and its Sentence describes a
+    lab finding rather than a clinical outcome. Kept as its own relation
+    (HAS_FUNCTIONAL_EVIDENCE) rather than folded into PHARMACOGENOMIC_ASSOCIATION
+    so mechanism narratives can cite real in vitro evidence without it being
+    mistaken for a clinical association. Unlike the truncated `description`
+    on the other variantAnnotations edges (sentence[:300] — a known, documented
+    lossy constraint), the sentence here is kept in full: there's no established
+    reason to replicate that constraint in a brand-new edge type.
+    """
+    df = pd.read_csv(path, sep="\t", low_memory=False)
+    nodes   = []
+    triples = []
+    annotation_map = defaultdict(list)
+
+    for _, row in df.iterrows():
+        annotation_id = _clean_str(row.get("Variant Annotation ID"))
+        variant_raw = str(row.get("Variant/Haplotypes", "")).strip()
+        gene     = str(row.get("Gene",     "")).strip()
+        drug     = str(row.get("Drug(s)",  "")).strip()
+        sentence = str(row.get("Sentence", "")).strip()
+        direction= str(row.get("Direction of effect", "")).strip()
+        functional_terms = _clean_str(row.get("Functional terms")) or ""
+        assay_type = _clean_str(row.get("Assay type")) or ""
+        cell_type  = _clean_str(row.get("Cell type")) or ""
+
+        if not variant_raw or variant_raw == "nan":
+            continue
+        if not drug or drug == "nan":
+            continue
+        if not is_target_drug(drug):
+            continue
+
+        baseline_text = _extract_baseline_text(sentence)
+
+        for variant in split_variant_list(variant_raw):
+            if baseline_text and _normalize_for_match(variant) in _normalize_for_match(baseline_text):
+                continue
+
+            nodes.append({
+                "name":      variant,
+                "hgvs":      variant if variant.startswith("c.") or
+                                        variant.startswith("p.") or
+                                        variant.startswith("g.") else "",
+                "star_allele": variant if "*" in variant else "",
+                "rsid":      variant if variant.startswith("rs") else "",
+                "source_terms": variant_raw if variant_raw != variant else "",
+                "label":     "Variant"
+            })
+
+            # Variant -> HAS_FUNCTIONAL_EVIDENCE -> Drug
+            for d in split_multi_value_field(drug):
+                canonical_drug = canonicalize_drug(d)
+                if canonical_drug:
+                    triples.append(make_triple(
+                        variant, "Variant", "HAS_FUNCTIONAL_EVIDENCE",
+                        canonical_drug, "Drug",
+                        "PharmGKB_variantAnnotations_functional", "medium",
+                        direction=direction,
+                        functional_terms=functional_terms,
+                        assay_type=assay_type,
+                        cell_type=cell_type,
+                        description=sentence if sentence and sentence != "nan" else "",
+                        source_term=d,
+                        variant_annotation_id=annotation_id
+                    ))
+                    if annotation_id:
+                        annotation_map[annotation_id].append(
+                            (variant, "HAS_FUNCTIONAL_EVIDENCE",
+                             canonical_drug, "Drug"))
+
+            # Gene -> HAS_VARIANT -> Variant
+            if gene and gene != "nan":
+                for g in split_multi_value_field(gene):
+                    triples.append(make_triple(
+                        g, "Gene", "HAS_VARIANT",
+                        variant, "Variant",
+                        "PharmGKB_variantAnnotations_functional", "medium"
+                    ))
+
+    print(f"  Variant functional-assay annotations: {len(triples):,} edges (filtered to oncology drugs)")
+    return nodes, triples, annotation_map
+
+
+def parse_study_parameters(path, annotation_map):
+    """Study-level evidence metadata (effect size, CI, sample size, study
+    design) from PharmGKB's study_parameters.tsv — the direct fix for
+    "no way to judge strength/reliability of a finding." study_parameters.tsv
+    has no variant/drug/ADR columns of its own; every row is joined purely on
+    Variant Annotation ID against `annotation_map`, built while parsing
+    var_drug_ann/var_pheno_ann/var_fa_ann above (the three sibling files that
+    actually name the variant and drug/ADR). Rows whose annotation ID isn't
+    in the map (e.g. because that annotation didn't involve a target
+    oncology drug/ADR and its row was filtered out upstream) are skipped —
+    counted and reported rather than silently dropped.
+
+    A single evidence edge can have multiple supporting Study nodes; that's
+    intentional (surfaces genuinely conflicting studies) and falls out
+    naturally here since each Study node is uniquely named by its own
+    PharmGKB Study Parameters ID.
+    """
+    df = pd.read_csv(path, sep="\t", low_memory=False)
+    nodes   = []
+    triples = []
+    linked_edges = 0
+    unmatched = 0
+
+    # Best-effort only — PharmGKB doesn't guarantee either field is
+    # structured in Characteristics free text. Left as None/absent (not
+    # False) when not confidently found: absence here is an honest data
+    # gap, not evidence the study lacked that detail.
+    age_pattern = re.compile(
+        r"\b(\d{1,3})\s*(?:-|–|to)\s*(\d{1,3})\s*(?:years|yrs|y\.?o\.?)\b",
+        re.IGNORECASE)
+    dosing_pattern = re.compile(
+        r"\b\d+(?:\.\d+)?\s*(?:mg/kg|mg/m\^?2|mg/m2|mg|mcg|g)\b",
+        re.IGNORECASE)
+
+    for _, row in df.iterrows():
+        study_id = _clean_str(row.get("Study Parameters ID"))
+        annotation_id = _clean_str(row.get("Variant Annotation ID"))
+        if not study_id or not annotation_id:
+            continue
+
+        findings = annotation_map.get(annotation_id)
+        if not findings:
+            unmatched += 1
+            continue
+
+        characteristics = _clean_str(row.get("Characteristics"))
+        age_match = age_pattern.search(characteristics) if characteristics else None
+        age_range = f"{age_match.group(1)}-{age_match.group(2)} years" if age_match else None
+        dosing_reported = True if (characteristics and dosing_pattern.search(characteristics)) else None
+
+        study_name = f"PharmGKB Study {study_id}"
+        nodes.append({
+            "name":             study_name,
+            "study_type":       _clean_str(row.get("Study Type")),
+            "n_cases":          _num_or_none(row.get("Study Cases")),
+            "n_controls":       _num_or_none(row.get("Study Controls")),
+            "characteristics":  characteristics,
+            "effect_size":      _num_or_none(row.get("Ratio Stat")),
+            "effect_size_type": _clean_str(row.get("Ratio Stat Type")),
+            "p_value":          _clean_str(row.get("P Value")),
+            "ci_lower":         _num_or_none(row.get("Confidence Interval Start")),
+            "ci_upper":         _num_or_none(row.get("Confidence Interval Stop")),
+            "population":       _clean_str(row.get("Biogeographical Groups")),
+            "age_range":        age_range,
+            "dosing_reported":  dosing_reported,
+            "variant_annotation_id": annotation_id,
+            "label":            "Study"
+        })
+
+        # Variant -> SUPPORTED_BY_STUDY -> Study, once per finding this
+        # study's annotation ID supports. for_relation/for_tail record which
+        # specific evidence edge (relation + tail) this Study backs, since a
+        # Variant can have many outgoing evidence edges and a flat
+        # Variant->Study link alone wouldn't say which one this supports.
+        for (variant_name, relation, tail_name, tail_label) in findings:
+            triples.append(make_triple(
+                variant_name, "Variant", "SUPPORTED_BY_STUDY",
+                study_name, "Study",
+                "PharmGKB_studyParameters", "medium",
+                for_relation=relation,
+                for_tail=tail_name,
+                for_tail_label=tail_label
+            ))
+        linked_edges += len(findings)
+
+    print(f"  Study parameters: {len(nodes):,} Study nodes, {linked_edges:,} "
+          f"SUPPORTED_BY_STUDY edges ({unmatched:,} rows had no matching "
+          f"in-scope annotation)")
     return nodes, triples
 
 
-# ── Source 6 — SIDER ──────────────────────────────────────────────
+# ── Source 7 — SIDER ──────────────────────────────────────────────
 
 def parse_sider(se_path, names_path):
     id_to_name = {}
@@ -722,7 +1040,7 @@ def parse_sider(se_path, names_path):
     return nodes, triples
 
 
-# ── Source 7 — ClinVar ────────────────────────────────────────────
+# ── Source 8 — ClinVar ────────────────────────────────────────────
 
 def parse_clinvar(path):
     TARGET_GENES = {
@@ -831,8 +1149,7 @@ def load_into_neo4j(all_nodes, all_triples, driver):
         print("  Clearing existing data in this database...")
         session.run("MATCH (n) DETACH DELETE n")
 
-        for label in ["Gene", "Drug", "Variant", "ADR",
-                       "Disease", "Mechanism"]:
+        for label in LABELS:
             session.run(
                 f"CREATE CONSTRAINT IF NOT EXISTS "
                 f"FOR (n:{label}) REQUIRE n.name IS UNIQUE"
@@ -953,60 +1270,92 @@ def print_build_verification(driver):
 
 
 def cmd_build():
-    base = DATA_DIR
+    # data/ is organized by SOURCE (clinpgx/sider/clinvar), not by file
+    # type — this is what makes "3 independent sources" visible directly
+    # in the folder tree. "clinpgx" (not "pharmgkb") because ClinPGx is the
+    # 2024-2025 merger of PharmGKB, CPIC, and PharmCAT under one platform;
+    # every file below still comes from that single underlying resource.
+    clinpgx = os.path.join(DATA_DIR, "clinpgx")
+    sider   = os.path.join(DATA_DIR, "sider")
+    clinvar = os.path.join(DATA_DIR, "clinvar")
     all_nodes   = []
     all_triples = []
 
     print("\n" + "="*50)
-    print("SOURCE 1 — PharmGKB Genes")
+    print("SOURCE 1 — ClinPGx Genes")
     print("="*50)
     gene_ref_nodes = parse_genes(
-        os.path.join(base, "genes", "genes.tsv"))
+        os.path.join(clinpgx, "genes", "genes.tsv"))
 
     print("\n" + "="*50)
-    print("SOURCE 2 — PharmGKB Drugs")
+    print("SOURCE 2 — ClinPGx Drugs")
     print("="*50)
     all_nodes += parse_drugs(
-        os.path.join(base, "drugs", "drugs.tsv"))
+        os.path.join(clinpgx, "drugs", "drugs.tsv"))
 
     print("\n" + "="*50)
-    print("SOURCE 3 — PharmGKB Variants (rsID reference)")
+    print("SOURCE 3 — ClinPGx Variants (rsID reference)")
     print("="*50)
     variant_ref_nodes = parse_variants(
-        os.path.join(base, "variants", "variants.tsv"))
+        os.path.join(clinpgx, "variants", "variants.tsv"))
 
     print("\n" + "="*50)
-    print("SOURCE 4 — PharmGKB Clinical Variants")
+    print("SOURCE 4 — ClinPGx Clinical Variants")
     print("="*50)
     cv_nodes, cv_triples = parse_clinical_variants(
-        os.path.join(base, "clinicalVariants", "clinicalVariants.tsv"))
+        os.path.join(clinpgx, "clinicalVariants", "clinicalVariants.tsv"))
     all_nodes   += cv_nodes
     all_triples += cv_triples
 
     print("\n" + "="*50)
-    print("SOURCE 5 — PharmGKB Variant Annotations (HGVS + mechanism)")
+    print("SOURCE 5 — ClinPGx Summary Annotations (real 1A-4 evidence grade)")
     print("="*50)
-    vd_nodes, vd_triples = parse_variant_drug_annotations(
-        os.path.join(base, "variantAnnotations", "var_drug_ann.tsv"))
-    vp_nodes, vp_triples = parse_variant_pheno_annotations(
-        os.path.join(base, "variantAnnotations", "var_pheno_ann.tsv"))
-    all_nodes   += vd_nodes + vp_nodes
-    all_triples += vd_triples + vp_triples
+    evidence_level_map = parse_summary_annotations(
+        os.path.join(clinpgx, "summaryAnnotations", "summary_annotations.tsv"),
+        os.path.join(clinpgx, "summaryAnnotations", "summary_ann_evidence.tsv"))
 
     print("\n" + "="*50)
-    print("SOURCE 6 — SIDER (MedDRA ADR terms)")
+    print("SOURCE 6 — ClinPGx Variant Annotations (HGVS + mechanism)")
+    print("="*50)
+    vd_nodes, vd_triples, vd_map = parse_variant_drug_annotations(
+        os.path.join(clinpgx, "variantAnnotations", "var_drug_ann.tsv"),
+        evidence_level_map)
+    vp_nodes, vp_triples, vp_map = parse_variant_pheno_annotations(
+        os.path.join(clinpgx, "variantAnnotations", "var_pheno_ann.tsv"),
+        evidence_level_map)
+    vf_nodes, vf_triples, vf_map = parse_variant_fa_annotations(
+        os.path.join(clinpgx, "variantAnnotations", "var_fa_ann.tsv"))
+    all_nodes   += vd_nodes + vp_nodes + vf_nodes
+    all_triples += vd_triples + vp_triples + vf_triples
+
+    # Merge the three variant_annotation_id -> finding maps before handing
+    # off to parse_study_parameters, which has no variant/drug/ADR columns
+    # of its own and joins purely on this shared ID.
+    annotation_map = defaultdict(list)
+    for m in (vd_map, vp_map, vf_map):
+        for k, v in m.items():
+            annotation_map[k].extend(v)
+
+    st_nodes, st_triples = parse_study_parameters(
+        os.path.join(clinpgx, "variantAnnotations", "study_parameters.tsv"),
+        annotation_map)
+    all_nodes   += st_nodes
+    all_triples += st_triples
+
+    print("\n" + "="*50)
+    print("SOURCE 7 — SIDER (MedDRA ADR terms)")
     print("="*50)
     se_nodes, se_triples = parse_sider(
-        os.path.join(base, "SIDER_side_effects.tsv.gz"),
-        os.path.join(base, "SIDER_drug_names.tsv"))
+        os.path.join(sider, "SIDER_side_effects.tsv.gz"),
+        os.path.join(sider, "SIDER_drug_names.tsv"))
     all_nodes   += se_nodes
     all_triples += se_triples
 
     print("\n" + "="*50)
-    print("SOURCE 7 — ClinVar (clinical severity)")
+    print("SOURCE 8 — ClinVar (clinical severity)")
     print("="*50)
     cv2_nodes, cv2_triples = parse_clinvar(
-        os.path.join(base, "clinvar_variant_summary.txt.gz"))
+        os.path.join(clinvar, "clinvar_variant_summary.txt.gz"))
     all_nodes   += cv2_nodes
     all_triples += cv2_triples
 
@@ -1393,6 +1742,61 @@ def cmd_audit():
             else:
                 print(f"  [OK]      {drug} -> {adr}: {n_variants} variant(s) complete the chain, "
                       f"{n_genes} gene(s) involved")
+
+        _section("9. STUDY-LEVEL EVIDENCE COVERAGE (effect size / CI / n / design)")
+        print("  For each chain variant: does it have a *complete* Study record (all")
+        print("  of study_type/effect_size/ci_lower/n present), a Study link that's")
+        print("  missing some of those fields (a PharmGKB source-data gap, not a join")
+        print("  failure), or no Study link at all (only reachable via clinicalVariants.tsv,")
+        print("  which carries no Variant Annotation ID to join a Study through)?")
+        for drug, adr in PRIMARY_PAIRS:
+            gv_rel = "|".join(GENE_TO_VARIANT_RELS)
+            vd_rel = "|".join(VARIANT_TO_DRUG_RELS)
+            va_rel = "|".join(VARIANT_TO_ADR_RELS)
+
+            result = session.run(
+                f"MATCH (g:Gene)-[:{gv_rel}]->(v:Variant)-[:{vd_rel}]->(d:Drug {{name:$drug}}) "
+                f"MATCH (v)-[:{va_rel}]->(a:ADR {{name:$adr}}) "
+                f"OPTIONAL MATCH (v)-[s:SUPPORTED_BY_STUDY]->(st:Study) "
+                f"WHERE s IS NULL OR s.for_tail IN [$drug, $adr] "
+                f"RETURN DISTINCT v.name AS variant, "
+                f"  count(DISTINCT st) AS n_studies, "
+                f"  collect(DISTINCT [st.study_type, st.effect_size, st.ci_lower, "
+                f"                    st.n_cases, st.n_controls]) AS study_fields",
+                drug=drug, adr=adr
+            )
+            rows = list(result)
+            total = len(rows)
+            if total == 0:
+                print(f"  [N/A]     {drug} -> {adr}: no reasoning-chain variants to check (see section 8)")
+                continue
+
+            complete = incomplete = no_link = 0
+            for r in rows:
+                if r["n_studies"] == 0:
+                    no_link += 1
+                    continue
+                is_complete = any(
+                    f[0] is not None and f[1] is not None and f[2] is not None
+                    and (f[3] is not None or f[4] is not None)
+                    for f in r["study_fields"]
+                )
+                if is_complete:
+                    complete += 1
+                else:
+                    incomplete += 1
+
+            pct = complete / total * 100
+            flag = "[OK]     " if pct >= 50 else "[PARTIAL]"
+            print(f"  {flag} {drug} -> {adr}: {complete}/{total} variants ({pct:.1f}%) "
+                  f"have complete study-level evidence "
+                  f"[{incomplete} linked-but-incomplete, {no_link} no Study link]")
+
+            if complete == 0:
+                issues.append(
+                    f"{drug} -> {adr}: 0/{total} chain variants have COMPLETE study-level "
+                    f"evidence ({incomplete} linked-but-incomplete, {no_link} unlinkable)"
+                )
 
     _section("SUMMARY")
     if not issues:

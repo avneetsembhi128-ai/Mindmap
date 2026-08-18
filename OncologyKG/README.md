@@ -1,10 +1,15 @@
 # OncologyKG
 
 A focused Pediatric Oncology Adverse Drug Reaction (ADR) knowledge graph in Neo4j,
-built from PharmGKB, SIDER, and ClinVar. It links Genes → Variants → Drugs → ADRs
-for a curated set of chemotherapy agents and clinically significant toxicities
-(ototoxicity, cardiotoxicity, peripheral neuropathy, mucositis, hepatotoxicity,
-neutropenia, thrombocytopenia, myelosuppression, nephrotoxicity, hypersensitivity).
+built from 3 independent sources: ClinPGx, SIDER, and ClinVar. ClinPGx is the
+2024-2025 merger of PharmGKB, CPIC, and PharmCAT under one platform — those are
+not three separate sources, so `data/` and this doc treat them as the single
+resource they now are. The graph links Genes → Variants → Drugs → ADRs, and each
+evidence edge can carry `Study` nodes (effect size, CI, sample size, study design)
+so a finding's strength can be judged, not just its direction, for a curated set
+of chemotherapy agents and clinically significant toxicities (ototoxicity,
+cardiotoxicity, peripheral neuropathy, mucositis, hepatotoxicity, neutropenia,
+thrombocytopenia, myelosuppression, nephrotoxicity, hypersensitivity).
 
 Everything — build, load, export, audit — lives in one CLI, [`kg.py`](kg.py).
 
@@ -14,7 +19,7 @@ Everything — build, load, export, audit — lives in one CLI, [`kg.py`](kg.py)
 
 The graph is exported to `kg_export/nodes.json` and `kg_export/edges.json`, both
 committed to this repo. This is the easiest way to get the exact graph used for
-downstream work, with no PharmGKB/SIDER/ClinVar downloads required.
+downstream work, with no ClinPGx/SIDER/ClinVar downloads required.
 
 ```bash
 pip install -r ../requirements.txt
@@ -53,15 +58,16 @@ the target drug/ADR scope (edit `TARGET_DRUGS` / `ADR_CANONICAL_MAP` near the to
 
 ## Data sources
 
-None of these files are committed (`data/` is gitignored). Download each into the
-path shown, relative to `OncologyKG/data/`.
+None of these files are committed (`data/` is gitignored). `data/` is organized
+by **source**, not file type — see `data/README.md` for why. Download each file
+into the path shown, relative to `OncologyKG/data/`.
 
 | File(s) | Source | Path |
 |---|---|---|
-| `genes.tsv`, `drugs.tsv`, `variants.tsv`, `clinicalVariants.tsv` | [PharmGKB downloads](https://www.pharmgkb.org/downloads) | `data/genes/genes.tsv`, `data/drugs/drugs.tsv`, `data/variants/variants.tsv`, `data/clinicalVariants/clinicalVariants.tsv` |
-| `var_drug_ann.tsv`, `var_pheno_ann.tsv`, `var_fa_ann.tsv`, `study_parameters.tsv` | PharmGKB downloads → "Variant Annotations" zip | `data/variantAnnotations/` |
-| `SIDER_side_effects.tsv.gz`, `SIDER_drug_names.tsv` | [SIDER 4.1](http://sideeffects.embl.de/) — `meddra_all_se.tsv.gz` (rename) and `drug_names.tsv` | `data/SIDER_side_effects.tsv.gz`, `data/SIDER_drug_names.tsv` |
-| `clinvar_variant_summary.txt.gz` | [NCBI ClinVar FTP](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz) | `data/clinvar_variant_summary.txt.gz` |
+| `genes.tsv`, `drugs.tsv`, `variants.tsv`, `clinicalVariants.tsv` | [PharmGKB downloads](https://www.pharmgkb.org/downloads) (now ClinPGx) | `data/clinpgx/genes/genes.tsv`, `data/clinpgx/drugs/drugs.tsv`, `data/clinpgx/variants/variants.tsv`, `data/clinpgx/clinicalVariants/clinicalVariants.tsv` |
+| `var_drug_ann.tsv`, `var_pheno_ann.tsv`, `var_fa_ann.tsv`, `study_parameters.tsv` | PharmGKB/ClinPGx downloads → "Variant Annotations" zip | `data/clinpgx/variantAnnotations/` |
+| `SIDER_side_effects.tsv.gz`, `SIDER_drug_names.tsv` | [SIDER 4.1](http://sideeffects.embl.de/) — `meddra_all_se.tsv.gz` (rename) and `drug_names.tsv` | `data/sider/SIDER_side_effects.tsv.gz`, `data/sider/SIDER_drug_names.tsv` |
+| `clinvar_variant_summary.txt.gz` | [NCBI ClinVar FTP](https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz) | `data/clinvar/clinvar_variant_summary.txt.gz` |
 
 **Note on reproducibility:** these are all live, continuously-updated databases, so a
 rebuild today will not byte-for-byte match a rebuild from months ago — record the
@@ -104,6 +110,10 @@ OncologyKG/
                                   see above
   README.md
   data/                          raw source data (gitignored, see Data sources above)
+    README.md                      why data/ is organized by source, not file type
+    clinpgx/                       PharmGKB/CPIC/PharmCAT — one merged platform
+    sider/
+    clinvar/
   kg_export/
     nodes.json                     committed — the portable graph snapshot
     edges.json                     committed — gains a mechanism_narrative
