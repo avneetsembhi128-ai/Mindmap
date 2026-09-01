@@ -27,7 +27,7 @@ downstream work, with no ClinPGx/SIDER/ClinVar downloads required.
 ```bash
 pip install -r ../requirements.txt
 
-# Start a local Neo4j instance (Desktop or Docker), then:
+# Start a local Neo4j instance (Desktop or Docker) and create an instace, then:
 export NEO4J_PASSWORD="your-password-here"   # PowerShell: $env:NEO4J_PASSWORD = "..."
 python kg.py load
 ```
