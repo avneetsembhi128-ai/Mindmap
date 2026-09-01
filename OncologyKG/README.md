@@ -11,7 +11,10 @@ of chemotherapy agents and clinically significant toxicities (ototoxicity,
 cardiotoxicity, peripheral neuropathy, mucositis, hepatotoxicity, neutropenia,
 thrombocytopenia, myelosuppression, nephrotoxicity, hypersensitivity).
 
-Everything — build, load, export, audit — lives in one CLI, [`kg.py`](kg.py).
+Everything — build, load, export, audit — lives in one CLI, `python kg.py <command>`.
+The implementation is split across a few sibling modules by concern (constants,
+helpers, per-source parsers, the Neo4j loader, the audit) rather than one large
+file — see **Folder layout** below for what lives where.
 
 ## Two ways to reproduce the graph
 
@@ -32,8 +35,8 @@ python kg.py load
 ### Option B — Rebuild from raw source data
 
 Use this if you want to verify the build logic, pull fresher source data, or change
-the target drug/ADR scope (edit `TARGET_DRUGS` / `ADR_CANONICAL_MAP` near the top of
-`kg.py`).
+the target drug/ADR scope (edit `TARGET_DRUGS` / `ADR_CANONICAL_MAP` in
+[`kg_constants.py`](kg_constants.py)).
 
 1. Install dependencies: `pip install -r ../requirements.txt`
 2. Download the raw source files (see **Data sources** below) into `data/` matching
@@ -108,8 +111,17 @@ are skipped.
 
 ```
 OncologyKG/
-  kg.py                          build / load / export / audit — one CLI, one
-                                  shared Neo4j connection helper
+  kg.py                          CLI entrypoint — `build`'s orchestration,
+                                  `load`/`export`, argparse dispatch
+  kg_constants.py                connection config, paths, TARGET_DRUGS,
+                                  CTCAE_MAP, ADR keyword maps
+  kg_helpers.py                  shared helpers: Neo4j driver factory, triple
+                                  construction, drug/ADR canonicalization
+                                  (incl. the real ClinPGx synonym map), NaN-safe
+                                  cell cleanup
+  kg_parsers.py                  the 8 independent source parsers `build` calls
+  kg_loader.py                   pushes parsed nodes/edges into Neo4j for `build`
+  kg_audit.py                    the `audit` health-check
   enrich_mechanisms.py           (optional) pre-generates mechanism narratives —
                                   see above
   README.md
