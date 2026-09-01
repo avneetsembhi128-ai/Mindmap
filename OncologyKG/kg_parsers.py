@@ -68,7 +68,7 @@ def parse_drugs(path):
             "name":       canonical,
             "drug_class": get_drug_class(canonical),
             "drug_type":  str(row.get("Type", "")).strip(),
-            "cpic_level": str(row.get("Top CPIC Pairs Level", "")).strip(),
+            "cpic_level": _clean_str(row.get("Top CPIC Pairs Level")) or "",
             "source_terms": raw_name,
             "synonyms":   ", ".join(synonyms),
             "label":      "Drug"
@@ -250,9 +250,9 @@ def parse_variant_drug_annotations(path, evidence_level_map=None):
         gene     = str(row.get("Gene",     "")).strip()
         drug     = str(row.get("Drug(s)",  "")).strip()
         sentence = str(row.get("Sentence", "")).strip()
-        pheno_cat= str(row.get("Phenotype Category", "")).strip()
+        pheno_cat= _clean_str(row.get("Phenotype Category")) or ""
         pdpk     = str(row.get("PD/PK terms", "")).strip()
-        direction= str(row.get("Direction of effect", "")).strip()
+        direction= _clean_str(row.get("Direction of effect")) or ""
         pmid     = _clean_str(row.get("PMID"))
         citation_url = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else None
         if annotation_id and pmid:
@@ -353,9 +353,9 @@ def parse_variant_pheno_annotations(path, evidence_level_map=None):
         gene     = str(row.get("Gene",      "")).strip()
         drug     = str(row.get("Drug(s)",   "")).strip()
         phenotype= str(row.get("Phenotype", "")).strip()
-        side_eff = str(row.get("Side effect/efficacy/other", "")).strip()
+        side_eff = _clean_str(row.get("Side effect/efficacy/other")) or ""
         sentence = str(row.get("Sentence",  "")).strip()
-        direction= str(row.get("Direction of effect", "")).strip()
+        direction= _clean_str(row.get("Direction of effect")) or ""
         pmid     = _clean_str(row.get("PMID"))
         citation_url = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else None
         if annotation_id and pmid:
@@ -452,7 +452,7 @@ def parse_variant_fa_annotations(path):
         gene     = str(row.get("Gene",     "")).strip()
         drug     = str(row.get("Drug(s)",  "")).strip()
         sentence = str(row.get("Sentence", "")).strip()
-        direction= str(row.get("Direction of effect", "")).strip()
+        direction= _clean_str(row.get("Direction of effect")) or ""
         functional_terms = _clean_str(row.get("Functional terms")) or ""
         assay_type = _clean_str(row.get("Assay type")) or ""
         cell_type  = _clean_str(row.get("Cell type")) or ""

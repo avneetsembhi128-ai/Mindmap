@@ -191,7 +191,10 @@ def _qa_risk_reasons(name, gene_symbols):
 
 
 def _edge_direction(props):
-    return props.get("direction") or props.get("side_effect_type") or ""
+    # Guard against the literal string "nan" (see kg_parsers.py's _clean_str)
+    # leaking through from exports built before that field got cleaned up.
+    return next((v for v in (props.get("direction"), props.get("side_effect_type"))
+                 if v and v != "nan"), "")
 
 
 def _cache_key(variant, adr):

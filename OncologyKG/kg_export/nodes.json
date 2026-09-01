@@ -6330,7 +6330,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "N-[(3S, 4S)-1-(cyclopropylmethyl)-3-[(1-pyrimidin-2-ylcyclopropyl)carbamoyl]piperidin-4-yl]-5-(2, 4-difluorophenyl)-1, 2-oxazole-3-carboxamide",
       "drug_type": "Drug",
       "name": "dactinomycin",
@@ -6341,7 +6341,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "L-asparagine amidohydrolase, Putative L-asparaginase precursor, Elspar",
       "drug_type": "Drug",
       "name": "asparaginase",
@@ -6352,7 +6352,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "BLM, Bleocin, Bleomicin, Bleomicina [INN-Spanish], Bleomycin A2, Bleomycin B2, Bleomycin sulfate, Bleomycine [INN-French], Bleomycinum [INN-Latin], Blenoxane, Bleo",
       "drug_type": "Drug",
       "name": "bleomycin",
@@ -6363,7 +6363,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Busulphan, Busulphane, Butanedioldimethanesulfonate, Buzulfan, Sulfabutin, Sulphabutin, Tetramethylene Dimethane Sulfonate, Tetramethylenester Kyseliny Methansulfonove, busulfan, Busilvex, Busulfex, Citosulfan, Leucosulfan, Mablin, Mielevcin, Mielosan, Mielucin, Milecitan, Mileran, Misulban, Mitosan, Mitostan, Myeleukon, Myeloleukon, Myelosan, Mylecytan, Myleran, Myleran Tablets",
       "drug_type": "Drug",
       "name": "busulfan",
@@ -6396,7 +6396,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "",
       "drug_type": "Drug",
       "name": "cyclophosphamide",
@@ -6407,7 +6407,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Ara-C, AraC, Arabinocytidine, Arabinofuranosylcytosine, Arabinosylcytosine, Aracytidine, Aracytin, Aracytine, Beta-cytosine arabinoside, Citarabina [INN-Spanish], Cytarabin, Cytarabina, Cytarabinoside, Cytarabinum [INN-Latin], Cytosine 1-beta-D-arabinofuranoside, Cytosine arabinofuranoside, Cytosine arabinose, Cytosine arabinoside, Cytosine beta-D-arabinoside, Cytosine, beta-D-arabinoside, Cytosine-1-beta-D-arabinofuranoside, Cytosine-beta-D-arabinofuranoside, Cytosine-beta-arabinoside, beta-Arabinosylcytosine, beta-D-Arabinosylcytosine, cytarabine liposome injection, AR3, Alexan, Arabitin, Arafcyt, Cytarbel, Cytosar, Cytosar-U, Depocyt, Depocyt (liposomal), Erpalfa, Iretin, Spongocytidine, Tarabine, Udicil",
       "drug_type": "Drug",
       "name": "cytarabine",
@@ -6429,7 +6429,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Desrazoxane, Dexrazoxano [INN-Spanish], Dexrazoxanum [INN-Latin], Dextrorazoxane, Razoxana [INN-Spanish], Razoxanum [INN-Latin], icrf-187, Cardioxane, Dyzoxane, Eucardion, Razoxane, Razoxin, Tepirone, Troxozone, Zinecard",
       "drug_type": "Drug",
       "name": "dexrazoxane",
@@ -6473,7 +6473,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "FAMP, Fludarabine 5'-monophosphate, Fludarabine monophosphate, Fludarabine phosphate, Fludara, Fludura",
       "drug_type": "Drug",
       "name": "fludarabine",
@@ -6495,7 +6495,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Asta Z 4942, I-Phosphamide, Ifosfamid, Ifosfamide Sterile, Ifsofamide, Iphosphamid, Iphosphamide, Isofosfamide, Isophosphamide, ifosphamide, Cyfos, Holoxan 1000, IFEX, Ifex/Mesnex Kit, Ifosfamide/Mesna Kit, Isoendoxan, Mitoxana, Naxamide",
       "drug_type": "Drug",
       "name": "ifosfamide",
@@ -6506,7 +6506,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Imatinib Mesylate, Imatinib Methansulfonate, sti-571, Gleevec, Glivec",
       "drug_type": "Drug",
       "name": "imatinib",
@@ -6528,7 +6528,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Alkeran, L-PAM, L-Phenylalanine mustard, L-Sarcolysin, L-Sarcolysine, L-Sarkolysin, Levofalan, Melfalan, Mephalan, Phenylalanine mustard, Phenylalanine nitrogen mustard, Sarcolysine, Sarkolysin",
       "drug_type": "Drug",
       "name": "melphalan",
@@ -6561,7 +6561,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "7-Epipaclitaxel, 7-Epitaxol, 7-epi-Paclitaxel, 7-epi-Taxol, abi-007, Abraxane, Epitaxol, LipoPac, Onxol, Paxceed, Paxene, Taxol, Taxol A, Vascular Wrap, Xorane",
       "drug_type": "Drug",
       "name": "paclitaxel",
@@ -6583,7 +6583,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Methazolastone, Temozolamide, Temozolodida [Spanish], Temozolomidum [Latin], temozolomide, Temodal, Temodar",
       "drug_type": "Drug",
       "name": "temozolomide",
@@ -6605,7 +6605,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "TPT, TTC, Topotecan Hcl, Topotecan Hydrochloride, Topotecan Lactone, Topotecane [INN-French], Topotecanum [INN-Latin], topotecan, Hycamptamine, Hycamptin, Hycamtin",
       "drug_type": "Drug",
       "name": "topotecan",
@@ -6616,7 +6616,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "Nincaluicolflastine, Rozevin, Velban, Velbe, Vinblastin, Vinblastina [Dcit], Vinblastine Sulfate, Vinblastinum [INN-Latin], Vincaleucoblastin, Vincaleucoblastine, Vincaleukoblastine, Vincoblastine",
       "drug_type": "Drug",
       "name": "vinblastine",
@@ -6627,7 +6627,7 @@
   {
     "label": "Drug",
     "properties": {
-      "cpic_level": "nan",
+      "cpic_level": "",
       "synonyms": "22-Oxovincaleukoblastine, Indole alkaloid, LCR, Leurocristine, VCR, VIN, Vincristina [DCIT], Vincristine Sulfate, Vincristinum [INN-Latin], Vincrstine, Vincrystine, Z-D-Val-Lys(Z)-OH, vincristine, Marqibo, Onco TCS, Oncovin, Vincasar, Vincasar PFS, Vincrex, Vincristine Sulfate PFS, Vinkristin",
       "drug_type": "Drug",
       "name": "vincristine",
